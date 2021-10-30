@@ -31,10 +31,10 @@ class LoginAndSignup extends JPanel {
         signinButton.setFont(new Font("굴림", Font.BOLD, 20));
         add(signinButton);
 
-        loginButton.addActionListener(new ActionListener() {
+        signinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginPage();
+                new join_interface();
                 setVisible(false); // 창 안보이게 하기
             }
         });
