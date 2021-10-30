@@ -1,3 +1,5 @@
+package src;
+
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
@@ -31,10 +33,10 @@ class LoginAndSignup extends JPanel {
         signinButton.setFont(new Font("굴림", Font.BOLD, 20));
         add(signinButton);
 
-        loginButton.addActionListener(new ActionListener() {
+        signinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new LoginPage();
+                new join_interface();
                 setVisible(false); // 창 안보이게 하기
             }
         });
