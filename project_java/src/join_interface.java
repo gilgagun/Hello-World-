@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-
+//수정
 public class join_interface extends JFrame implements ActionListener {
     JTextField namet = new JTextField();
     JTextField phonet = new JTextField();
