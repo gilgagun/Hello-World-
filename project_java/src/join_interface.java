@@ -1,10 +1,10 @@
-package src;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.*;
+
 
 class Member{ //회원 가입 db연결 클래스
     String id;
@@ -81,6 +81,7 @@ public class join_interface extends JFrame implements ActionListener {
         idt.setBounds(200,200,100,30);
         fr.add(idt);
         JButton idck = new JButton("중복 확인");
+        idck.addActionListener(this);
         Font f = new Font("맑은 고딕",Font.PLAIN,10);
         idck.setFont(f);
         idck.setBounds(100,200,80,30);
@@ -122,6 +123,7 @@ public class join_interface extends JFrame implements ActionListener {
         String name = namet.getText();
         Member new_member = new Member(id,pw,email,name,phone);
 
+        //등록 이벤트 처리
         if (b.getText().equals("등록"))
         {
             if(id.equals("")){
@@ -148,6 +150,19 @@ public class join_interface extends JFrame implements ActionListener {
             else{
                 sing_db(new_member);
                 JOptionPane.showMessageDialog(null, "가입 완료");
+            }
+        }
+        // 아이디 중복확인 이벤트 처리
+        else if(b.getText().equals("중복 확인")) {
+            int check = idCheck(new_member);
+            if(id.equals("")){
+                JOptionPane.showMessageDialog(null,"아이디를 입력하셔야 합니다.");
+            }
+            else if (check == 0){
+                JOptionPane.showMessageDialog(null, "사용 가능");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "사용중인 아이디");
             }
         }
 
@@ -187,9 +202,32 @@ public class join_interface extends JFrame implements ActionListener {
             System.out.println("DB 연결 에러");
         }
     }
+    public int idCheck(Member new_member) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String id = new_member.get_id();
+        int value=0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            String sql = "select id from new_table where id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1,  id);
+            rs = pstmt.executeQuery();
 
+            if(rs.next()) value = 1;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return value;
+    }
     public static void main(String[] args) {
-
         new join_interface();
     }
 }
