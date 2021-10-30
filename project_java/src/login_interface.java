@@ -22,14 +22,12 @@ class TitlePanel extends JPanel {
     }
 }
 
-public class login_interface extends JPanel {
+public class login_interface extends JFrame {
     public login_interface() {
-        JFrame frame = new JFrame();
-        frame.setTitle("로그인");
+        setTitle("로그인");
         setBounds(0,0,350,500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Container mainContainer = frame.getContentPane();
+        Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new TitlePanel(), BorderLayout.NORTH);
