@@ -7,7 +7,43 @@ import javax.swing.event.*;    // 스윙 이벤트 처리에 필요한 클래스
 
 class BoxPanel extends JPanel {
     public BoxPanel() {
+        setLayout(null);
 
+        JLabel idText = new JLabel("아이디");
+        idText.setBounds(80,50,50,30);
+        add(idText);
+
+        JTextField id = new JTextField();
+        id.setBounds(170,50,100,30);
+        add(id);
+
+        JLabel pwText = new JLabel("비밀번호");
+        pwText.setBounds(80,100,50,30);
+        add(pwText);
+
+        JPasswordField pw = new JPasswordField();
+        pw.setBounds(170,100,100,30);
+        add(pw);
+
+        JButton check = new JButton("확인");
+        check.setBounds(135, 160, 70,30);
+        add(check);
+
+        JLabel question = new JLabel("회원이 아니신가요?");
+        question.setBounds(124, 205,100,20);
+        question.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+        add(question);
+
+        JLabel signinPage = new JLabel("<HTML><U>회원가입</U></HTML>");
+        signinPage.setBounds(148, 225, 100, 20);
+        signinPage.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+        add(signinPage);
+
+        signinPage.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new join_interface();
+            }
+        });
     }
 }
 
@@ -16,7 +52,7 @@ class TitlePanel extends JPanel {
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         JLabel title = new JLabel("로그인");
-        title.setFont(new Font("고딕", Font.BOLD, 20));
+        title.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         title.setHorizontalAlignment(JLabel.CENTER);
         add(title);
     }
@@ -25,7 +61,7 @@ class TitlePanel extends JPanel {
 public class login_interface extends JFrame {
     public login_interface() {
         setTitle("로그인");
-        setBounds(0,0,350,500);
+        setBounds(0,0,350,400);
 
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
