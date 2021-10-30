@@ -9,7 +9,7 @@ class Title extends JPanel {
     public Title() {
         setBackground(Color.LIGHT_GRAY);
 
-        setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
+        setLayout(new   FlowLayout(FlowLayout.LEFT, 15, 16));
 
         JLabel title = new JLabel("마법의 성이라는 노래를 아십니까? 안다면 당신은 옛날 사람.");
         title.setFont(new Font("Serif", Font.BOLD, 20));
