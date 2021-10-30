@@ -49,6 +49,11 @@ public class test1 extends JFrame {
         pnlEast.add(tfNumber);
         pnlEast.setBorder(new TitledBorder("East"));
 
+        JPanel pnlcenter = new JPanel(new GridLayout(0,1,0,10));
+        pnlcenter.add(tfName);
+        pnlcenter.add(tfNumber);
+        pnlcenter.setBorder(new TitledBorder("East"));
+
         JPanel pnlSouth = new JPanel();
         pnlSouth.add(btnSave);
         pnlSouth.add(btnReset);
