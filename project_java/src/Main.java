@@ -1,4 +1,4 @@
-package src;
+package project_java.src;
 
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
@@ -33,11 +33,17 @@ class LoginAndSignup extends JPanel {
         signinButton.setFont(new Font("굴림", Font.BOLD, 20));
         add(signinButton);
 
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new login_interface();
+            }
+        });
+
         signinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new join_interface();
-                setVisible(false); // 창 안보이게 하기
             }
         });
     }
@@ -60,17 +66,17 @@ class CenterPanel extends JPanel {
         setLayout(new FlowLayout(FlowLayout.CENTER, 250, 300));
 
         JButton mainButton1 = new JButton("예매하기");
-        mainButton1.setPreferredSize(new Dimension(300, 300));
+        mainButton1.setPreferredSize(new Dimension(200, 200));
         mainButton1.setFont(new Font("굴림", Font.BOLD, 40));
         add(mainButton1);
 
         JButton mainButton2 = new JButton("<HTML>예매내역<br>조회하기</HTML>");
-        mainButton2.setPreferredSize(new Dimension(300, 300));
+        mainButton2.setPreferredSize(new Dimension(200, 200));
         mainButton2.setFont(new Font("굴림", Font.BOLD, 40));
         add(mainButton2);
 
         JButton mainButton3 = new JButton("도움말");
-        mainButton3.setPreferredSize(new Dimension(300, 300));
+        mainButton3.setPreferredSize(new Dimension(200, 200));
         mainButton3.setFont(new Font("굴림", Font.BOLD, 40));
         add(mainButton3);
     }
