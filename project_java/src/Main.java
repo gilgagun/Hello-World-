@@ -63,21 +63,21 @@ class CenterPanel extends JPanel {
     public CenterPanel() {
         setBackground(Color.WHITE);
 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 250, 300));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 100, 250));
 
         JButton mainButton1 = new JButton("예매하기");
-        mainButton1.setPreferredSize(new Dimension(200, 200));
-        mainButton1.setFont(new Font("굴림", Font.BOLD, 40));
+        mainButton1.setPreferredSize(new Dimension(180, 180));
+        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton1);
 
         JButton mainButton2 = new JButton("<HTML>예매내역<br>조회하기</HTML>");
-        mainButton2.setPreferredSize(new Dimension(200, 200));
-        mainButton2.setFont(new Font("굴림", Font.BOLD, 40));
+        mainButton2.setPreferredSize(new Dimension(180, 180));
+        mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton2);
 
         JButton mainButton3 = new JButton("도움말");
-        mainButton3.setPreferredSize(new Dimension(200, 200));
-        mainButton3.setFont(new Font("굴림", Font.BOLD, 40));
+        mainButton3.setPreferredSize(new Dimension(180, 180));
+        mainButton3.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton3);
     }
 }
@@ -85,7 +85,8 @@ class CenterPanel extends JPanel {
 public class Main extends JFrame{
     public Main() {
         setTitle("버스 예약 시스템(가제)");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(1000,800);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container mainContainer = getContentPane();

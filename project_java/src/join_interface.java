@@ -1,3 +1,4 @@
+package project_java.src;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,6 +47,7 @@ public class join_interface extends JFrame implements ActionListener {
     public join_interface(){
         JFrame fr = new JFrame();
         fr.setTitle("회원가입");
+        fr.setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 닫음 이벤트
 
         fr.setBounds(0,0,350,500);

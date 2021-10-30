@@ -88,6 +88,7 @@ class TitlePanel extends JPanel {
 public class login_interface extends JFrame {
     public login_interface() {
         setTitle("로그인");
+        setResizable(false);
         setBounds(0,0,350,400);
 
         Container mainContainer = getContentPane();
