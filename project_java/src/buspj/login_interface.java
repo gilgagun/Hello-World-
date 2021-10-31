@@ -70,9 +70,14 @@ class BoxPanel extends JPanel implements ActionListener {
             // 69번째 라인 else if : DB 연결하여 아이디 or 비밀번호 정보 없으면 "아이디 or 비밀번호를 잘못 입력하였습니다." 알림창 출력 예정
             else {
                 int value = DB.login(idt, pwt);
+                System.out.println(value);
                 if(value == 1){
                     JOptionPane.showMessageDialog(null, "로그인 성공");
                     new Main();
+                }
+                else if(value == 2){
+                    JOptionPane.showMessageDialog(null, "관리자 로그인 성공");
+                    new AdministratorMain();
                 }
                 else if(value == -1){
                     JOptionPane.showMessageDialog(null, "일치하는 아이디가 없습니다.");

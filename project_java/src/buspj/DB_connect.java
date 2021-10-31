@@ -89,12 +89,18 @@ public class DB_connect {
                     DriverManager.getConnection("jdbc:mysql:" +
                             "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
+            String root = "root";
             pstmt = conn.prepareStatement(SQL);
             pstmt.setString(1, idt);
             rs = pstmt.executeQuery(); // 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌
             if (rs.next()) {
                 if (rs.getString(1).contentEquals(pwt)) {
-                    return 1; // 로그인 성공
+                    if(idt.equals(root)){
+                        return 2; // 관리자 로그인
+                    }
+                    else {
+                        return 1; // 로그인 성공
+                    }
                 }
                 else {
                     return 0; // 비밀번호 불일치
