@@ -62,6 +62,43 @@ class MyCenterPanel extends JPanel {
         image2.setHorizontalAlignment(JLabel.CENTER);
         add(image2);
 
+        // 마일리지 내역 삽입
+        JLabel mileage = new JLabel("마일리지 내역");
+        mileage.setBounds(80,210,200,100);
+        mileage.setHorizontalAlignment(JLabel.CENTER);
+        mileage.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+        add(mileage);
+
+        // 환영 메시지 삽입
+
+        // 세로 선 삽입
+        ImageIcon line2 = new ImageIcon("project__java/buspj/line2.png");
+        Image img3 = line2.getImage();
+        Image updateImg3 = img3.getScaledInstance(50,600,Image.SCALE_DEFAULT);
+        ImageIcon updateIcon3 = new ImageIcon(updateImg3);
+
+        JLabel image3 = new JLabel(updateIcon3);
+        image3.setBounds(470,40,50,600);
+        image3.setHorizontalAlignment(JLabel.CENTER);
+        add(image3);
+
+        // 결재내역
+        JButton paymentHistory = new JButton("결재내역");
+        paymentHistory.setBounds(540, 80, 400, 100);
+        paymentHistory.setFont(new Font("고딕", Font.BOLD, 30));
+        add(paymentHistory);
+
+        // 카드관리
+        JButton card = new JButton("카드관리");
+        card.setBounds(540, 270, 400, 100);
+        card.setFont(new Font("고딕", Font.BOLD, 30));
+        add(card);
+
+        // 회원탈퇴
+        JButton membershipBye = new JButton("회원탈퇴");
+        membershipBye.setBounds(540, 460, 400, 100);
+        membershipBye.setFont(new Font("고딕", Font.BOLD, 30));
+        add(membershipBye);
         setVisible(true);
     }
 }
