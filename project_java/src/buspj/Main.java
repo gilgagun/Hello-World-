@@ -1,4 +1,4 @@
-package buspj;
+package src.buspj;
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
@@ -22,29 +22,16 @@ class LoginAndSignup extends JPanel {
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
-        JButton loginButton = new JButton("로그인");
-        loginButton.setPreferredSize(new Dimension(100, 50));
-        loginButton.setFont(new Font("굴림", Font.BOLD, 20));
-        add(loginButton);
+        JButton myButton = new JButton("마이페이지");
+        myButton.setPreferredSize(new Dimension(150, 50));
+        myButton.setFont(new Font("굴림", Font.BOLD, 20));
+        add(myButton);
 
-        JButton signinButton = new JButton("회원가입");
-        signinButton.setPreferredSize(new Dimension(120, 50));
-        signinButton.setFont(new Font("굴림", Font.BOLD, 20));
-        add(signinButton);
+        JButton logoutButton = new JButton("로그아웃");
+        logoutButton.setPreferredSize(new Dimension(120, 50));
+        logoutButton.setFont(new Font("굴림", Font.BOLD, 20));
+        add(logoutButton);
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new login_interface();
-            }
-        });
-
-        signinButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new join_interface();
-            }
-        });
     }
 }
 
@@ -95,9 +82,5 @@ public class Main extends JFrame{
         mainContainer.add(new CenterPanel(), BorderLayout.CENTER);
 
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new Main();
     }
 }
