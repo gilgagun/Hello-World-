@@ -1,4 +1,4 @@
-package src.buspj;
+package buspj;
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
@@ -53,7 +53,6 @@ class BoxPanel extends JPanel implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        JFrame frame = new JFrame();
         JButton button = (JButton) e.getSource();
 
         if (button.getText().equals("확인")) {
@@ -69,12 +68,6 @@ class BoxPanel extends JPanel implements ActionListener {
             // 69번째 라인 else if : DB 연결하여 아이디 or 비밀번호 정보 없으면 "아이디 or 비밀번호를 잘못 입력하였습니다." 알림창 출력 예정
             else {
                 JOptionPane.showMessageDialog(null, "로그인 성공");
-                login_interface.addWindowListener(new WindowAdapter() {
-                    public void windowClosing( WindowEvent e ) {
-                        frame.dispose();
-                    }
-                });
-                new Main();
             }
         }
     }
@@ -95,7 +88,6 @@ public class login_interface extends JFrame {
     public login_interface() {
         setTitle("로그인");
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(0,0,350,400);
 
         Container mainContainer = getContentPane();
@@ -106,6 +98,4 @@ public class login_interface extends JFrame {
 
         setVisible(true);
     }
-
-    public static void main(String[] args) { new login_interface(); }
 }
