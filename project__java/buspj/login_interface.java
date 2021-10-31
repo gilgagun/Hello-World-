@@ -35,7 +35,7 @@ class BoxPanel extends JPanel implements ActionListener {
         question.setFont(new Font("맑은 고딕", Font.BOLD, 10));
         add(question);
 
-        JLabel signinPage = new JLabel("");
+        JLabel signinPage = new JLabel("<HTML><U>회원가입</U></HTML>");
         signinPage.setBounds(148, 225, 100, 20);
         signinPage.setFont(new Font("맑은 고딕", Font.BOLD, 10));
         add(signinPage);
