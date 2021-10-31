@@ -1,4 +1,4 @@
-package src.buspj;
+package buspj;
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
@@ -54,7 +54,9 @@ class BoxPanel extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
-
+        String idt = id.getText();
+        String pwt = pw.getText();
+        DB_connect DB = new DB_connect(); // DB 객체 불러오기
         if (button.getText().equals("확인")) {
             if (id.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
@@ -67,12 +69,26 @@ class BoxPanel extends JPanel implements ActionListener {
             }
             // 69번째 라인 else if : DB 연결하여 아이디 or 비밀번호 정보 없으면 "아이디 or 비밀번호를 잘못 입력하였습니다." 알림창 출력 예정
             else {
+                int value = DB.login(idt, pwt);
+                if(value == 1){
+                    JOptionPane.showMessageDialog(null, "로그인 성공");
+                }
+                else if(value == -1){
+                    JOptionPane.showMessageDialog(null, "일치하는 아이디가 없습니다.");
+                }
+                else if(value == 0){
+                    JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "시스템 오류");
+                }
+            }
                 JOptionPane.showMessageDialog(null, "로그인 성공");
                 new Main();
             }
         }
     }
-}
+
 
 class TitlePanel extends JPanel {
     public TitlePanel() {
