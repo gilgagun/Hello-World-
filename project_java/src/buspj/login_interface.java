@@ -72,6 +72,7 @@ class BoxPanel extends JPanel implements ActionListener {
                 int value = DB.login(idt, pwt);
                 if(value == 1){
                     JOptionPane.showMessageDialog(null, "로그인 성공");
+                    new Main();
                 }
                 else if(value == -1){
                     JOptionPane.showMessageDialog(null, "일치하는 아이디가 없습니다.");
@@ -83,8 +84,6 @@ class BoxPanel extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "시스템 오류");
                 }
             }
-                JOptionPane.showMessageDialog(null, "로그인 성공");
-                new Main();
             }
         }
     }
