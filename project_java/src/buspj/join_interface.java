@@ -1,4 +1,4 @@
-package project_java.src;
+package buspj;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -204,6 +204,7 @@ public class join_interface extends JFrame implements ActionListener {
             System.out.println("DB 연결 에러");
         }
     }
+    //id 중복체크 이벤트
     public int idCheck(Member new_member) {
         Connection conn;
         Statement stmt = null;

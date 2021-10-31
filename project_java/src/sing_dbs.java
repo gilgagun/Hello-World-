@@ -1,3 +1,4 @@
+/*
 import java.sql.*;
 // 삭제 할거
 public class sing_dbs {
@@ -35,3 +36,4 @@ public class sing_dbs {
         }
     }
 }
+*/
