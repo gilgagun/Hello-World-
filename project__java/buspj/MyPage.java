@@ -35,7 +35,9 @@ class MyNorthPanel extends JPanel {
 class DrawLine extends JPanel{}
 
 class MyCenterPanel extends JPanel {
-    DB_connect DB = new DB_connect();
+    DB_connect DB = new DB_connect(); // 이건 그냥 해놓은 것.. DB 공부해올게요..
+    JTextField hi = new JTextField(); // 환영합니다 네모 칸
+    JTextField score = new JTextField(); // 마일리지 네모 칸
 
     public MyCenterPanel() {
         setLayout(null);
@@ -69,7 +71,13 @@ class MyCenterPanel extends JPanel {
         mileage.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         add(mileage);
 
+        // 마일리지 네모 칸
+        score.setBounds(290,240,100,50);
+        add(score);
+
         // 환영 메시지 삽입
+        hi.setBounds(190,130,200,50);
+        add(hi);
 
         // 세로 선 삽입
         ImageIcon line2 = new ImageIcon("project__java/buspj/line2.png");
