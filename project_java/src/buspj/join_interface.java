@@ -44,8 +44,8 @@ public class join_interface extends JFrame implements ActionListener {
     JTextField idt = new JTextField(10);
     JPasswordField pwt = new JPasswordField();
     JPasswordField pwct = new JPasswordField();
+    JFrame fr = new JFrame();
     public join_interface(){
-        JFrame fr = new JFrame();
         fr.setTitle("회원가입");
         fr.setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 닫음 이벤트
@@ -109,7 +109,7 @@ public class join_interface extends JFrame implements ActionListener {
         fr.add(btn2);
         btn1.addActionListener(this);
         btn2.addActionListener(this);
-        //setSize(300,300);
+        setSize(300,300);
         fr.setVisible(true);
 
     }
@@ -152,6 +152,7 @@ public class join_interface extends JFrame implements ActionListener {
             else{
                 DB.sing_db(new_member);
                 JOptionPane.showMessageDialog(null, "가입 완료");
+                fr.dispose();
             }
         }
         // 아이디 중복확인 이벤트 처리
@@ -167,6 +168,10 @@ public class join_interface extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "사용중인 아이디");
             }
         }
+        else{ //취소
+            fr.dispose();
+        }
+
 
     }
     public static void main(String[] args) {

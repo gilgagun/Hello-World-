@@ -104,7 +104,8 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
         JFrame frame = (JFrame)e.getWindow();
         int answer = JOptionPane.showConfirmDialog(null, "종료하시겠습니까?","System", JOptionPane.YES_NO_OPTION);
         if (answer == JOptionPane.YES_OPTION) {
-            frame.dispose();
+            System.exit(0);
+            //frame.dispose();
         }
     }
 }
@@ -114,7 +115,7 @@ public class login_interface extends JFrame {
         setTitle("마법의 성 프로그램(가제)");
         setResizable(false);
         setBounds(0,0,350,400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
