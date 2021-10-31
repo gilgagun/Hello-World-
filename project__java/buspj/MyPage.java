@@ -43,7 +43,7 @@ class MyCenterPanel extends JPanel {
         setLayout(null);
 
         // 프로필 이미지 삽입
-        ImageIcon profile = new ImageIcon("project__java/buspj/profile.png");
+        ImageIcon profile = new ImageIcon("project__java/buspj/image/profile.png");
         Image img = profile.getImage();
         Image updateImg = img.getScaledInstance(50,50,Image.SCALE_DEFAULT);
         ImageIcon updateIcon = new ImageIcon(updateImg);
@@ -54,7 +54,7 @@ class MyCenterPanel extends JPanel {
         add(image);
 
         // 구분 선 삽입
-        ImageIcon line = new ImageIcon("project__java/buspj/line.png");
+        ImageIcon line = new ImageIcon("project__java/buspj/image/line.png");
         Image img2 = line.getImage();
         Image updateImg2 = img2.getScaledInstance(350,50,Image.SCALE_DEFAULT);
         ImageIcon updateIcon2 = new ImageIcon(updateImg2);
@@ -80,7 +80,7 @@ class MyCenterPanel extends JPanel {
         add(hi);
 
         // 세로 선 삽입
-        ImageIcon line2 = new ImageIcon("project__java/buspj/line2.png");
+        ImageIcon line2 = new ImageIcon("project__java/buspj/image/line2.png");
         Image img3 = line2.getImage();
         Image updateImg3 = img3.getScaledInstance(50,600,Image.SCALE_DEFAULT);
         ImageIcon updateIcon3 = new ImageIcon(updateImg3);
