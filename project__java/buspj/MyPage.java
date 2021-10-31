@@ -51,14 +51,14 @@ class MyCenterPanel extends JPanel {
         image.setHorizontalAlignment(JLabel.CENTER);
         add(image);
 
-        // 환영 문장 삽입
+        // 구분 선 삽입
         ImageIcon line = new ImageIcon("project__java/buspj/line.png");
         Image img2 = line.getImage();
-        Image updateImg2 = img2.getScaledInstance(200,50,Image.SCALE_DEFAULT);
+        Image updateImg2 = img2.getScaledInstance(350,50,Image.SCALE_DEFAULT);
         ImageIcon updateIcon2 = new ImageIcon(updateImg2);
 
         JLabel image2 = new JLabel(updateIcon2);
-        image2.setBounds(80,130,200,100);
+        image2.setBounds(90,160,350,100);
         image2.setHorizontalAlignment(JLabel.CENTER);
         add(image2);
 
