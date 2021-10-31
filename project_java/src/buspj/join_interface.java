@@ -150,7 +150,6 @@ public class join_interface extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null,"비밀번호가 다릅니다.");
             }
             else{
-
                 DB.sing_db(new_member);
                 JOptionPane.showMessageDialog(null, "가입 완료");
             }
