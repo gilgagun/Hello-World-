@@ -41,7 +41,7 @@ class MyCenterPanel extends JPanel {
         setLayout(null);
 
         // 프로필 이미지 삽입
-        ImageIcon profile = new ImageIcon("C:\\Users\\DILAB\\profile.png");
+        ImageIcon profile = new ImageIcon("project__java/buspj/profile.png");
         Image img = profile.getImage();
         Image updateImg = img.getScaledInstance(50,50,Image.SCALE_DEFAULT);
         ImageIcon updateIcon = new ImageIcon(updateImg);
@@ -52,6 +52,15 @@ class MyCenterPanel extends JPanel {
         add(image);
 
         // 환영 문장 삽입
+        ImageIcon line = new ImageIcon("project__java/buspj/line.png");
+        Image img2 = line.getImage();
+        Image updateImg2 = img2.getScaledInstance(200,50,Image.SCALE_DEFAULT);
+        ImageIcon updateIcon2 = new ImageIcon(updateImg2);
+
+        JLabel image2 = new JLabel(updateIcon2);
+        image2.setBounds(80,130,200,100);
+        image2.setHorizontalAlignment(JLabel.CENTER);
+        add(image2);
 
         setVisible(true);
     }
