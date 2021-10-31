@@ -10,9 +10,9 @@ public class DB_connect {
 
     public  DB_connect(){
         try {
-            String dbURL = "jdbc:mysql://localhost:3306/BBS"; // .
+            String dbURL = "jdbc:mysql://localhost:3306/bus"; // .
             String dbID = "root"; //
-            String dbPassword = "password"; //
+            String dbPassword = "1234"; //
             Class.forName("com.mysql.cj.jdbc.Driver"); //
             conn = DriverManager.getConnection(dbURL, dbID, dbPassword); //
         } catch (Exception e) {
