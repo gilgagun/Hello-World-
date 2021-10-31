@@ -32,7 +32,7 @@ class MyNorthPanel extends JPanel {
     }
 }
 
-class DrawLine extends JPanel
+class DrawLine extends JPanel{}
 
 class MyCenterPanel extends JPanel {
     DB_connect DB = new DB_connect();
