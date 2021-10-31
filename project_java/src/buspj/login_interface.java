@@ -71,6 +71,8 @@ class BoxPanel extends JPanel implements ActionListener {
             }
         }
     }
+
+
 }
 
 class TitlePanel extends JPanel {
