@@ -105,6 +105,7 @@ public class login_interface extends JFrame {
         setTitle("로그인");
         setResizable(false);
         setBounds(0,0,350,400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
