@@ -7,7 +7,7 @@ public class DB_connect {
     Connection conn;
     Statement stmt = null;
     PreparedStatement pstmt = null;
-
+    // 수정할것
     public  DB_connect(){
         try {
             String dbURL = "jdbc:mysql://localhost:3306/bus"; // .
@@ -80,6 +80,7 @@ public class DB_connect {
         }
         return value;
     }
+    // 로그인 db
     public int login(String idt, String pwt){
         ResultSet rs = null;
         String SQL = "SELECT pw FROM new_table WHERE id = ?"; // 실제로 DB에 입력될 명령어를 SQL 문장으로 만듬.
