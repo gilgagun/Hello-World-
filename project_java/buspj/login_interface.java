@@ -62,7 +62,6 @@ class BoxPanel extends JPanel implements ActionListener {
             else if (id.getText().equals("") && pw.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 입력하세요.");
             }
-            // 69번째 라인 else if : DB 연결하여 아이디 or 비밀번호 정보 없으면 "아이디 or 비밀번호를 잘못 입력하였습니다." 알림창 출력 예정
             else {
                 int value = DB.login(idt, pwt);
                 System.out.println(value);
@@ -100,9 +99,19 @@ class TitlePanel extends JPanel {
     }
 }
 
+class JFrameWindowClosingEventHandler extends WindowAdapter {
+    public void windowClosing(WindowEvent e) {
+        JFrame frame = (JFrame)e.getWindow();
+        int answer = JOptionPane.showConfirmDialog(null, "종료하시겠습니까?","System", JOptionPane.YES_NO_OPTION);
+        if (answer == JOptionPane.YES_OPTION) {
+            frame.dispose();
+        }
+    }
+}
+
 public class login_interface extends JFrame {
     public login_interface() {
-        setTitle("로그인");
+        setTitle("마법의 성 프로그램(가제)");
         setResizable(false);
         setBounds(0,0,350,400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,6 +121,8 @@ public class login_interface extends JFrame {
 
         mainContainer.add(new TitlePanel(), BorderLayout.NORTH);
         mainContainer.add(new BoxPanel(), BorderLayout.CENTER);
+
+        addWindowListener(new JFrameWindowClosingEventHandler());
 
         setVisible(true);
     }
