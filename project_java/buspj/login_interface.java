@@ -40,11 +40,6 @@ class BoxPanel extends JPanel implements ActionListener {
         signinPage.setFont(new Font("맑은 고딕", Font.BOLD, 10));
         add(signinPage);
 
-        JLabel administratorLogin = new JLabel("<HTML><U>관리자 로그인</U></HTML>");
-        administratorLogin.setBounds(135, 275, 100, 20);
-        administratorLogin.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-        add(administratorLogin);
-
         signinPage.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new join_interface();
@@ -89,9 +84,9 @@ class BoxPanel extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "시스템 오류");
                 }
             }
-            }
         }
     }
+}
 
 
 class TitlePanel extends JPanel {
