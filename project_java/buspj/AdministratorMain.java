@@ -52,7 +52,7 @@ class AdministratorCenterPanel extends JPanel {
     public AdministratorCenterPanel() {
         setBackground(Color.WHITE);
 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 100, 250));
+        setLayout(new FlowLayout(FlowLayout.CENTER, 150, 250));
 
         JButton mainButton1 = new JButton("회원관리");
         mainButton1.setPreferredSize(new Dimension(180, 180));

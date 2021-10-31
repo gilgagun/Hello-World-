@@ -32,6 +32,13 @@ class LoginAndSignup extends JPanel {
         logoutButton.setFont(new Font("굴림", Font.BOLD, 20));
         add(logoutButton);
 
+        // 마이페이지 버튼 클릭 시 이벤트
+        myButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new MyPage();
+            }
+        });
+
         // 로그아웃 버튼 클릭 시 이벤트
         logoutButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
