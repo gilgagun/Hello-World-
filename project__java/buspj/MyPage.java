@@ -32,8 +32,6 @@ class MyNorthPanel extends JPanel {
     }
 }
 
-class DrawLine extends JPanel{}
-
 class MyCenterPanel extends JPanel {
     DB_connect DB = new DB_connect(); // 이건 그냥 해놓은 것.. DB 공부해올게요..
     JTextField hi = new JTextField(); // 환영합니다 네모 칸
