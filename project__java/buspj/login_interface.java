@@ -117,7 +117,7 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
             frame.dispose();
             new login_interface(); // 회원가입 창이 꺼지고 로그인 창이 켜져야 하는데 씹힘
         }
-        else if (frame instanceof Main || frame instanceof MyPage) {
+        else if (frame instanceof Main || frame instanceof MyPage || frame instanceof AdministratorMain) {
             int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
                 frame.dispose();
@@ -131,7 +131,8 @@ public class login_interface extends JFrame {
     public login_interface() {
         setTitle("마법의 성 프로그램(가제)");
         setResizable(false);
-        setBounds(0,0,350,400);
+        setSize(350,400);
+        setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         Container mainContainer = getContentPane();

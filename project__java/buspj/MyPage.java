@@ -121,6 +121,7 @@ public class MyPage extends JFrame {
         setTitle("버스 예약 시스템(가제)");
         setSize(1000,800);
         setResizable(false);
+        setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         Container mainContainer = getContentPane();

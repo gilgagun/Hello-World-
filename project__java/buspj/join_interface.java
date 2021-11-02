@@ -48,9 +48,10 @@ public class join_interface extends JFrame implements ActionListener {
     public join_interface(){
         fr.setTitle("회원가입");
         fr.setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 닫음 이벤트
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // 닫음 이벤트
 
-        fr.setBounds(0,0,350,500);
+        fr.setSize(350,500);
+        fr.setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         fr.setLayout(null);
 
         JLabel title = new JLabel("회원 가입");
