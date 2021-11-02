@@ -175,10 +175,5 @@ public class join_interface extends JFrame implements ActionListener {
             fr.dispose();
             new login_interface();  // 회원가입 창 닫고 로그인 창 띄우기
         }
-
-
-    }
-    public static void main(String[] args) {
-        new join_interface();
     }
 }
