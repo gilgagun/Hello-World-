@@ -19,8 +19,8 @@ class Back extends JPanel {
 
         back.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                frame.dispose();
                 new Main();
+                frame.dispose();
             }
         });
     }
@@ -35,7 +35,7 @@ class MyNorthPanel extends JPanel {
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new Back(frame), BorderLayout.EAST);
+        add(new Back(this.frame), BorderLayout.EAST);
     }
 }
 

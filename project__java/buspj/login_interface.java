@@ -44,8 +44,8 @@ class BoxPanel extends JPanel implements ActionListener {
 
         signinPage.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                frame.dispose();
                 new join_interface();
+                frame.dispose();
             }
         });
     }
@@ -70,8 +70,8 @@ class BoxPanel extends JPanel implements ActionListener {
                 System.out.println(value);
                 if(value == 1){
                     JOptionPane.showMessageDialog(null, "로그인 성공");
-                    this.frame.dispose();
                     new Main();
+                    this.frame.dispose();
                 }
                 else if(value == 2){
                     JOptionPane.showMessageDialog(null, "관리자 로그인 성공");
@@ -114,14 +114,14 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
             }
         }
         else if (frame instanceof join_interface) {  // 회원가입 창의 X 단추를 누른 경우
-            frame.dispose();
             new login_interface(); // 회원가입 창이 꺼지고 로그인 창이 켜져야 하는데 씹힘
+            frame.dispose();
         }
         else if (frame instanceof Main || frame instanceof MyPage || frame instanceof AdministratorMain) {
             int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
-                frame.dispose();
                 new login_interface();
+                frame.dispose();
             }
         }
     }

@@ -38,8 +38,8 @@ class LoginAndSignup extends JPanel {
         // 마이페이지 버튼 클릭 시 이벤트
         myButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                frame.dispose();
                 new MyPage();
+                frame.dispose();
             }
         });
 
@@ -48,8 +48,8 @@ class LoginAndSignup extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
                 if (answer == JOptionPane.YES_OPTION) {
-                    frame.dispose();
                     new login_interface();
+                    frame.dispose();   // dispose를 밑으로 빼니 창 전환 시 더 자연스러운 모션
                 }
             }
         });
