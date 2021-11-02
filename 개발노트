@@ -17,3 +17,6 @@
 Main, MyPage, login_interface 클래스 수정 내용 : X 버튼 누르면 팝업창 띄우기, 창 전환
 join_interface 수정 내용 : '취소' 누르면 login_interface 창으로 전환. 그리고 main문을 login_interface에만 두고 싶어서 지웠습니다만, 마음에 드셨으면 좋겠습니다!
 join_interface 이슈 : X 버튼 누르면 login_interface로 넘어가야 하는데 씹히는 현상(코드는 login_interface 클래스의 116번째 line부터 시작)
+
+DB_connect 제외 모든 클래스 : 모든 JFrame을 화면 정중앙에 뜨도록 설정.
+AdministratorMain 수정 내용 : X 버튼 누르면 login_interface 창으로 전환.
