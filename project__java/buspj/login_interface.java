@@ -117,6 +117,13 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
             frame.dispose();
             new login_interface(); // 회원가입 창이 꺼지고 로그인 창이 켜져야 하는데 씹힘
         }
+        else if (frame instanceof Main || frame instanceof MyPage) {
+            int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
+            if (answer == JOptionPane.YES_OPTION) {
+                frame.dispose();
+                new login_interface();
+            }
+        }
     }
 }
 

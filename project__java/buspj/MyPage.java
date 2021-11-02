@@ -121,13 +121,15 @@ public class MyPage extends JFrame {
         setTitle("버스 예약 시스템(가제)");
         setSize(1000,800);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new MyNorthPanel(this), BorderLayout.NORTH);
         mainContainer.add(new MyCenterPanel(), BorderLayout.CENTER);
+
+        addWindowListener(new JFrameWindowClosingEventHandler());
 
         setVisible(true);
     }

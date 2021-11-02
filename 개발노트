@@ -13,5 +13,7 @@
 21.11.02
 성민 : 창 전환하면 이전 창 닫히는 기능 구현했습니다!
 이것은 그냥 dispose 한 줄만 추가하였습니다. 그냥 제 코드가
-class 별로 나눠져 있어서 메인 프레임의 주소가 타 class에 전달이 안 돼서
-일어났던 오류.
+class 별로 나눠져 있어서 메인 프레임의 주소가 타 class에 전달이 안 돼서 일어났던 오류.
+Main, MyPage, login_interface 클래스 수정 내용 : X 버튼 누르면 팝업창 띄우기, 창 전환
+join_interface 수정 내용 : '취소' 누르면 login_interface 창으로 전환
+join_interface 이슈 : X 버튼 누르면 login_interface로 넘어가야 하는데 씹히는 현상(코드는 login_interface 클래스의 116번째 line부터 시작)
