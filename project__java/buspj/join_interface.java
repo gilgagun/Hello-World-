@@ -110,6 +110,8 @@ public class join_interface extends JFrame implements ActionListener {
         btn1.addActionListener(this);
         btn2.addActionListener(this);
         setSize(300,300);
+
+        fr.addWindowListener(new JFrameWindowClosingEventHandler());
         fr.setVisible(true);
 
     }
@@ -153,6 +155,7 @@ public class join_interface extends JFrame implements ActionListener {
                 DB.sing_db(new_member);
                 JOptionPane.showMessageDialog(null, "가입 완료");
                 fr.dispose();
+                new login_interface();
             }
         }
         // 아이디 중복확인 이벤트 처리
@@ -170,6 +173,7 @@ public class join_interface extends JFrame implements ActionListener {
         }
         else{ //취소
             fr.dispose();
+            new login_interface();  // 회원가입 창 닫고 로그인 창 띄우기
         }
 
 

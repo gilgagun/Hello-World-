@@ -4,8 +4,11 @@ import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
 
 class Back extends JPanel {
-    public Back() {
+    MyPage frame;
+
+    public Back(MyPage frame) {
         setBackground(Color.LIGHT_GRAY);
+        this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
@@ -16,6 +19,7 @@ class Back extends JPanel {
 
         back.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                frame.dispose();
                 new Main();
             }
         });
@@ -23,12 +27,15 @@ class Back extends JPanel {
 }
 
 class MyNorthPanel extends JPanel {
-    public MyNorthPanel() {
+    MyPage frame;
+
+    public MyNorthPanel(MyPage frame) {
         setBackground(Color.LIGHT_GRAY);
+        this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new Back(), BorderLayout.EAST);
+        add(new Back(frame), BorderLayout.EAST);
     }
 }
 
@@ -119,7 +126,7 @@ public class MyPage extends JFrame {
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new MyNorthPanel(), BorderLayout.NORTH);
+        mainContainer.add(new MyNorthPanel(this), BorderLayout.NORTH);
         mainContainer.add(new MyCenterPanel(), BorderLayout.CENTER);
 
         setVisible(true);

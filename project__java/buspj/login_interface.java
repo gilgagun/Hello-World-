@@ -4,11 +4,13 @@ import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
 
 class BoxPanel extends JPanel implements ActionListener {
+    login_interface frame;
     JTextField id = new JTextField();
     JPasswordField pw = new JPasswordField();
 
-    public BoxPanel() {
+    public BoxPanel(login_interface frame) {
         setLayout(null);
+        this.frame = frame;
 
         JLabel idText = new JLabel("아이디");
         idText.setBounds(80,50,50,30);
@@ -42,6 +44,7 @@ class BoxPanel extends JPanel implements ActionListener {
 
         signinPage.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                frame.dispose();
                 new join_interface();
             }
         });
@@ -67,6 +70,7 @@ class BoxPanel extends JPanel implements ActionListener {
                 System.out.println(value);
                 if(value == 1){
                     JOptionPane.showMessageDialog(null, "로그인 성공");
+                    this.frame.dispose();
                     new Main();
                 }
                 else if(value == 2){
@@ -99,14 +103,19 @@ class TitlePanel extends JPanel {
     }
 }
 
-// 뭘 눌러도 닫힘.
 class JFrameWindowClosingEventHandler extends WindowAdapter {
     public void windowClosing(WindowEvent e) {
         JFrame frame = (JFrame)e.getWindow();
-        int answer = JOptionPane.showConfirmDialog(null, "종료하시겠습니까?","System", JOptionPane.YES_NO_OPTION);
-        if (answer == JOptionPane.YES_OPTION) {
-            System.exit(0);
-            //frame.dispose();
+
+        if (frame instanceof login_interface) {
+            int answer = JOptionPane.showConfirmDialog(null, "종료하시겠습니까?","System", JOptionPane.YES_NO_OPTION);
+            if (answer == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+        }
+        else if (frame instanceof join_interface) {  // 회원가입 창의 X 단추를 누른 경우
+            frame.dispose();
+            new login_interface(); // 회원가입 창이 꺼지고 로그인 창이 켜져야 하는데 씹힘
         }
     }
 }
@@ -122,7 +131,7 @@ public class login_interface extends JFrame {
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new TitlePanel(), BorderLayout.NORTH);
-        mainContainer.add(new BoxPanel(), BorderLayout.CENTER);
+        mainContainer.add(new BoxPanel(this), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 

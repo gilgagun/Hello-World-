@@ -17,8 +17,11 @@ class Title extends JPanel {
 }
 
 class LoginAndSignup extends JPanel {
-    public LoginAndSignup() {
+    Main frame;
+
+    public LoginAndSignup(Main frame) {
         setBackground(Color.LIGHT_GRAY);
+        this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
@@ -35,6 +38,7 @@ class LoginAndSignup extends JPanel {
         // 마이페이지 버튼 클릭 시 이벤트
         myButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                frame.dispose();
                 new MyPage();
             }
         });
@@ -43,20 +47,25 @@ class LoginAndSignup extends JPanel {
         logoutButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
-                if (answer == JOptionPane.YES_OPTION)
+                if (answer == JOptionPane.YES_OPTION) {
+                    frame.dispose();
                     new login_interface();
+                }
             }
         });
     }
 }
 
 class NorthPanel extends JPanel {
-    public NorthPanel() {
+    Main frame;
+
+    public NorthPanel(Main frame) {
         setBackground(Color.LIGHT_GRAY);
+        this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new LoginAndSignup(), BorderLayout.EAST);
+        add(new LoginAndSignup(this.frame), BorderLayout.EAST);
     }
 }
 
@@ -93,7 +102,7 @@ public class Main extends JFrame{
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new NorthPanel(), BorderLayout.NORTH);
+        mainContainer.add(new NorthPanel(this), BorderLayout.NORTH);
         mainContainer.add(new CenterPanel(), BorderLayout.CENTER);
 
         setVisible(true);
