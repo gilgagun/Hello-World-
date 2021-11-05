@@ -6,40 +6,40 @@ import java.awt.event.*;
 import java.util.*;
 import java.text.*;
 
-// 날짜 리스트
+// '출발 날짜' 콤보 박스에 삽입할 날짜 배열 클래스 DuringDateTest
 class DuringDateTest {
-    String[] date = new String[100];
-    int length;
+    String[] date = new String[100];   // 날짜를 담을 배열(사이즈를 100으로 설정)
+    int length;                        // 배열에 저장된 날짜의 개수를 담을 변수
 
     public DuringDateTest() {
-        String startDt = "20211001";
-        int endDt = 20211101;
+        String startDt = "20211001";  // 시작 날짜
+        int endDt = 20211101;        // 끝 날짜
 
-        int startYear = Integer.parseInt(startDt.substring(0,4));
-        int startMonth= Integer.parseInt(startDt.substring(4,6));
-        int startDate = Integer.parseInt(startDt.substring(6,8));
+        int startYear = Integer.parseInt(startDt.substring(0,4));   // 시작 날짜에서 연도만 잘라서 저장
+        int startMonth= Integer.parseInt(startDt.substring(4,6));   // 시작 날짜에서 월만 잘라서 저장
+        int startDate = Integer.parseInt(startDt.substring(6,8));   // 시작 날짜에서 일만 잘라서 저장
 
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();    // Calendar 객체 생성
 
-        // Calendar의 Month는 0부터 시작하므로 -1 해준다.
+        // Calendar의 Month, Date는 0부터 시작하므로 -1 해준다.
         // Calendar의 기본 날짜를 startDt로 세팅해준다.
-        cal.set(startYear, startMonth -1, startDate);
+        cal.set(startYear, startMonth - 1, startDate - 1);
 
-        int count = 0;
+        int count = 0;    // 날짜를 배열에 저장할 때마다 증가할 count 변수
         int i = 0;
         while(true) {
-            this.date[i] = getDateByString(cal.getTime());
+            this.date[i] = getDateByString(cal.getTime());   // 시작 날짜부터 시작하여 날짜를 배열에 저장
 
             // Calendar의 날짜를 하루씩 증가한다.
             cal.add(Calendar.DATE, 1); // one day increment
             i += 1;
-            count += 1;
+            count += 1;   // count + 1
 
             // 현재 날짜가 종료일자보다 크면 종료
             if(getDateByInteger(cal.getTime()) > endDt) break;
         }
 
-        this.length = count;
+        this.length = count;   // 최종 count 값을 length에 저장
     }
 
     public static int getDateByInteger(Date date) {
@@ -53,6 +53,7 @@ class DuringDateTest {
     }
 }
 
+// 뒤로가기 버튼
 class ReservationBack extends JPanel {
     ReservationMain frame;
 
@@ -76,6 +77,7 @@ class ReservationBack extends JPanel {
     }
 }
 
+// 예약하기 화면의 위쪽 진회색 패널
 class ReservationNorth extends JPanel {
     ReservationMain frame;
 
@@ -89,21 +91,22 @@ class ReservationNorth extends JPanel {
     }
 }
 
+// 예약하기 화면의 가운데 패널
 class ReservationCenter extends JPanel {
-    static JComboBox<String> start = new JComboBox<String>();
-    static JComboBox<String> end = new JComboBox<String>();
-    static JComboBox<String> date = new JComboBox<String>();
+    static JComboBox<String> start = new JComboBox<String>();   // 출발 터미널 콤보박스
+    static JComboBox<String> end = new JComboBox<String>();     // 도착 터미널 콤보박스
+    static JComboBox<String> date = new JComboBox<String>();    // 출발 날짜 콤보박스
 
     public ReservationCenter() {
         setLayout(null);
 
-        // '예매하기' 타이틀
+        // '예매하기' 글자
         JLabel title = new JLabel("예매하기");
         title.setBounds(60, 3, 150, 100);
         title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
         add(title);
 
-        // 네모 칸 3개 생성
+        // 3개의 콤보박스를 감싸는 각각의 네모 박스 생성
         JPanel square = new JPanel();
         square.setBackground(Color.LIGHT_GRAY);
         square.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
@@ -122,7 +125,7 @@ class ReservationCenter extends JPanel {
         nextSquare2.setBounds(60,530,380,60);
         add(nextSquare2);
 
-        // 화살표
+        // 화살표 이미지 삽입
         ImageIcon profile = new ImageIcon("project__java/buspj/image/arrow.png");
         Image img = profile.getImage();
         Image updateImg = img.getScaledInstance(50,50,Image.SCALE_DEFAULT);
@@ -148,20 +151,21 @@ class ReservationCenter extends JPanel {
         startDate.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         nextSquare2.add(startDate);
         
-        // '출발 터미널' 콤보박스에 정류장 삽입
+        // '출발 터미널' 콤보박스에 정류장 리스트 삽입 예정(현재 미완성 코드. DB 필요할 것으로 보임)
         start.setPreferredSize(new Dimension(220,30));
         square.add(start);
 
-        // '도착 터미널' 콤보박스에 정류장 삽입
+        // '도착 터미널' 콤보박스에 정류장 리스트 삽입 예정(현재 미완성 코드. DB 필요할 것으로 보임)
         end.setPreferredSize(new Dimension(220,30));
         nextSquare1.add(end);
 
-        // '출발 날짜' 콤보박스에 담을 날짜 정보 생성
+        // '출발 날짜' 콤보박스에 삽입할 날짜 정보 객체 생성
         DuringDateTest ddt = new DuringDateTest();
 
-        // '출발 날짜' 콤보박스에 날짜 삽입
+        // '출발 날짜' 콤보박스 사이즈 설정
         this.date.setPreferredSize(new Dimension(230,30));
 
+        // '출발 날짜' 콤보박스에 ddt 객체에서 생성했던 날짜들 삽입
         for (int i = 1; i <= ddt.length; i++) {
             this.date.addItem(ddt.date[i]);
         }
@@ -171,6 +175,7 @@ class ReservationCenter extends JPanel {
     }
 }
 
+// '예약하기' 화면의 메인 부분
 public class ReservationMain extends JFrame {
     public ReservationMain() {
         setTitle("버스 예약 시스템(가제)");
