@@ -6,13 +6,14 @@ import java.awt.event.*;
 import java.util.*;
 import java.text.*;
 
+// 날짜 리스트
 class DuringDateTest {
     String[] date = new String[100];
     int length;
 
     public DuringDateTest() {
-        String startDt = "20151031";
-        int endDt = 20151103;
+        String startDt = "20211001";
+        int endDt = 20211101;
 
         int startYear = Integer.parseInt(startDt.substring(0,4));
         int startMonth= Integer.parseInt(startDt.substring(4,6));
@@ -92,7 +93,7 @@ class ReservationNorth extends JPanel {
 class ReservationCenter extends JPanel {
     static JComboBox<String> start = new JComboBox<String>();
     static JComboBox<String> end = new JComboBox<String>();
-    static JComboBox<String> Date = new JComboBox<String>();
+    static JComboBox<String> date = new JComboBox<String>();
 
     public ReservationCenter() {
         setLayout(null);
@@ -118,9 +119,20 @@ class ReservationCenter extends JPanel {
 
         JPanel nextSquare2 = new JPanel();
         nextSquare2.setBackground(Color.LIGHT_GRAY);
-        nextSquare2.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
+        nextSquare2.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 16));
         nextSquare2.setBounds(60,530,380,60);
         add(nextSquare2);
+
+        // 화살표
+        ImageIcon profile = new ImageIcon("project__java/buspj/image/arrow.png");
+        Image img = profile.getImage();
+        Image updateImg = img.getScaledInstance(50,50,Image.SCALE_DEFAULT);
+        ImageIcon updateIcon = new ImageIcon(updateImg);
+
+        JLabel image = new JLabel(updateIcon);
+        image.setBounds(220,235,50,50);
+        image.setHorizontalAlignment(JLabel.CENTER);
+        add(image);
 
         // '출발 터미널' 글자
         JLabel startTerminal = new JLabel("출발 터미널");
@@ -147,6 +159,10 @@ class ReservationCenter extends JPanel {
         // '도착 터미널' 콤보박스에 정류장 삽입
         end.setPreferredSize(new Dimension(220,30));
         nextSquare1.add(end);
+
+        // '출발 날짜' 콤보박스에 날짜 삽입
+        date.setPreferredSize(new Dimension(230,30));
+        nextSquare2.add(date);
 
         setVisible(true);
     }

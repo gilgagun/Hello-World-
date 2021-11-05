@@ -70,8 +70,11 @@ class NorthPanel extends JPanel {
 }
 
 class CenterPanel extends JPanel {
-    public CenterPanel() {
+    Main frame;
+
+    public CenterPanel(Main frame) {
         setBackground(Color.WHITE);
+        this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.CENTER, 100, 250));
 
@@ -89,6 +92,14 @@ class CenterPanel extends JPanel {
         mainButton3.setPreferredSize(new Dimension(180, 180));
         mainButton3.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton3);
+
+        // 예매하기 클릭 시 이벤트
+        mainButton1.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new ReservationMain();
+                frame.dispose();
+            }
+        });
     }
 }
 
@@ -104,7 +115,7 @@ public class Main extends JFrame{
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new NorthPanel(this), BorderLayout.NORTH);
-        mainContainer.add(new CenterPanel(), BorderLayout.CENTER);
+        mainContainer.add(new CenterPanel(this), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 
