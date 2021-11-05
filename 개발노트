@@ -25,3 +25,6 @@ AdministratorMain 수정 내용 : X 버튼 누르면 login_interface 창으로 �
 성민 : 현재 중간보고서 ppt p.12부터 인터페이스 제작 진행중.
 
 AdministratorMain 이슈 : 로그아웃 누르면 팝업창 뜨는데 '아니오' 눌러도 종료되는 불상사가 발생중.
+
+21.11.06
+성민 : ReservationMain 클래스에 주석을 추가하였음!
