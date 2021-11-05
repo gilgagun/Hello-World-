@@ -22,7 +22,7 @@ class DuringDateTest {
         Calendar cal = Calendar.getInstance();
 
         // Calendar의 Month는 0부터 시작하므로 -1 해준다.
-        // Calendar의 기본 날짜를 startDt로 셋팅해준다.
+        // Calendar의 기본 날짜를 startDt로 세팅해준다.
         cal.set(startYear, startMonth -1, startDate);
 
         int count = 0;
@@ -147,9 +147,6 @@ class ReservationCenter extends JPanel {
         JLabel startDate = new JLabel("출발 날짜");
         startDate.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         nextSquare2.add(startDate);
-
-        // '출발 날짜' 콤보박스에 담을 날짜 정보 생성
-        DuringDateTest ddt = new DuringDateTest();
         
         // '출발 터미널' 콤보박스에 정류장 삽입
         start.setPreferredSize(new Dimension(220,30));
@@ -159,9 +156,16 @@ class ReservationCenter extends JPanel {
         end.setPreferredSize(new Dimension(220,30));
         nextSquare1.add(end);
 
+        // '출발 날짜' 콤보박스에 담을 날짜 정보 생성
+        DuringDateTest ddt = new DuringDateTest();
+
         // '출발 날짜' 콤보박스에 날짜 삽입
-        date.setPreferredSize(new Dimension(230,30));
-        nextSquare2.add(date);
+        this.date.setPreferredSize(new Dimension(230,30));
+
+        for (int i = 1; i <= ddt.length; i++) {
+            this.date.addItem(ddt.date[i]);
+        }
+        nextSquare2.add(this.date);
 
         setVisible(true);
     }
