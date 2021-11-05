@@ -28,7 +28,6 @@ class DuringDateTest {
         int count = 0;
         int i = 0;
         while(true) {
-            // 날짜 출력
             this.date[i] = getDateByString(cal.getTime());
 
             // Calendar의 날짜를 하루씩 증가한다.

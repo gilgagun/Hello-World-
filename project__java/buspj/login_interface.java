@@ -76,6 +76,7 @@ class BoxPanel extends JPanel implements ActionListener {
                 else if(value == 2){
                     JOptionPane.showMessageDialog(null, "관리자 로그인 성공");
                     new AdministratorMain();
+                    this.frame.dispose();
                 }
                 else if(value == -1){
                     JOptionPane.showMessageDialog(null, "일치하는 아이디가 없습니다.");

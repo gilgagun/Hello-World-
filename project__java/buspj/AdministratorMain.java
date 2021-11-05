@@ -35,7 +35,7 @@ class AdministratorLoginAndSignup extends JPanel {
                 int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
                 if (answer == JOptionPane.YES_OPTION)
                     new login_interface();
-                    frame.dispose();
+                    frame.dispose();     // 아니오를 눌러도 꺼짐;;;;;;;;;; 또;;;;;
             }
         });
     }
