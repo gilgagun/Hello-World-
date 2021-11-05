@@ -16,8 +16,11 @@ class AdministratorTitle extends JPanel {
 }
 
 class AdministratorLoginAndSignup extends JPanel {
-    public AdministratorLoginAndSignup() {
+    AdministratorMain frame;
+
+    public AdministratorLoginAndSignup(AdministratorMain frame) {
         setBackground(Color.LIGHT_GRAY);
+        this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
@@ -32,18 +35,22 @@ class AdministratorLoginAndSignup extends JPanel {
                 int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
                 if (answer == JOptionPane.YES_OPTION)
                     new login_interface();
+                    frame.dispose();
             }
         });
     }
 }
 
 class AdministratorNorthPanel extends JPanel {
-    public AdministratorNorthPanel() {
+    AdministratorMain frame;
+
+    public AdministratorNorthPanel(AdministratorMain frame) {
         setBackground(Color.LIGHT_GRAY);
+        this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new AdministratorTitle(), BorderLayout.WEST);
-        add(new AdministratorLoginAndSignup(), BorderLayout.EAST);
+        add(new AdministratorLoginAndSignup(this.frame), BorderLayout.EAST);
     }
 }
 
@@ -76,7 +83,7 @@ public class AdministratorMain extends JFrame {
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new AdministratorNorthPanel(), BorderLayout.NORTH);
+        mainContainer.add(new AdministratorNorthPanel(this), BorderLayout.NORTH);
         mainContainer.add(new AdministratorCenterPanel(), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
