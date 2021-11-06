@@ -57,7 +57,7 @@ class DuringDateTest {
 class ReservationBack extends JPanel {
     ReservationMain frame;
 
-    public ReservationBack(ReservationMain frame) {
+    public ReservationBack(ReservationMain frame, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
@@ -70,7 +70,7 @@ class ReservationBack extends JPanel {
 
         back.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new Main();
+                new Main(id);
                 frame.dispose();
             }
         });
@@ -81,13 +81,13 @@ class ReservationBack extends JPanel {
 class ReservationNorth extends JPanel {
     ReservationMain frame;
 
-    public ReservationNorth(ReservationMain frame) {
+    public ReservationNorth(ReservationMain frame, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new ReservationBack(this.frame), BorderLayout.EAST);
+        add(new ReservationBack(this.frame, id), BorderLayout.EAST);
     }
 }
 
@@ -177,7 +177,7 @@ class ReservationCenter extends JPanel {
 
 // '예약하기' 화면의 메인 부분
 public class ReservationMain extends JFrame {
-    public ReservationMain() {
+    public ReservationMain(String id) {
         setTitle("버스 예약 시스템(가제)");
         setSize(1000,800);
         setResizable(false);
@@ -187,7 +187,7 @@ public class ReservationMain extends JFrame {
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new ReservationNorth(this), BorderLayout.NORTH);
+        mainContainer.add(new ReservationNorth(this, id), BorderLayout.NORTH);
         mainContainer.add(new ReservationCenter(), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());

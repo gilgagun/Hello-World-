@@ -16,6 +16,7 @@ public class DB_connect {
             Class.forName("com.mysql.cj.jdbc.Driver"); //
             conn = DriverManager.getConnection(dbURL, dbID, dbPassword); //
         } catch (Exception e) {
+
             e.printStackTrace();
         }
     }
@@ -26,8 +27,7 @@ public class DB_connect {
         PreparedStatement pstmt = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn =
-                    DriverManager.getConnection("jdbc:mysql:" +
+            conn = DriverManager.getConnection("jdbc:mysql:" +
                             "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 

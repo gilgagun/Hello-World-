@@ -19,7 +19,7 @@ class Title extends JPanel {
 class LoginAndSignup extends JPanel {
     Main frame;
 
-    public LoginAndSignup(Main frame) {
+    public LoginAndSignup(Main frame, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
@@ -38,7 +38,7 @@ class LoginAndSignup extends JPanel {
         // 마이페이지 버튼 클릭 시 이벤트
         myButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new MyPage();
+                new MyPage(id);
                 frame.dispose();
             }
         });
@@ -59,20 +59,20 @@ class LoginAndSignup extends JPanel {
 class NorthPanel extends JPanel {
     Main frame;
 
-    public NorthPanel(Main frame) {
+    public NorthPanel(Main frame, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new LoginAndSignup(this.frame), BorderLayout.EAST);
+        add(new LoginAndSignup(this.frame, id), BorderLayout.EAST);
     }
 }
 
 class CenterPanel extends JPanel {
     Main frame;
 
-    public CenterPanel(Main frame) {
+    public CenterPanel(Main frame, String id) {
         setBackground(Color.WHITE);
         this.frame = frame;
 
@@ -96,7 +96,7 @@ class CenterPanel extends JPanel {
         // 예매하기 클릭 시 이벤트
         mainButton1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new ReservationMain();
+                new ReservationMain(id);
                 frame.dispose();
             }
         });
@@ -104,7 +104,7 @@ class CenterPanel extends JPanel {
 }
 
 public class Main extends JFrame{
-    public Main() {
+    public Main(String id) {
         setTitle("버스 예약 시스템(가제)");
         setSize(1000,800);
         setResizable(false);
@@ -114,8 +114,8 @@ public class Main extends JFrame{
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new NorthPanel(this), BorderLayout.NORTH);
-        mainContainer.add(new CenterPanel(this), BorderLayout.CENTER);
+        mainContainer.add(new NorthPanel(this, id), BorderLayout.NORTH);
+        mainContainer.add(new CenterPanel(this, id), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 

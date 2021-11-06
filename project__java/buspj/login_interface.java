@@ -7,7 +7,6 @@ class BoxPanel extends JPanel implements ActionListener {
     login_interface frame;
     JTextField id = new JTextField();
     JPasswordField pw = new JPasswordField();
-
     public BoxPanel(login_interface frame) {
         setLayout(null);
         this.frame = frame;
@@ -70,7 +69,7 @@ class BoxPanel extends JPanel implements ActionListener {
                 System.out.println(value);
                 if(value == 1){
                     JOptionPane.showMessageDialog(null, "로그인 성공");
-                    new Main();
+                    new Main(idt);
                     this.frame.dispose();
                 }
                 else if(value == 2){
@@ -146,8 +145,8 @@ public class login_interface extends JFrame {
 
         setVisible(true);
     }
-
     public static void main(String[] args) {
         new login_interface();
+        System.out.println("종료");
     }
 }

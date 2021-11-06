@@ -5,8 +5,7 @@ import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
 
 class Back extends JPanel {
     MyPage frame;
-
-    public Back(MyPage frame) {
+    public Back(MyPage frame, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
@@ -19,7 +18,7 @@ class Back extends JPanel {
 
         back.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new Main();
+                new Main(id);
                 frame.dispose();
             }
         });
@@ -29,24 +28,26 @@ class Back extends JPanel {
 class MyNorthPanel extends JPanel {
     MyPage frame;
 
-    public MyNorthPanel(MyPage frame) {
+    public MyNorthPanel(MyPage frame, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new Back(this.frame), BorderLayout.EAST);
+        add(new Back(this.frame, id), BorderLayout.EAST);
     }
 }
 
 class MyCenterPanel extends JPanel {
     DB_connect DB = new DB_connect(); // 이건 그냥 해놓은 것.. DB 공부해올게요..
-    JTextField hi = new JTextField(); // 환영합니다 네모 칸
+    //JTextField hi = new JTextField(); // 환영합니다 네모 칸
+    JLabel hi = new JLabel();
+    //login_interface idck = new login_interface();
     JTextField score = new JTextField(); // 마일리지 네모 칸
 
-    public MyCenterPanel() {
+    public MyCenterPanel(String id) {
         setLayout(null);
-
+        hi = new JLabel(id);
         // 프로필 이미지 삽입
         ImageIcon profile = new ImageIcon("project__java/buspj/image/profile.png");
         Image img = profile.getImage();
@@ -82,6 +83,7 @@ class MyCenterPanel extends JPanel {
 
         // 환영 메시지 삽입
         hi.setBounds(190,130,200,50);
+        hi.setFont(new Font("맑은 고딕", Font.BOLD, 30));
         add(hi);
 
         // 세로 선 삽입
@@ -117,7 +119,7 @@ class MyCenterPanel extends JPanel {
 }
 
 public class MyPage extends JFrame {
-    public MyPage() {
+    public MyPage(String id) {
         setTitle("버스 예약 시스템(가제)");
         setSize(1000,800);
         setResizable(false);
@@ -127,11 +129,13 @@ public class MyPage extends JFrame {
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new MyNorthPanel(this), BorderLayout.NORTH);
-        mainContainer.add(new MyCenterPanel(), BorderLayout.CENTER);
+        mainContainer.add(new MyNorthPanel(this, id), BorderLayout.NORTH);
+        mainContainer.add(new MyCenterPanel(id), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 
         setVisible(true);
     }
+
+
 }

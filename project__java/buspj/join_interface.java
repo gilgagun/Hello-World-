@@ -20,9 +20,7 @@ class Member{ //회원 가입 db연결 클래스
         this.name=name;
         this.phone=phone;
     }
-    public String get_id(){
-        return id;
-    }
+    public String get_id(){ return id; }
     public String get_pw(){
         return pw;
     }
