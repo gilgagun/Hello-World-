@@ -47,7 +47,7 @@ class MyCenterPanel extends JPanel {
 
     public MyCenterPanel(String id) {
         setLayout(null);
-        hi = new JLabel(id);
+        hi = new JLabel(id + "님 환영합니다!");
         // 프로필 이미지 삽입
         ImageIcon profile = new ImageIcon("project__java/buspj/image/profile.png");
         Image img = profile.getImage();
@@ -83,7 +83,7 @@ class MyCenterPanel extends JPanel {
 
         // 환영 메시지 삽입
         hi.setBounds(190,130,200,50);
-        hi.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        hi.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(hi);
 
         // 세로 선 삽입
