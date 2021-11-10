@@ -1,6 +1,7 @@
 package buspj;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DB_connect {
 
@@ -112,5 +113,83 @@ public class DB_connect {
             e.printStackTrace();
         }
         return -2; // DB 오류
+    }
+
+    //출발지 db
+    public String[] start() {
+        Connection conn;
+        ResultSet rs = null;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            //ArrayList<String> bus = new ArrayList<String>();
+            String []add = new String[100];
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql = "select distinct end from bus_table";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i =0;
+            while (rs.next()){
+                add[i]=rs.getString(1);
+                i++;
+            }
+            /*
+            Iterator<String> it = bus.iterator();
+            for (int h=0; h<i; h++){
+                String w=it.next();
+                System.out.println(w);
+            }*/
+            pstmt.close();
+            return add;
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+        return null;
+    }
+
+    //도착지 db
+    public String[] end() {
+        Connection conn;
+        ResultSet rs = null;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            //ArrayList<String> buss = new ArrayList<String>();
+            String []add = new String[100];
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql = "select distinct start from bus_table";
+            pstmt = conn.prepareStatement(sql);
+            rs = pstmt.executeQuery();
+            int i =0;
+            while (rs.next()){
+                add[i]=rs.getString(1);
+                i++;
+            }
+            /*
+            Iterator<String> it = buss.iterator();
+            for (int h=0; h<i; h++){
+                String w=it.next();
+                System.out.println(w);
+            }*/
+            pstmt.close();
+            return add;
+
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+        return null;
     }
 }

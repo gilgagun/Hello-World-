@@ -96,7 +96,7 @@ class ReservationCenter extends JPanel {
     static JComboBox<String> start = new JComboBox<String>();   // 출발 터미널 콤보박스
     static JComboBox<String> end = new JComboBox<String>();     // 도착 터미널 콤보박스
     static JComboBox<String> date = new JComboBox<String>();    // 출발 날짜 콤보박스
-
+    DB_connect DB = new DB_connect();
     public ReservationCenter() {
         setLayout(null);
 
@@ -150,13 +150,24 @@ class ReservationCenter extends JPanel {
         JLabel startDate = new JLabel("출발 날짜");
         startDate.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         nextSquare2.add(startDate);
-        
-        // '출발 터미널' 콤보박스에 정류장 리스트 삽입 예정(현재 미완성 코드. DB 필요할 것으로 보임)
+
+        String[] start_terminal = new String[100];
+        String end_terminal[] = new String[100];
+        start_terminal=DB.start();
+        // '출발 터미널' 콤보박스에 정류장 리스트 삽입
         start.setPreferredSize(new Dimension(220,30));
+        //start_terminal = DB.start().toArray(new String[0]);
+        for (int i=0; i<start_terminal.length; i++){
+            start.addItem(start_terminal[i]);
+        }
         square.add(start);
 
-        // '도착 터미널' 콤보박스에 정류장 리스트 삽입 예정(현재 미완성 코드. DB 필요할 것으로 보임)
+        // '도착 터미널' 콤보박스에 정류장 리스트 삽입
         end.setPreferredSize(new Dimension(220,30));
+        end_terminal = DB.end();
+        for (int i=0; i<end_terminal.length; i++){
+            end.addItem(end_terminal[i]);
+        }
         nextSquare1.add(end);
 
         // '출발 날짜' 콤보박스에 삽입할 날짜 정보 객체 생성
