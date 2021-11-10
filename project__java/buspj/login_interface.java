@@ -1,32 +1,40 @@
 package buspj;
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.*;
+import javax.swing.JPanel;
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
+import javax.imageio.*;
 
 class BoxPanel extends JPanel implements ActionListener {
+    //BufferedImage img = null;
     login_interface frame;
     JTextField id = new JTextField();
     JPasswordField pw = new JPasswordField();
+
     public BoxPanel(login_interface frame) {
         setLayout(null);
         this.frame = frame;
+
 
         JLabel idText = new JLabel("아이디");
         idText.setBounds(80,50,50,30);
         add(idText);
 
-        id.setBounds(170,50,100,30);
+        id.setBounds(180,50,100,30);
         add(id);
 
         JLabel pwText = new JLabel("비밀번호");
         pwText.setBounds(80,100,50,30);
         add(pwText);
 
-        pw.setBounds(170,100,100,30);
+        pw.setBounds(180,100,100,30);
         add(pw);
 
         JButton check = new JButton("확인");
-        check.setBounds(135, 160, 70,30);
+        check.setBounds(135, 265, 70,30);
         add(check);
 
         check.addActionListener(this);
@@ -40,6 +48,14 @@ class BoxPanel extends JPanel implements ActionListener {
         signinPage.setBounds(148, 225, 100, 20);
         signinPage.setFont(new Font("맑은 고딕", Font.BOLD, 10));
         add(signinPage);
+
+        ImageIcon background = new ImageIcon("project__java/buspj/image/login_bus.png");
+        Image img = background.getImage();
+        Image updateImg = img.getScaledInstance(330,400,Image.SCALE_DEFAULT);
+        ImageIcon updateIcon = new ImageIcon(updateImg);
+        JLabel image2 = new JLabel(updateIcon);
+        image2.setBounds(-7,-60,350,450);
+        add(image2);
 
         signinPage.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -129,16 +145,17 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
 
 public class login_interface extends JFrame {
     public login_interface() {
-        setTitle("마법의 성 프로그램(가제)");
+        setTitle("버스 타고가");
         setResizable(false);
         setSize(350,400);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         Container mainContainer = getContentPane();
+
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new TitlePanel(), BorderLayout.NORTH);
+       // mainContainer.add(new TitlePanel(), BorderLayout.NORTH);
         mainContainer.add(new BoxPanel(this), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
