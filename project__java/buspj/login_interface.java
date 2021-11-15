@@ -18,19 +18,20 @@ class BoxPanel extends JPanel implements ActionListener {
         setLayout(null);
         this.frame = frame;
 
+//        JLabel idText = new JLabel("아이디");
+//        idText.setBounds(80,50,50,30);
+//        add(idText);
 
-        JLabel idText = new JLabel("아이디");
-        idText.setBounds(80,50,50,30);
-        add(idText);
-
-        id.setBounds(180,50,100,30);
+        // '아이디' 글자 설정
+        id.setBounds(93,70,150,30);
         add(id);
 
-        JLabel pwText = new JLabel("비밀번호");
-        pwText.setBounds(80,100,50,30);
-        add(pwText);
+//        JLabel pwText = new JLabel("비밀번호");
+//        pwText.setBounds(80,100,50,30);
+//        add(pwText);
 
-        pw.setBounds(180,100,100,30);
+        // '비밀번호' 글자 설정
+        pw.setBounds(93,125,150,30);
         add(pw);
 
         JButton check = new JButton("확인");
@@ -38,6 +39,15 @@ class BoxPanel extends JPanel implements ActionListener {
         add(check);
 
         check.addActionListener(this);
+
+        // '확인' 버튼 이미지 삽입
+//        ImageIcon checkbutton = new ImageIcon("project__java/buspj/image/login_bus.png");
+//        Image checkImg = checkbutton.getImage();
+//        Image updateCheckImg = checkImg.getScaledInstance(330,400,Image.SCALE_DEFAULT);
+//        ImageIcon updateCheckIcon = new ImageIcon(updateCheckImg);
+//        JLabel image = new JLabel(updateCheckIcon);
+//        image.setBounds(-7,-60,350,450);
+//        add(image);
 
         JLabel question = new JLabel("회원이 아니신가요?");
         question.setBounds(124, 205,100,20);
@@ -49,6 +59,7 @@ class BoxPanel extends JPanel implements ActionListener {
         signinPage.setFont(new Font("맑은 고딕", Font.BOLD, 10));
         add(signinPage);
 
+        // 메인 버스 이미지
         ImageIcon background = new ImageIcon("project__java/buspj/image/login_bus.png");
         Image img = background.getImage();
         Image updateImg = img.getScaledInstance(330,400,Image.SCALE_DEFAULT);
@@ -57,6 +68,7 @@ class BoxPanel extends JPanel implements ActionListener {
         image2.setBounds(-7,-60,350,450);
         add(image2);
 
+        // 회원가입 글자 클릭 시 이벤트
         signinPage.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new join_interface();
@@ -104,18 +116,6 @@ class BoxPanel extends JPanel implements ActionListener {
                 }
             }
         }
-    }
-}
-
-
-class TitlePanel extends JPanel {
-    public TitlePanel() {
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-
-        JLabel title = new JLabel("로그인");
-        title.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-        title.setHorizontalAlignment(JLabel.CENTER);
-        add(title);
     }
 }
 
