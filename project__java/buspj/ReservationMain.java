@@ -91,6 +91,44 @@ class ReservationNorth extends JPanel {
     }
 }
 
+class Text extends JPanel {
+    public Text() {
+        setLayout(new FlowLayout(FlowLayout.LEFT, 17, 10));
+        setBackground(Color.LIGHT_GRAY);
+
+        JLabel text = new JLabel("출발시간     ");
+        text.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(text);
+
+        JLabel text2 = new JLabel("회사     ");
+        text2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(text2);
+
+        JLabel text3 = new JLabel("등급     ");
+        text3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(text3);
+
+        JLabel text4 = new JLabel("잔여석     ");
+        text4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(text4);
+
+        JLabel text5 = new JLabel("요금");
+        text5.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(text5);
+
+        setVisible(true);
+    }
+}
+
+class Middle extends JScrollPane {
+    public Middle() {
+        setBackground(Color.WHITE);
+
+        JList<String> ticketList = new JList<String>();
+        
+    }
+}
+
 // 예약하기 화면의 가운데 패널
 class ReservationCenter extends JPanel {
     static JComboBox<String> start = new JComboBox<String>();   // 출발 터미널 콤보박스
@@ -181,6 +219,17 @@ class ReservationCenter extends JPanel {
             this.date.addItem(ddt.date[i]);
         }
         nextSquare2.add(this.date);
+
+        // 표 테이블
+        JPanel ticketTable = new JPanel();
+        ticketTable.setLayout(new BorderLayout());
+        ticketTable.setBackground(Color.WHITE);
+        ticketTable.setBounds(510,100,410,370);
+        add(ticketTable);
+
+        // 표 상단바
+        ticketTable.add(new Text(), BorderLayout.NORTH);
+        ticketTable.add(new Middle(), BorderLayout.CENTER);
 
         setVisible(true);
     }
