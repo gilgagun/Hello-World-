@@ -233,10 +233,17 @@ class ReservationCenter extends JPanel {
         // 표 중간부분
         ticketTable.add(new Middle(), BorderLayout.CENTER);
 
+        // 조회 버튼
         JButton lookUp = new JButton("조회");
         lookUp.setBounds(510, 540, 100, 40);
         lookUp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         add(lookUp);
+
+        // 좌석선택 버튼
+        JButton seats = new JButton("좌석선택");
+        seats.setBounds(810, 540, 100,40);
+        seats.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(seats);
 
         setVisible(true);
     }
