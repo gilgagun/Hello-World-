@@ -52,7 +52,7 @@ class SeatsCenter extends JPanel {
 // 좌석 선택 클래스 전체적인 구조
 public class SeatsSelect extends JFrame {
     public SeatsSelect(String id) {
-        setTitle("버스 예약 시스템(가제)");
+        setTitle("버스 타고가");
         setSize(1000,800);
         setResizable(false);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정

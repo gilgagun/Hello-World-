@@ -105,7 +105,7 @@ class CenterPanel extends JPanel {
 
 public class Main extends JFrame{
     public Main(String id) {
-        setTitle("버스 예약 시스템(가제)");
+        setTitle("버스 타고가");
         setSize(1000,800);
         setResizable(false);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
