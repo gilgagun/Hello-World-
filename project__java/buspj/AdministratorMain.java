@@ -3,17 +3,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 
-class AdministratorTitle extends JPanel {
-    public AdministratorTitle() {
-        setBackground(Color.LIGHT_GRAY);
-
-        setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
-
-        JLabel title = new JLabel("마법의 성이라는 노래를 아십니까? 안다면 당신은 옛날 사람.");
-        title.setFont(new Font("Serif", Font.BOLD, 20));
-        add(title);
-    }
-}
+//class AdministratorTitle extends JPanel {
+//    public AdministratorTitle() {
+//        setBackground(Color.LIGHT_GRAY);
+//
+//        setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
+//
+//        JLabel title = new JLabel("마법의 성이라는 노래를 아십니까? 안다면 당신은 옛날 사람.");
+//        title.setFont(new Font("Serif", Font.BOLD, 20));
+//        add(title);
+//    }
+//}
 
 class AdministratorLoginAndSignup extends JPanel {
     AdministratorMain frame;
@@ -49,7 +49,7 @@ class AdministratorNorthPanel extends JPanel {
         this.frame = frame;
 
         setLayout(new BorderLayout());
-        add(new AdministratorTitle(), BorderLayout.WEST);
+        add(new Title(), BorderLayout.WEST);
         add(new AdministratorLoginAndSignup(this.frame), BorderLayout.EAST);
     }
 }
