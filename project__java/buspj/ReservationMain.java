@@ -120,7 +120,7 @@ class Text extends JPanel {
     }
 }
 
-// 표 테이블의 가운데 부분
+// 표 테이블의 가운데 부분 (구현중)
 class Middle extends JScrollPane {
     public Middle() {
         setBackground(Color.WHITE);
