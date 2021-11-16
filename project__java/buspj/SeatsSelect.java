@@ -45,6 +45,14 @@ class SeatsNorth extends JPanel {
 // 화면 가운데 부분
 class SeatsCenter extends JPanel {
     public SeatsCenter(SeatsSelect frame, String id) {
+        setLayout(null);
+
+        // '예매하기' 글자
+        JLabel title = new JLabel("예매하기");
+        title.setBounds(60, 3, 150, 100);
+        title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+        add(title);
+
 
     }
 }

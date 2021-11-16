@@ -132,11 +132,12 @@ class Middle extends JScrollPane {
 
 // 예약하기 화면의 가운데 패널
 class ReservationCenter extends JPanel {
+    ReservationMain frame;
     static JComboBox<String> start = new JComboBox<String>();   // 출발 터미널 콤보박스
     static JComboBox<String> end = new JComboBox<String>();     // 도착 터미널 콤보박스
     static JComboBox<String> date = new JComboBox<String>();    // 출발 날짜 콤보박스
     DB_connect DB = new DB_connect();
-    public ReservationCenter() {
+    public ReservationCenter(ReservationMain frame, String id) {
         setLayout(null);
 
         // '예매하기' 글자
@@ -245,6 +246,14 @@ class ReservationCenter extends JPanel {
         seats.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         add(seats);
 
+        // 좌석선택 버튼 클릭시
+        seats.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new SeatsSelect(id);
+                frame.dispose();
+            }
+        });
+
         setVisible(true);
     }
 }
@@ -262,7 +271,7 @@ public class ReservationMain extends JFrame {
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new ReservationNorth(this, id), BorderLayout.NORTH);
-        mainContainer.add(new ReservationCenter(), BorderLayout.CENTER);
+        mainContainer.add(new ReservationCenter(this, id), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 
