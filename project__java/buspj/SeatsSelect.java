@@ -4,6 +4,25 @@ import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래�
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
 
+// 선택한 좌석에 관한 클래스
+class SelectSeats {
+    int number;
+    int check;
+
+    public SelectSeats (int number, int check) {
+        this.number = number;
+        this.check = check;
+    }
+
+    public int get_number() {
+        return this.number;
+    }
+
+    public int get_phone() {
+        return this.check;
+    }
+}
+
 // 뒤로가기 버튼
 class SeatsBack extends JPanel {
     SeatsSelect frame;
@@ -72,16 +91,87 @@ class SeatsCenter extends JPanel {
         seatsTable.setBounds(275, 85, 450,550);
         add(seatsTable);
 
-        // 선택하지 않은 좌석 이미지
+        // 좌석 생성
+        create_seats(seatsTable);
+    }
+
+    // 좌석 이미지 생성
+    public void create_seats(JPanel p) {
+        int num = 7;   // 생성할 좌석의 세로 줄 수
+
+        // 선택 가능 이미지
+        ImageIcon possible = new ImageIcon("project__java/buspj/image/white_seats.png");
+        Image possibleImage = possible.getImage();
+        Image updatePossibleImg = possibleImage.getScaledInstance(40,40,Image.SCALE_SMOOTH);
+        ImageIcon updatePossibleIcon = new ImageIcon(updatePossibleImg);
+
+        JLabel possibleSeats = new JLabel(updatePossibleIcon);
+        possibleSeats.setBounds(12,210,50,50);
+        possibleSeats.setHorizontalAlignment(JLabel.CENTER);
+        p.add(possibleSeats);
+
+        // 선택 가능 텍스트
+        JLabel possibleText = new JLabel("선택가능");
+        possibleText.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+        possibleText.setBounds(17, 260, 50, 15);
+        p.add(possibleText);
+
+        // 선택 불가능 이미지
+        ImageIcon impossible = new ImageIcon("project__java/buspj/image/black_seats.png");
+        Image impossibleImage = impossible.getImage();
+        Image updateImpossibleImg = impossibleImage.getScaledInstance(40,40,Image.SCALE_SMOOTH);
+        ImageIcon updateImpossibleIcon = new ImageIcon(updateImpossibleImg);
+
+        JLabel impossibleSeats = new JLabel(updateImpossibleIcon);
+        impossibleSeats.setBounds(12,290,50,50);
+        impossibleSeats.setHorizontalAlignment(JLabel.CENTER);
+        p.add(impossibleSeats);
+
+        // 선택 불가능 텍스트
+        JLabel impossibleText = new JLabel("선택불가능");
+        impossibleText.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+        impossibleText.setBounds(12, 340, 60, 15);
+        p.add(impossibleText);
+
+        // 아무것도 선택하지 않은 초기 좌석 이미지 생성
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < num; j++) {
+                ImageIcon white_seats = new ImageIcon("project__java/buspj/image/white_seats.png");
+                Image image = white_seats.getImage();
+                Image updateImg = image.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+                ImageIcon updateIcon = new ImageIcon(updateImg);
+
+                JLabel seats = new JLabel(updateIcon);
+                seats.setBounds(82 + 52*i,25 + 70*j,70,70);
+                seats.setHorizontalAlignment(JLabel.CENTER);
+                p.add(seats);
+            }
+        }
+
+        // 맨 뒷 좌석 가운데 한 자리
         ImageIcon white_seats = new ImageIcon("project__java/buspj/image/white_seats.png");
         Image image = white_seats.getImage();
         Image updateImg = image.getScaledInstance(60,60,Image.SCALE_SMOOTH);
         ImageIcon updateIcon = new ImageIcon(updateImg);
 
         JLabel seats = new JLabel(updateIcon);
-        seats.setBounds(60,50,70,70);
+        seats.setBounds(186,445,70,70);
         seats.setHorizontalAlignment(JLabel.CENTER);
-        seatsTable.add(seats);
+        p.add(seats);
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < num; j++) {
+                ImageIcon white_seats2 = new ImageIcon("project__java/buspj/image/white_seats.png");
+                Image image2 = white_seats2.getImage();
+                Image updateImg2 = image2.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+                ImageIcon updateIcon2 = new ImageIcon(updateImg2);
+
+                JLabel seats2 = new JLabel(updateIcon2);
+                seats2.setBounds(238 + 52*i,25 + 70*j,70,70);
+                seats2.setHorizontalAlignment(JLabel.CENTER);
+                p.add(seats2);
+            }
+        }
     }
 }
 

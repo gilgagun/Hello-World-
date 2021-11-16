@@ -192,4 +192,27 @@ public class DB_connect {
         }
         return null;
     }
+
+    // 좌석 DB
+//    public int seatsSelect(int number) {
+//        ResultSet rs = null;
+//        String SQL = "select check from seats where number = ?";
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            conn = DriverManager.getConnection("jdbc:mysql:" +
+//                            "//localhost:3306/bus", "root", "1234");
+//            System.out.println("DB 연결 완료");
+//            String root = "root";
+//            pstmt = conn.prepareStatement(SQL);
+//            pstmt.setInt(1, number);
+//            rs = pstmt.executeQuery(); // 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌
+//
+//            if (rs.next()) {
+//                if (rs.getInt(1))
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return seats;
+//    }
 }
