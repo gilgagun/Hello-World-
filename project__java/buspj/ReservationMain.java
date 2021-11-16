@@ -120,6 +120,7 @@ class Text extends JPanel {
     }
 }
 
+// 표 테이블의 가운데 부분
 class Middle extends JScrollPane {
     public Middle() {
         setBackground(Color.WHITE);
@@ -229,7 +230,13 @@ class ReservationCenter extends JPanel {
 
         // 표 상단바
         ticketTable.add(new Text(), BorderLayout.NORTH);
+        // 표 중간부분
         ticketTable.add(new Middle(), BorderLayout.CENTER);
+
+        JButton lookUp = new JButton("조회");
+        lookUp.setBounds(510, 540, 100, 40);
+        lookUp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(lookUp);
 
         setVisible(true);
     }
