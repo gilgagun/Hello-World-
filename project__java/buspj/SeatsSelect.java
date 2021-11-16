@@ -53,7 +53,24 @@ class SeatsCenter extends JPanel {
         title.setFont(new Font("맑은 고딕", Font.BOLD, 30));
         add(title);
 
+        // 어른 버튼
+        JButton adault = new JButton("어른");
+        adault.setBounds(140, 450,100, 40);
+        adault.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(adault);
 
+        // 청소년 버튼
+        JButton teen = new JButton("청소년");
+        teen.setBounds(140, 505,100, 40);
+        teen.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        add(teen);
+
+        // 좌석 표시 패널
+        JPanel seatsTable = new JPanel();
+        seatsTable.setBackground(Color.WHITE);
+        seatsTable.setLayout(null);
+        seatsTable.setBounds(275, 85, 450,550);
+        add(seatsTable);
     }
 }
 
