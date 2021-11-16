@@ -71,6 +71,17 @@ class SeatsCenter extends JPanel {
         seatsTable.setLayout(null);
         seatsTable.setBounds(275, 85, 450,550);
         add(seatsTable);
+
+        // 선택하지 않은 좌석 이미지
+        ImageIcon white_seats = new ImageIcon("project__java/buspj/image/white_seats.png");
+        Image image = white_seats.getImage();
+        Image updateImg = image.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+        ImageIcon updateIcon = new ImageIcon(updateImg);
+
+        JLabel seats = new JLabel(updateIcon);
+        seats.setBounds(60,50,70,70);
+        seats.setHorizontalAlignment(JLabel.CENTER);
+        seatsTable.add(seats);
     }
 }
 
