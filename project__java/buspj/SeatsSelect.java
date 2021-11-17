@@ -102,7 +102,7 @@ class SeatsCenter extends JPanel {
         add(priceTable);
 
         // 가격 테이블 열 이름 생성
-        
+
     }
 
     // 좌석 이미지 생성
@@ -188,7 +188,7 @@ class SeatsCenter extends JPanel {
 // 좌석 선택 클래스 전체적인 구조
 public class SeatsSelect extends JFrame {
     public SeatsSelect(String id) {
-        setTitle("버스 타고가");
+        setTitle("버스타슈~");
         setSize(1000,800);
         setResizable(false);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정

@@ -153,7 +153,7 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
 
 public class login_interface extends JFrame {
     public login_interface() {
-        setTitle("버스 타고가");
+        setTitle("버스타슈~");
         setResizable(false);
         setSize(350,400);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
