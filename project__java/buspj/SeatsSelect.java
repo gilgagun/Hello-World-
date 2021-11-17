@@ -93,6 +93,16 @@ class SeatsCenter extends JPanel {
 
         // 좌석 생성
         create_seats(seatsTable);
+
+        // 가격 테이블 생성
+        JPanel priceTable = new JPanel();
+        priceTable.setBackground(Color.WHITE);
+        priceTable.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        priceTable.setBounds(755, 360,200,150);
+        add(priceTable);
+
+        // 가격 테이블 열 이름 생성
+        
     }
 
     // 좌석 이미지 생성

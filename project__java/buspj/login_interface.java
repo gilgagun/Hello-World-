@@ -34,21 +34,6 @@ class BoxPanel extends JPanel implements ActionListener {
         pw.setBounds(93,125,150,30);
         add(pw);
 
-        JButton check = new JButton("확인");
-        check.setBounds(135, 265, 70,30);
-        add(check);
-
-        check.addActionListener(this);
-
-        // '확인' 버튼 이미지 삽입
-//        ImageIcon checkbutton = new ImageIcon("project__java/buspj/image/login_bus.png");
-//        Image checkImg = checkbutton.getImage();
-//        Image updateCheckImg = checkImg.getScaledInstance(330,400,Image.SCALE_DEFAULT);
-//        ImageIcon updateCheckIcon = new ImageIcon(updateCheckImg);
-//        JLabel image = new JLabel(updateCheckIcon);
-//        image.setBounds(-7,-60,350,450);
-//        add(image);
-
         JLabel question = new JLabel("회원이 아니신가요?");
         question.setBounds(124, 205,100,20);
         question.setFont(new Font("맑은 고딕", Font.BOLD, 10));
@@ -67,6 +52,25 @@ class BoxPanel extends JPanel implements ActionListener {
         JLabel image2 = new JLabel(updateIcon);
         image2.setBounds(-7,-60,350,450);
         add(image2);
+
+        // '확인' 버튼 이미지 삽입
+        ImageIcon checkbutton1 = new ImageIcon("project__java/buspj/image/bus_number1.png");
+        Image checkImg = checkbutton1.getImage();
+        Image checkUpdate = checkImg.getScaledInstance(70,30, Image.SCALE_DEFAULT);
+        ImageIcon updateIcon2 = new ImageIcon(checkUpdate);
+
+        ImageIcon checkbutton2 = new ImageIcon("project__java/buspj/image/bus_number2.png");
+        Image checkImg2 = checkbutton2.getImage();
+        Image checkUpdate2 = checkImg2.getScaledInstance(70,30, Image.SCALE_DEFAULT);
+        ImageIcon updateIcon3 = new ImageIcon(checkUpdate2);
+
+        JButton check = new JButton(updateIcon2);
+        check.setBounds(141,324,70,30);
+        check.setBorderPainted(false); // 버튼 테두리 설정해제
+        check.setRolloverIcon(updateIcon3); // 버튼에 마우스가 올라갈떄 이미지 변환
+        image2.add(check);
+
+        check.addActionListener(this);
 
         // 회원가입 글자 클릭 시 이벤트
         signinPage.addMouseListener(new MouseAdapter() {
