@@ -54,20 +54,22 @@ class BoxPanel extends JPanel implements ActionListener {
         add(image2);
 
         // '확인' 버튼 이미지 삽입
-        ImageIcon checkbutton1 = new ImageIcon("project__java/buspj/image/bus_number1.png");
-        Image checkImg = checkbutton1.getImage();
-        Image checkUpdate = checkImg.getScaledInstance(70,30, Image.SCALE_DEFAULT);
+        ImageIcon checkbutton = new ImageIcon("project__java/buspj/image/bus_number1.png");
+        Image checkImg = checkbutton.getImage();
+        Image checkUpdate = checkImg.getScaledInstance(70,30, Image.SCALE_SMOOTH);
         ImageIcon updateIcon2 = new ImageIcon(checkUpdate);
 
         ImageIcon checkbutton2 = new ImageIcon("project__java/buspj/image/bus_number2.png");
         Image checkImg2 = checkbutton2.getImage();
-        Image checkUpdate2 = checkImg2.getScaledInstance(70,30, Image.SCALE_DEFAULT);
+        Image checkUpdate2 = checkImg2.getScaledInstance(70,30, Image.SCALE_SMOOTH);
         ImageIcon updateIcon3 = new ImageIcon(checkUpdate2);
 
         JButton check = new JButton(updateIcon2);
-        check.setBounds(141,324,70,30);
-        check.setBorderPainted(false); // 버튼 테두리 설정해제
+        check.setBounds(141,323,70,30);
+        check.setFocusPainted(false);
+        check.setContentAreaFilled(false);
         check.setRolloverIcon(updateIcon3); // 버튼에 마우스가 올라갈떄 이미지 변환
+        check.setBorderPainted(false); // 버튼 테두리 설정해제
         image2.add(check);
 
         check.addActionListener(this);
@@ -81,12 +83,13 @@ class BoxPanel extends JPanel implements ActionListener {
         });
     }
 
+    // '확인' 버튼 클릭시
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
         String idt = id.getText();
         String pwt = pw.getText();
         DB_connect DB = new DB_connect(); // DB 객체 불러오기
-        if (button.getText().equals("확인")) {
+        if (button.getText().equals("")) {
             if (id.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
             }
