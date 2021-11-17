@@ -90,14 +90,14 @@ class BoxPanel extends JPanel implements ActionListener {
         String pwt = pw.getText();
         DB_connect DB = new DB_connect(); // DB 객체 불러오기
         if (button.getText().equals("")) {
-            if (id.getText().equals("")) {
+            if (id.getText().equals("") && pw.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 입력하세요.");
+            }
+            else if (id.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "아이디를 입력하세요.");
             }
             else if (pw.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "비밀번호를 입력하세요.");
-            }
-            else if (id.getText().equals("") && pw.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 입력하세요.");
             }
             else {
                 int value = DB.login(idt, pwt);
