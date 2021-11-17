@@ -129,7 +129,7 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql = "select distinct end from bus_table";
+            String sql = "select distinct start from bus_table";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             int i =0;
@@ -168,7 +168,7 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql = "select distinct start from bus_table";
+            String sql = "select distinct end from bus_table";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
             int i =0;
