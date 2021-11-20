@@ -1,10 +1,30 @@
 package buspj;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.text.*;
+
+// 표 테이블에 들어갈 표 정보 클래스
+class Ticket {
+    ArrayList<String> starttime = new ArrayList<String>();
+    ArrayList<String> company = new ArrayList<String>();
+    ArrayList<String> class_ = new ArrayList<String>();
+    ArrayList<Integer> seats = new ArrayList<Integer>();
+    ArrayList<Integer> price = new ArrayList<Integer>();
+
+    public void insertTicket(String starttime, String company, String class_, int seats, int price) {
+        this.starttime.add(starttime);
+        this.company.add(company);
+        this.class_.add(class_);
+        this.seats.add(seats);
+        this.price.add(price);
+    }
+}
 
 // '출발 날짜' 콤보 박스에 삽입할 날짜 배열 클래스 DuringDateTest
 class DuringDateTest {
@@ -91,42 +111,40 @@ class ReservationNorth extends JPanel {
     }
 }
 
-class Text extends JPanel {
-    public Text() {
-        setLayout(new FlowLayout(FlowLayout.LEFT, 17, 10));
-        setBackground(Color.LIGHT_GRAY);
+// 표 테이블의 가운데 부분 (구현중)
+class TicketOneWay extends JPanel {
+    JTable table;
+    DefaultTableModel model;
+    JScrollPane scroll;
 
-        JLabel text = new JLabel("출발시간     ");
-        text.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(text);
+    public TicketOneWay() {
+        String[] title = {"출발시간","회사","등급","잔여석","요금"}; // 컬럼 네임 설정
+        String[][] row = new String[0][5];                    // 표들
+        model = new DefaultTableModel(row,title);	// 열 이름 추가, 행은 0개 지정
 
-        JLabel text2 = new JLabel("회사     ");
-        text2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(text2);
+        table = new JTable(model);   // 표 테이블 생성
+//        table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        JLabel text3 = new JLabel("등급     ");
-        text3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(text3);
-
-        JLabel text4 = new JLabel("잔여석     ");
-        text4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(text4);
-
-        JLabel text5 = new JLabel("요금");
-        text5.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(text5);
+        scroll = new JScrollPane(table);  // 스크롤 팬 추가
+        scroll.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));	//너무 붙어있어서 가장자리 띄움(padding)
+        add("North", scroll);
 
         setVisible(true);
     }
-}
 
-// 표 테이블의 가운데 부분 (구현중)
-class Middle extends JScrollPane {
-    public Middle() {
-        setBackground(Color.WHITE);
+    public void showTicket(Ticket t) {
+        // 지워 지워
+//        for (int i = model.getRowCount()-1; i >= -1; i--) {
+//            model.removeRow(i);
+//        }
 
-        JList<String> ticketList = new JList<String>();
-        
+        // 표 테이블에 티켓 정보 삽입
+        for (int i = 0; i < t.starttime.size(); i++) {
+            String[] data = {t.starttime.get(i), t.company.get(i), t.class_.get(i), String.valueOf(t.seats.get(i)), String.valueOf(t.price.get(i))};
+            model.addRow(data);
+        }
+
+        setVisible(true);
     }
 }
 
@@ -224,15 +242,14 @@ class ReservationCenter extends JPanel {
 
         // 표 테이블
         JPanel ticketTable = new JPanel();
-        ticketTable.setLayout(new BorderLayout());
-        ticketTable.setBackground(Color.WHITE);
-        ticketTable.setBounds(510,100,410,370);
-        add(ticketTable);
+//        ticketTable.setLayout(new BorderLayout());
+//        ticketTable.setBackground(Color.WHITE);
+        ticketTable.setBounds(500,100,450,370);
 
-        // 표 상단바
-        ticketTable.add(new Text(), BorderLayout.NORTH);
-        // 표 중간부분
-        ticketTable.add(new Middle(), BorderLayout.CENTER);
+        // 표 구현
+        TicketOneWay tow = new TicketOneWay();
+        ticketTable.add(tow);
+        add(ticketTable);
 
         // 조회 버튼
         JButton lookUp = new JButton("조회");
@@ -245,6 +262,18 @@ class ReservationCenter extends JPanel {
         seats.setBounds(810, 540, 100,40);
         seats.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         add(seats);
+
+        // 조회 버튼 클릭시
+        lookUp.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                String st = start.getSelectedItem().toString();
+                String ed = end.getSelectedItem().toString();
+
+                // DB로 시작 터미널, 도착 터미널 정보 보내기
+                Ticket t = DB.ticket_load(st, ed);
+                tow.showTicket(t);
+            }
+        });
 
         // 좌석선택 버튼 클릭시
         seats.addMouseListener(new MouseAdapter() {

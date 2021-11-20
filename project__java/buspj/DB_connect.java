@@ -162,7 +162,7 @@ public class DB_connect {
         PreparedStatement pstmt = null;
         try {
             //ArrayList<String> buss = new ArrayList<String>();
-            String []add = new String[100];
+            String[] add = new String[100];
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql:" +
                     "//localhost:3306/bus", "root", "1234");
@@ -171,9 +171,9 @@ public class DB_connect {
             String sql = "select distinct end from bus_table";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-            int i =0;
-            while (rs.next()){
-                add[i]=rs.getString(1);
+            int i = 0;
+            while (rs.next()) {
+                add[i] = rs.getString(1);
                 i++;
             }
             /*
@@ -193,26 +193,35 @@ public class DB_connect {
         return null;
     }
 
-    // 좌석 DB
-//    public int seatsSelect(int number) {
-//        ResultSet rs = null;
-//        String SQL = "select check from seats where number = ?";
-//        try {
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            conn = DriverManager.getConnection("jdbc:mysql:" +
-//                            "//localhost:3306/bus", "root", "1234");
-//            System.out.println("DB 연결 완료");
-//            String root = "root";
-//            pstmt = conn.prepareStatement(SQL);
-//            pstmt.setInt(1, number);
-//            rs = pstmt.executeQuery(); // 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌
-//
-//            if (rs.next()) {
-//                if (rs.getInt(1))
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return seats;
-//    }
+    // 표 DB
+    public Ticket ticket_load(String start, String end) {
+        Connection conn;
+        ResultSet rs = null;
+        Ticket t = new Ticket();
+        String SQL = "SELECT starttime, company, class, seats, price FROM bus_table WHERE start = '" + start + "' and end = '" + end + "'";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+//            pstmt.setString(0, start);
+//            pstmt.setString(0, end);
+            rs = pstmt.executeQuery(SQL);
+
+            while (rs.next()) {
+                String starttime = rs.getString(1);
+                String company = rs.getString(2);
+                String class_ = rs.getString(3);
+                int seats = rs.getInt(4);
+                int price = rs.getInt(5);
+
+                t.insertTicket(starttime, company, class_, seats, price);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return t;
+    }
 }
