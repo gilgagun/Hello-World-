@@ -57,3 +57,7 @@ insert into bus_table (start,end,starttime,endtime,time,seat,price) values
       (수) 일정 - '예매하기' interface 전체 구현.
                  '관리자 모드' interface 전체 구현.
                  11.28 전에는 완성 목표.(기말고사 2주 전)
+
+21.11.21
+성민 : 티켓 리스트 뜨는 거 드디어 구현..
+      하지만 '조회' 누르면 '이미 조회했습니다!' 뜨면서 중복 조회 안 되는 거 구현해야 함!
