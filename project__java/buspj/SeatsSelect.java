@@ -63,6 +63,9 @@ class SeatsNorth extends JPanel {
 
 // 화면 가운데 부분
 class SeatsCenter extends JPanel {
+    int number = 0;   // 인원
+    int price = 0;    // 가격
+
     public SeatsCenter(SeatsSelect frame, String id) {
         setLayout(null);
 
@@ -85,12 +88,42 @@ class SeatsCenter extends JPanel {
         // 가격 테이블 생성
         JPanel priceTable = new JPanel();
         priceTable.setBackground(Color.WHITE);
-        priceTable.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        priceTable.setBounds(755, 360,200,150);
+        priceTable.setLayout(new BorderLayout());
+        priceTable.setBounds(775, 430,150,70);
         add(priceTable);
 
-        // 가격 테이블 열 이름 생성
+        // 가격 테이블 열 이름 공간
+        JPanel column = new JPanel();
+        column.setBackground(Color.LIGHT_GRAY);
+        column.setLayout(new FlowLayout(FlowLayout.LEFT, 20,6));
+        column.setSize(150,35);
+        priceTable.add(column, BorderLayout.NORTH);
 
+        // 가격 테이블 열 이름 글자
+        JLabel colName = new JLabel("인원");
+        colName.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        column.add(colName);
+
+        JLabel colName2 = new JLabel("    요금");
+        colName2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+        column.add(colName2);
+
+        // 인원, 가격 패널
+        JPanel text = new JPanel();
+        text.setBackground(Color.WHITE);
+        text.setLayout(new FlowLayout(FlowLayout.LEFT, 30,6));
+        text.setSize(150,35);
+        priceTable.add(text, BorderLayout.CENTER);
+
+        // 인원 디폴트 세팅
+        JLabel personnel = new JLabel("" + number);
+        personnel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        text.add(personnel);
+
+        // 가격 디폴트 세팅
+        JLabel price = new JLabel("      " + this.price);
+        price.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        text.add(price);
     }
 
     // 좌석 이미지 생성
