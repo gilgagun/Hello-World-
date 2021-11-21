@@ -27,7 +27,7 @@ class SelectSeats {
 class SeatsBack extends JPanel {
     SeatsSelect frame;
 
-    public SeatsBack(SeatsSelect frame, String id) {
+    public SeatsBack(SeatsSelect frame, ReservationMain frame2, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
@@ -40,8 +40,8 @@ class SeatsBack extends JPanel {
 
         back.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new ReservationMain(id);
-                frame.dispose();
+                frame2.setVisible(true);
+                frame.setVisible(false);
             }
         });
     }
@@ -51,13 +51,13 @@ class SeatsBack extends JPanel {
 class SeatsNorth extends JPanel {
     SeatsSelect frame;
 
-    public SeatsNorth(SeatsSelect frame, String id) {
+    public SeatsNorth(SeatsSelect frame, ReservationMain frame2, String id) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new SeatsBack(this.frame, id), BorderLayout.EAST);
+        add(new SeatsBack(this.frame, frame2, id), BorderLayout.EAST);
     }
 }
 
@@ -187,7 +187,7 @@ class SeatsCenter extends JPanel {
 
 // 좌석 선택 클래스 전체적인 구조
 public class SeatsSelect extends JFrame {
-    public SeatsSelect(String id, String start, String end, String date, String[] info) {
+    public SeatsSelect(ReservationMain frame, String id, String start, String end, String date, String[] info) {
         setTitle("버스타슈~");
         setSize(1000,800);
         setResizable(false);
@@ -197,7 +197,7 @@ public class SeatsSelect extends JFrame {
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new SeatsNorth(this, id), BorderLayout.NORTH);
+        mainContainer.add(new SeatsNorth(this, frame, id), BorderLayout.NORTH);
         mainContainer.add(new SeatsCenter(this, id), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());

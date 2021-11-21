@@ -366,8 +366,8 @@ class ReservationCenter extends JPanel {
                 }
                 else {
                     // 출발 터미널, 도착 터미널, 출발 날짜 등의 정보를 좌석 선택 페이지로 넘겨줌
-                    new SeatsSelect(id, st, ed, dt, info);
-                    frame.dispose();
+                    new SeatsSelect(frame, id, st, ed, dt, info);
+                    frame.setVisible(false);
                 }
             }
         });
