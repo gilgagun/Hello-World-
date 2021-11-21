@@ -219,6 +219,11 @@ class TicketOneWay extends JPanel implements MouseListener {
     public String[] getArr() {
         return this.arr;
     }
+
+    // 선택한 행 정보 리셋
+    public void setArr() {
+        this.arr = null;
+    }
 }
 
 // 예약하기 화면의 가운데 패널
@@ -339,6 +344,7 @@ class ReservationCenter extends JPanel {
         // 조회 버튼 클릭시
         lookUp.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                tow.setArr();
                 String st = start.getSelectedItem().toString();
                 String ed = end.getSelectedItem().toString();
                 String dt = date.getSelectedItem().toString();
