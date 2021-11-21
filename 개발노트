@@ -63,4 +63,4 @@ insert into bus_table (start,end,starttime,endtime,time,seat,price) values
       하지만 '조회' 누르면 '이미 조회했습니다!' 뜨면서 중복 조회 안 되는 거 구현해야 함!
       
 21.11.21
-찬영: 회원탈퇴 
+찬영: 회원탈퇴 구현
