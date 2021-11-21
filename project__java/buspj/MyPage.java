@@ -2,7 +2,43 @@ package buspj;
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
-
+class MyDialog extends JDialog{
+    JLabel comment = new JLabel();
+    JTextField pw = new JTextField(10);
+    JButton ok = new JButton("ok");
+    public MyDialog(MyPage frame, String id){
+        comment = new JLabel("비밀번호를 입력해주세요");
+        add(comment);
+        setLocationRelativeTo(null);
+        setLayout(new FlowLayout());
+        add(pw);
+        add(ok);
+        setSize(200,100);
+        ok.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                String user_pw = pw.getText();
+                DB_connect db = new DB_connect();
+                int n = db.login(id, user_pw);
+                if (n==1){
+                    int key = db.login_out(id);
+                    if (key==1){
+                        JOptionPane.showMessageDialog(null, "삭제되었습니다.");
+                        setVisible(false);
+                        new login_interface();
+                        //JFrame frames = (JFrame)e.getSource();
+                        frame.dispose();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "db오류.");
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "비밀번호 미일치");
+                }
+            }
+        });
+    }
+}
 class Back extends JPanel {
     MyPage frame;
     public Back(MyPage frame, String id) {
@@ -44,9 +80,11 @@ class MyCenterPanel extends JPanel {
     JLabel hi = new JLabel();
     //login_interface idck = new login_interface();
     JTextField score = new JTextField(); // 마일리지 네모 칸
-
+    MyDialog dialog;
+    MyPage frame;
     public MyCenterPanel(String id) {
         setLayout(null);
+        this.frame = frame;
         hi = new JLabel(id + "님 환영합니다!");
         // 프로필 이미지 삽입
         ImageIcon profile = new ImageIcon("project__java/buspj/image/profile.png");
@@ -114,10 +152,20 @@ class MyCenterPanel extends JPanel {
         membershipBye.setBounds(540, 460, 400, 100);
         membershipBye.setFont(new Font("고딕", Font.BOLD, 30));
         add(membershipBye);
+        dialog = new MyDialog(this.frame, id);
+        membershipBye.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                int answer = JOptionPane.showConfirmDialog(null, "탈퇴 하시겠습니까?","회원탈퇴",JOptionPane.YES_NO_OPTION);
+                if(answer==0){
+                    dialog.setVisible(true);
+                    //new login_interface();
+                    //frame.dispose();
+                }
+            }
+        });
         setVisible(true);
     }
 }
-
 public class MyPage extends JFrame {
     public MyPage(String id) {
         setTitle("버스타슈~");

@@ -96,6 +96,7 @@ public class DB_connect {
             pstmt.setString(1, idt);
             rs = pstmt.executeQuery(); // 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌
             if (rs.next()) {
+                System.out.println("비밀번호 "+rs.getString(1));
                 if (rs.getString(1).contentEquals(pwt)) {
                     if(idt.equals(root)){
                         return 2; // 관리자 로그인
@@ -223,5 +224,25 @@ public class DB_connect {
             e.printStackTrace();
         }
         return t;
+    }
+
+    public int login_out(String idt){
+        ResultSet rs = null;
+        String SQL = "DELETE FROM new_table WHERE id = ?";// 실제로 DB에 입력될 명령어를 SQL 문장으로 만듬.
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+            pstmt.setString(1, idt);
+            int r = pstmt.executeUpdate(); // 어떠한 결과를 받아오는 ResultSet 타입의 rs 변수에 쿼리문을 실행한 결과를 넣어줌
+            // r=1이면 수행완료
+            return r;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -2; // DB 오류
     }
 }
