@@ -2,6 +2,7 @@ package buspj;
 import java.awt.*;             // 폰트 등 그래픽 처리를 위한 클래스들의 경로명
 import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스들의 경로명
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
+
 class MyDialog extends JDialog{
     JLabel comment = new JLabel();
     JTextField pw = new JTextField(10);
@@ -26,7 +27,8 @@ class MyDialog extends JDialog{
                         setVisible(false);
                         new login_interface();
                         //JFrame frames = (JFrame)e.getSource();
-                        frame.dispose();
+
+                        frame.dispose();  // 화면이 안 닫히는 에러.
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "db오류.");
@@ -82,7 +84,7 @@ class MyCenterPanel extends JPanel {
     JTextField score = new JTextField(); // 마일리지 네모 칸
     MyDialog dialog;
     MyPage frame;
-    public MyCenterPanel(String id) {
+    public MyCenterPanel(MyPage frame, String id) {
         setLayout(null);
         this.frame = frame;
         hi = new JLabel(id + "님 환영합니다!");
@@ -178,7 +180,7 @@ public class MyPage extends JFrame {
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new MyNorthPanel(this, id), BorderLayout.NORTH);
-        mainContainer.add(new MyCenterPanel(id), BorderLayout.CENTER);
+        mainContainer.add(new MyCenterPanel(this, id), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 
