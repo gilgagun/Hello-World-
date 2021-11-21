@@ -24,6 +24,14 @@ class Ticket {
         this.seats.add(seats);
         this.price.add(price);
     }
+
+    public void reset() {
+        this.starttime.clear();
+        this.company.clear();
+        this.class_.clear();
+        this.seats.clear();
+        this.price.clear();
+    }
 }
 
 // '출발 날짜' 콤보 박스에 삽입할 날짜 배열 클래스 DuringDateTest
@@ -116,6 +124,10 @@ class TicketOneWay extends JPanel {
     JTable table;
     DefaultTableModel model;
     JScrollPane scroll;
+    String start = "시작";
+    String end = "도착";
+    String date = "날짜";
+    int len;
 
     public TicketOneWay() {
         String[] title = {"출발시간","회사","등급","잔여석","요금"}; // 컬럼 네임 설정
@@ -132,14 +144,29 @@ class TicketOneWay extends JPanel {
         setVisible(true);
     }
 
-    public void showTicket(Ticket t) {
+    public void showTicket(Ticket t, String start, String end, String date) {
         // 지워 지워
 //        for (int i = model.getRowCount()-1; i >= -1; i--) {
 //            model.removeRow(i);
 //        }
+        // 중복 제거
+        if (this.start.equals(start) && this.end.equals(end) && this.date.equals(date)) return;
 
+        // 중복 출력을 방지하기 위해 출발 정류장, 도착 정류장 이름 기억
+        this.start = start;
+        this.end = end;
+        this.date = date;
+
+        // 이미 한 번 조회한 적이 있을 경우 테이블 리셋
+        if (this.start != "시작") {
+            for (int i = len-1; i >= 0; i--) {
+                this.model.removeRow(i);
+            }
+        }
+
+        len = t.starttime.size();
         // 표 테이블에 티켓 정보 삽입
-        for (int i = 0; i < t.starttime.size(); i++) {
+        for (int i = 0; i < len; i++) {
             String[] data = {t.starttime.get(i), t.company.get(i), t.class_.get(i), String.valueOf(t.seats.get(i)), String.valueOf(t.price.get(i))};
             model.addRow(data);
         }
@@ -268,10 +295,11 @@ class ReservationCenter extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 String st = start.getSelectedItem().toString();
                 String ed = end.getSelectedItem().toString();
+                String dt = date.getSelectedItem().toString();
 
                 // DB로 시작 터미널, 도착 터미널 정보 보내기
-                Ticket t = DB.ticket_load(st, ed);
-                tow.showTicket(t);
+                Ticket t = DB.ticket_load(st, ed, dt);
+                tow.showTicket(t, st, ed, dt);
             }
         });
 

@@ -194,11 +194,11 @@ public class DB_connect {
     }
 
     // 표 DB
-    public Ticket ticket_load(String start, String end) {
+    public Ticket ticket_load(String start, String end, String date) {
         Connection conn;
         ResultSet rs = null;
         Ticket t = new Ticket();
-        String SQL = "SELECT starttime, company, class, seats, price FROM bus_table WHERE start = '" + start + "' and end = '" + end + "'";
+        String SQL = "SELECT starttime, company, class, seats, price FROM bus_table WHERE start = '" + start + "' and end = '" + end + "' and date ='" + date + "'";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn =
