@@ -141,7 +141,7 @@ class JFrameWindowClosingEventHandler extends WindowAdapter {
             frame.dispose();
         }
         else if (frame instanceof Main || frame instanceof MyPage || frame instanceof AdministratorMain ||
-                frame instanceof ReservationMain || frame instanceof SeatsSelect) {
+                frame instanceof ReservationMain || frame instanceof SeatsSelect || frame instanceof Payment) {
             int answer = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?","로그아웃",JOptionPane.YES_NO_OPTION);
             if (answer == JOptionPane.YES_OPTION) {
                 new login_interface();
