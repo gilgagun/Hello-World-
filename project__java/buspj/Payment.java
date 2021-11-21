@@ -26,6 +26,8 @@ public class Payment extends JFrame {
         title.setFont(new Font("Serif", Font.BOLD, 20));
         top.add(title);
 
+        // 
+
         addWindowListener(new JFrameWindowClosingEventHandler());
         setVisible(true);
     }
