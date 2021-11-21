@@ -24,14 +24,6 @@ class Ticket {
         this.seats.add(seats);
         this.price.add(price);
     }
-
-    public void reset() {
-        this.starttime.clear();
-        this.company.clear();
-        this.class_.clear();
-        this.seats.clear();
-        this.price.clear();
-    }
 }
 
 // '출발 날짜' 콤보 박스에 삽입할 날짜 배열 클래스 DuringDateTest
@@ -119,23 +111,25 @@ class ReservationNorth extends JPanel {
     }
 }
 
-// 표 테이블의 가운데 부분 (구현중)
-class TicketOneWay extends JPanel {
+// 표 테이블의 가운데 부분
+class TicketOneWay extends JPanel implements MouseListener {
     JTable table;
     DefaultTableModel model;
     JScrollPane scroll;
-    String start = "시작";
-    String end = "도착";
-    String date = "날짜";
+    private String start = "시작";  // 시작 터미널
+    private String end = "도착";    // 도착 터미널
+    private String date = "날짜";   // 출발 날짜
+    private String[] arr = null;   // 선택한 행의 데이터를 담을 배열
     int len;
 
+    // 표 테이블 생성
     public TicketOneWay() {
         String[] title = {"출발시간","회사","등급","잔여석","요금"}; // 컬럼 네임 설정
         String[][] row = new String[0][5];                    // 표들
         model = new DefaultTableModel(row,title);	// 열 이름 추가, 행은 0개 지정
 
         table = new JTable(model);   // 표 테이블 생성
-//        table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);  // 하나의 행만 선택 가능
 
         scroll = new JScrollPane(table);  // 스크롤 팬 추가
         scroll.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));	//너무 붙어있어서 가장자리 띄움(padding)
@@ -144,11 +138,13 @@ class TicketOneWay extends JPanel {
         setVisible(true);
     }
 
+    // 표 테이블에 데이터 추가
     public void showTicket(Ticket t, String start, String end, String date) {
         // 지워 지워
 //        for (int i = model.getRowCount()-1; i >= -1; i--) {
 //            model.removeRow(i);
 //        }
+
         // 중복 제거
         if (this.start.equals(start) && this.end.equals(end) && this.date.equals(date)) return;
 
@@ -171,7 +167,57 @@ class TicketOneWay extends JPanel {
             model.addRow(data);
         }
 
+        // 선택한 표에 대한 정보 가져오기
+        table.addMouseListener(this);
+
         setVisible(true);
+    }
+
+    // 테이블에서 행 선택 시 이벤트 처리
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        String[] info = new String[5];     // 추출한 정보를 담을 배열
+        int row = table.getSelectedRow();  // 테이블에서 선택한 행 인덱스 가져오기
+
+        // 선택한 행에 대한 전체 데이터 추출
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            info[i] = (String) table.getValueAt(row, i);
+        }
+
+        // 인스턴스 변수에 정보 전달
+        this.arr = info;
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
+
+    // 출발 터미널 반환
+    public String getStart() {
+        return this.start;
+    }
+
+    // 도착 터미널 반환
+    public String getEnd() {
+        return this.end;
+    }
+
+    // 출발 날짜 반환
+    public String getDate() {
+        return this.date;
+    }
+
+    // 선택한 행 정보 반환
+    public String[] getArr() {
+        return this.arr;
     }
 }
 
@@ -305,9 +351,24 @@ class ReservationCenter extends JPanel {
 
         // 좌석선택 버튼 클릭시
         seats.addMouseListener(new MouseAdapter() {
+            String st = null;
+            String ed = null;
+            String dt = null;
+            String[] info = null;
             public void mouseClicked(MouseEvent e) {
-                new SeatsSelect(id);
-                frame.dispose();
+                this.st = tow.getStart();
+                this.ed = tow.getEnd();
+                this.dt = tow.getDate();
+                this.info = tow.getArr();
+
+                if (this.info == null) {
+                    JOptionPane.showMessageDialog(null, "표를 선택하세요.");
+                }
+                else {
+                    // 출발 터미널, 도착 터미널, 출발 날짜 등의 정보를 좌석 선택 페이지로 넘겨줌
+                    new SeatsSelect(id, st, ed, dt, info);
+                    frame.dispose();
+                }
             }
         });
 

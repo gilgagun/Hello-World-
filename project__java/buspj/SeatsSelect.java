@@ -187,7 +187,7 @@ class SeatsCenter extends JPanel {
 
 // 좌석 선택 클래스 전체적인 구조
 public class SeatsSelect extends JFrame {
-    public SeatsSelect(String id) {
+    public SeatsSelect(String id, String start, String end, String date, String[] info) {
         setTitle("버스타슈~");
         setSize(1000,800);
         setResizable(false);
