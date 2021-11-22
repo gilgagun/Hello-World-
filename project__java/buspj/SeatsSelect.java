@@ -27,7 +27,7 @@ class SelectSeats {
 class SeatsBack extends JPanel {
     SeatsSelect frame;
 
-    public SeatsBack(SeatsSelect frame, ReservationMain frame2, String id) {
+    public SeatsBack(SeatsSelect frame, ReservationMain frame2) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
@@ -51,13 +51,13 @@ class SeatsBack extends JPanel {
 class SeatsNorth extends JPanel {
     SeatsSelect frame;
 
-    public SeatsNorth(SeatsSelect frame, ReservationMain frame2, String id) {
+    public SeatsNorth(SeatsSelect frame, ReservationMain frame2) {
         setBackground(Color.LIGHT_GRAY);
         this.frame = frame;
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
-        add(new SeatsBack(this.frame, frame2, id), BorderLayout.EAST);
+        add(new SeatsBack(this.frame, frame2), BorderLayout.EAST);
     }
 }
 
@@ -134,8 +134,8 @@ class SeatsCenter extends JPanel {
         // 결재진행 버튼 클릭 이벤트
         payment.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-
-                frame.dispose();
+                new Payment(frame, id, start, end, date, info);
+                frame.setVisible(false);
             }
         });
     }
@@ -232,7 +232,7 @@ public class SeatsSelect extends JFrame {
         Container mainContainer = getContentPane();
         mainContainer.setLayout(new BorderLayout());
 
-        mainContainer.add(new SeatsNorth(this, frame, id), BorderLayout.NORTH);
+        mainContainer.add(new SeatsNorth(this, frame), BorderLayout.NORTH);
         mainContainer.add(new SeatsCenter(this, id, start, end, date, info), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
