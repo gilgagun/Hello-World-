@@ -109,7 +109,7 @@ class PaymentCenter extends JPanel {
 
         // 테이블 생성
         ticketTable = new JTable(model);
-        ticketTable.setBounds(120,300,400,300);
+//        ticketTable.setBounds(120,300,400,300);
         tT.add(ticketTable);
 
         // 테이블에 넣을 값 생성
