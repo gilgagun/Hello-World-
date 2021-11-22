@@ -63,8 +63,9 @@ class SeatsNorth extends JPanel {
 
 // 화면 가운데 부분
 class SeatsCenter extends JPanel {
-    int number = 0;   // 인원
-    int price = 0;    // 가격
+    int number = 1;   // 인원
+    int price = 10000;    // 가격
+    int seatNum;
 
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
         setLayout(null);
@@ -121,9 +122,9 @@ class SeatsCenter extends JPanel {
         text.add(personnel);
 
         // 가격 디폴트 세팅
-        JLabel price = new JLabel("      " + this.price);
-        price.setFont(new Font("맑은 고딕", Font.BOLD, 16));
-        text.add(price);
+        JLabel priceInt = new JLabel("  " + this.price);
+        priceInt.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        text.add(priceInt);
 
         // 결재진행 버튼 생성
         JButton payment = new JButton("결재진행");
@@ -134,7 +135,7 @@ class SeatsCenter extends JPanel {
         // 결재진행 버튼 클릭 이벤트
         payment.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new Payment(frame, id, start, end, date, info);
+                new Payment(frame, id, start, end, date, info, number, price, seatNum);
                 frame.setVisible(false);
             }
         });
