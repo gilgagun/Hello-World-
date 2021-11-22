@@ -32,8 +32,6 @@ public class ChatBot extends JFrame implements ActionListener{
         p1.add(btnExit);
         add("South", p1);
 
-        //메세지를 전송하는 클래스 생성.
-
         btnTransfer.addActionListener(this);
         btnExit.addActionListener(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
