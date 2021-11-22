@@ -88,7 +88,7 @@ class CenterPanel extends JPanel {
         mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton2);
 
-        JButton mainButton3 = new JButton("도움말");
+        JButton mainButton3 = new JButton("챗봇");
         mainButton3.setPreferredSize(new Dimension(180, 180));
         mainButton3.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton3);
@@ -98,6 +98,12 @@ class CenterPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 new ReservationMain(id);
                 frame.dispose();
+            }
+        });
+        mainButton3.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new ChatBot(id);
+                //frame.dispose();
             }
         });
     }
