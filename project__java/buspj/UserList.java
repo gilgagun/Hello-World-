@@ -126,7 +126,6 @@ public class UserList extends JFrame {
                     UserList.this.conn.close();
                     UserList.this.setVisible(false);
                     UserList.this.dispose();
-                    System.exit(0);
                 } catch (Exception var3) {
                 }
 
