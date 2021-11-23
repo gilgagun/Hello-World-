@@ -101,7 +101,7 @@ class PaymentCenter extends JPanel {
 
         // 테이블 기본 틀 생성
         JPanel tT = new JPanel();
-        tT.setBounds(40,290,500,80);
+        tT.setBounds(40,290,500,100);
 
         // 테이블 기본 값 생성
         String[] colName = {"출발시간","회사","등급","선택좌석","요금"}; // 컬럼 네임 설정

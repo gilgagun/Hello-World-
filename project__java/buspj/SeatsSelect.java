@@ -66,6 +66,7 @@ class SeatsCenter extends JPanel implements MouseListener {
     int number = 0;   // 인원
     int price = 0;    // 가격
     int onePrice;     // 표 하나의 가격
+    int[][] seatArr = new int[7][5];  // 좌석 번호 배열
     int seatNum;      // 선택한 좌석 번호
     JLabel personnel; // 인원을 담을 JLabel
     JLabel priceInt;   // 가격을 담을 JLabel
@@ -215,7 +216,14 @@ class SeatsCenter extends JPanel implements MouseListener {
                     // 2차원 배열에 좌석 이미지 저장 후 화면에 출력
                     this.img[i][j] = seat;
                     p.add(this.img[i][j]);
-                    
+
+                    // 좌석번호 부여
+                    if (j != 3) {
+                        seatArr[i][j] = 1 + j;
+                    } else {
+                        seatArr[i][j] = 1 + (j - 1);
+                    }
+
                     // 이벤트 처리
                     this.img[i][j].addMouseListener(this);
                 }
