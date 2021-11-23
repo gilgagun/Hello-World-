@@ -64,6 +64,11 @@ class AdministratorCenterPanel extends JPanel {
         mainButton1.setPreferredSize(new Dimension(180, 180));
         mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton1);
+        mainButton1.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new UserList("root");
+            }
+        });
 
         JButton mainButton2 = new JButton("운행정보 관리");
         mainButton2.setPreferredSize(new Dimension(180, 180));
