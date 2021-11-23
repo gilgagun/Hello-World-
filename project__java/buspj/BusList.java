@@ -9,6 +9,8 @@ import java.sql.*;
 import java.util.Vector;
 
 class AddBus extends JFrame {
+    DB_connect DB = new DB_connect();
+
     public AddBus() {
         setTitle("추가");
         setLayout(null);
@@ -34,9 +36,27 @@ class AddBus extends JFrame {
         end.setBounds(100,150,100,20);
         c.add(end);
 
+        JButton add = new JButton("추가");
+        add.setBounds(100,180,50,10);
+        c.add(add);
+        add.addMouseListener(new MouseAdapter() {
+            public void mouseCliked(MouseEvent e) {
+                DB.save_bus(start.getText(), end.getText());
+            }
+        });
+
+        JButton cancel = new JButton("취소");
+        cancel.setBounds(160,180,50,10);
+        c.add(cancel);
+        cancel.addMouseListener(new MouseAdapter() {
+            public void mouseCliked(MouseEvent e) {
+                AddBus.this.dispose();
+            }
+        });
+
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent w) {
-                    AddBus.this.dispose();
+                AddBus.this.dispose();
             }
         });
 
@@ -47,6 +67,7 @@ class AddBus extends JFrame {
 public class BusList extends JFrame {
     private static final long serialVersionUID = 1L;
     private Vector data = null;
+    private Vector result = null;
     private Vector title = null;
     private JTable table = null;
     private DefaultTableModel model = null;
@@ -83,7 +104,7 @@ public class BusList extends JFrame {
         this.title.add("출발 터미널");
         this.title.add("도착 터미널");
         this.model = new DefaultTableModel();
-        Vector result = this.selectAll();
+        result = this.selectAll();
         this.model.setDataVector(result, this.title);
         this.table = new JTable(this.model);
         JScrollPane sp = new JScrollPane(this.table);
@@ -106,6 +127,8 @@ public class BusList extends JFrame {
         this.btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new AddBus();
+                result = BusList.this.selectAll();
+                BusList.this.model.setDataVector(result, BusList.this.title);
             }
         });
         this.btnDel.addActionListener(new ActionListener() {
@@ -157,7 +180,7 @@ public class BusList extends JFrame {
         this.data.clear();
 
         try {
-            String sql = "select start,end from bus_table";
+            String sql = "select start,end from bus_info";
             System.out.println(sql);
             ResultSet rs = this.stmt.executeQuery(sql);
 
@@ -177,7 +200,7 @@ public class BusList extends JFrame {
 
     private void delete(String start, String end) {
         try {
-            this.pstmtDel = this.conn.prepareStatement("delete from bus_table where start = '" + start + "' and end = '" + end + "'");
+            this.pstmtDel = this.conn.prepareStatement("delete from bus_info where start = '" + start + "' and end = '" + end + "'");
             this.pstmtDel.setString(1, start);
             this.pstmtDel.executeUpdate();
         } catch (Exception var3) {

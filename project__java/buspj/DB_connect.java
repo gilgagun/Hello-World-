@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DB_connect {
-
     Connection conn;
     Statement stmt = null;
     PreparedStatement pstmt = null;
@@ -280,6 +279,36 @@ public class DB_connect {
             pstmt.setString(7, saveClass);
             pstmt.setString(8, saveSeat);
             pstmt.setString(9, savePrice);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+    }
+
+    // 관리자 : 운행정보 저장
+    public Vector save_bus(String start, String end) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql="insert into bus_info(start,end)";
+            sql += "values (?,?)";
+            pstmt = conn.prepareStatement(sql);
+
+            String saveStart = start;
+            String saveEnd = end;
+
+            pstmt.setString(1, saveStart);
+            pstmt.setString(2, saveEnd);
 
             pstmt.executeUpdate();
             pstmt.close();
