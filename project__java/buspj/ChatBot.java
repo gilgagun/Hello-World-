@@ -2,6 +2,8 @@ package buspj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -34,7 +36,13 @@ public class ChatBot extends JFrame implements ActionListener{
 
         btnTransfer.addActionListener(this);
         btnExit.addActionListener(this);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent w) {
+                ChatBot.this.dispose();
+            }
+        });
+
         setBounds(300, 300, 350, 300);
         setVisible(true);
 
