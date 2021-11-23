@@ -229,6 +229,14 @@ class PaymentCenter extends JPanel {
         clear.setBounds(820, 550, 100,40);
         clear.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         add(clear);
+
+        // 결재완료 버튼 클릭 시
+        clear.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                // 예매 DB에 저장 후 dispose
+
+            }
+        });
     }
 }
 
