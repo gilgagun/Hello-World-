@@ -218,11 +218,11 @@ class SeatsCenter extends JPanel implements MouseListener {
                     p.add(this.img[i][j]);
 
                     // 좌석번호 부여
-                    if (j != 3) {
-                        seatArr[i][j] = 1 + j;
-                    } else {
-                        seatArr[i][j] = 1 + (j - 1);
-                    }
+//                    if (j != 3) {
+//                        seatArr[i][j] = 1 + j;
+//                    } else {
+//                        seatArr[i][j] = 1 + (j - 1);
+//                    }
 
                     // 이벤트 처리
                     this.img[i][j].addMouseListener(this);
