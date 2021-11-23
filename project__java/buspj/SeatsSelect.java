@@ -220,7 +220,7 @@ class SeatsCenter extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         // 좌석 선택 시
-        e.getSource();
+        JLabel j = (JLabel) e.getSource();
         if () {
             ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
             Image whiteImage = white.getImage();
