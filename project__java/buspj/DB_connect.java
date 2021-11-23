@@ -245,4 +245,48 @@ public class DB_connect {
         }
         return -2; // DB 오류
     }
+
+    // 회원 예매 정보 DB에 저장
+    public void saveUserReservation(String id, String start, String end, String date, String starttime, String company, String class_, int seat, String price) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql="insert into reservation_user(id,start,end,date,starttime,company,class,seat,price)";
+            sql += "values (?,?,?,?,?,?,?,?,?)";
+            pstmt = conn.prepareStatement(sql);
+
+            String saveId = id;
+            String saveStart = start;
+            String saveEnd = end;
+            String saveDate = date;
+            String saveStarttime = starttime;
+            String saveCompany = company;
+            String saveClass = class_;
+            String saveSeat = String.valueOf(seat);
+            String savePrice = String.valueOf(price);
+
+            pstmt.setString(1, saveId);
+            pstmt.setString(2, saveStart);
+            pstmt.setString(3, saveEnd);
+            pstmt.setString(4, saveDate);
+            pstmt.setString(5, saveStarttime);
+            pstmt.setString(6, saveCompany);
+            pstmt.setString(7, saveClass);
+            pstmt.setString(8, saveSeat);
+            pstmt.setString(9, savePrice);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+    }
 }

@@ -52,8 +52,9 @@ class PaymentCenter extends JPanel {
     int number;
     int totalPrice;
     int seatNum;
+    DB_connect DB = new DB_connect();  // DB 연결
 
-    public PaymentCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info, int number, int price, int seatNum) {
+    public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int number, int price, int seatNum) {
         setLayout(null);
 
         // '예매하기' 글자
@@ -101,7 +102,7 @@ class PaymentCenter extends JPanel {
 
         // 테이블 기본 틀 생성
         JPanel tT = new JPanel();
-        tT.setBounds(40,290,500,80);
+        tT.setBounds(40,290,500,100);
 
         // 테이블 기본 값 생성
         String[] colName = {"출발시간","회사","등급","선택좌석","요금"}; // 컬럼 네임 설정
@@ -234,7 +235,10 @@ class PaymentCenter extends JPanel {
         clear.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 // 예매 DB에 저장 후 dispose
-
+                DB.saveUserReservation(id, start, end, date, info[0], info[1], info[2], seatNum, info[4]);
+                JOptionPane.showMessageDialog(null, "예매에 성공하였습니다.");
+                new Main(id);
+                frame2.dispose();
             }
         });
     }
@@ -253,7 +257,7 @@ public class Payment extends JFrame {
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new PaymentNorth(this, frame), BorderLayout.NORTH);
-        mainContainer.add(new PaymentCenter(frame, id, start, end, date, info, number, price, seatNum), BorderLayout.CENTER);
+        mainContainer.add(new PaymentCenter(frame, this, id, start, end, date, info, number, price, seatNum), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 

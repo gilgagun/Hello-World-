@@ -63,9 +63,11 @@ class SeatsNorth extends JPanel {
 
 // 화면 가운데 부분
 class SeatsCenter extends JPanel implements MouseListener {
+    String id;
     int number = 0;   // 인원
     int price = 0;    // 가격
     int onePrice;     // 표 하나의 가격
+    int[][] seatArr = new int[7][5];  // 좌석 번호 배열
     int seatNum;      // 선택한 좌석 번호
     JLabel personnel; // 인원을 담을 JLabel
     JLabel priceInt;   // 가격을 담을 JLabel
@@ -75,6 +77,7 @@ class SeatsCenter extends JPanel implements MouseListener {
 
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
         setLayout(null);
+        this.id = id;   // 회원 아이디 정보 저장
         this.onePrice = Integer.valueOf(info[4]);
 
         // '예매하기' 글자
@@ -215,7 +218,14 @@ class SeatsCenter extends JPanel implements MouseListener {
                     // 2차원 배열에 좌석 이미지 저장 후 화면에 출력
                     this.img[i][j] = seat;
                     p.add(this.img[i][j]);
-                    
+
+                    // 좌석번호 부여
+//                    if (j != 3) {
+//                        seatArr[i][j] = 1 + j;
+//                    } else {
+//                        seatArr[i][j] = 1 + (j - 1);
+//                    }
+
                     // 이벤트 처리
                     this.img[i][j].addMouseListener(this);
                 }
@@ -228,39 +238,39 @@ class SeatsCenter extends JPanel implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         JLabel s = (JLabel) e.getSource();
         
-       if (s.getIcon().equals(updateWhiteIcon)) {
-           // 검은색 좌석 이미지로 교체
-           ImageIcon black = new ImageIcon("project__java/buspj/image/black_seats.png");
-           Image blackImage = black.getImage();
-           Image updateBlackImg = blackImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-           ImageIcon updateBlackIcon = new ImageIcon(updateBlackImg);
+        if (s.getIcon().equals(updateWhiteIcon)) {
+            // 검은색 좌석 이미지로 교체
+            ImageIcon black = new ImageIcon("project__java/buspj/image/black_seats.png");
+            Image blackImage = black.getImage();
+            Image updateBlackImg = blackImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+            ImageIcon updateBlackIcon = new ImageIcon(updateBlackImg);
 
-           this.number += 1;  // 인원 수 증가
-           this.personnel.setText("" + this.number);
-           this.price += this.onePrice;  // 가격 증가
-           this.priceInt.setText("   " + this.price);
-           this.priceInt.setVisible(true);  // 가격 화면에 표현
+            this.number += 1;  // 인원 수 증가
+            this.personnel.setText("" + this.number);
+            this.price += this.onePrice;  // 가격 증가
+            this.priceInt.setText("   " + this.price);
+            this.priceInt.setVisible(true);  // 가격 화면에 표현
 
-           // 새 이미지로 교체
-           s.setIcon(updateBlackIcon);
-       } else {
-           ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
-           Image whiteImage = white.getImage();
-           Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-           updateWhiteIcon = new ImageIcon(updateWhiteImg);
+            // 새 이미지로 교체
+            s.setIcon(updateBlackIcon);
+        } else {
+            ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
+            Image whiteImage = white.getImage();
+            Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+            updateWhiteIcon = new ImageIcon(updateWhiteImg);
 
-           this.number -= 1;   // 인원 수 감소
-           this.personnel.setText("" + this.number);
-           this.price -= this.onePrice;  // 가격 감소
-           this.priceInt.setText("   " + this.price);
+            this.number -= 1;   // 인원 수 감소
+            this.personnel.setText("" + this.number);
+            this.price -= this.onePrice;  // 가격 감소
+            this.priceInt.setText("   " + this.price);
 
-           // 가격이 0이라면?
-           if (this.price == 0) {
-               this.priceInt.setVisible(false);
-           }
+            // 가격이 0이라면?
+            if (this.price == 0) {
+                this.priceInt.setVisible(false);
+            }
 
-           s.setIcon(updateWhiteIcon);
-       }
+            s.setIcon(updateWhiteIcon);
+        }
     }
 
     @Override
