@@ -126,13 +126,13 @@ class SeatsCenter extends JPanel {
         priceInt.setFont(new Font("맑은 고딕", Font.BOLD, 16));
         text.add(priceInt);
 
-        // 결재진행 버튼 생성
-        JButton payment = new JButton("결재진행");
+        // 결제진행 버튼 생성
+        JButton payment = new JButton("결제진행");
         payment.setBounds(820, 550, 100,40);
         payment.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         add(payment);
 
-        // 결재진행 버튼 클릭 이벤트
+        // 결제진행 버튼 클릭 이벤트
         payment.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new Payment(frame, id, start, end, date, info, number, price, seatNum);
