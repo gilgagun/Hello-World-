@@ -72,7 +72,6 @@ public class BusList extends JFrame {
     private JTable table = null;
     private DefaultTableModel model = null;
     private JButton btnAdd = null;
-    private JButton btnFix = null;
     private JButton btnDel = null;
     private JButton btnUpdate = null;
     private JButton btnClear = null;
@@ -121,7 +120,6 @@ public class BusList extends JFrame {
         this.tfName = new JTextField(10);
         this.lblName = new JLabel("출발 터미널");
         this.btnAdd = new JButton("추가");
-        this.btnFix = new JButton("수정");
         this.btnDel = new JButton("삭제");
         this.btnUpdate = new JButton("닫기");
         this.btnAdd.addActionListener(new ActionListener() {
@@ -145,15 +143,9 @@ public class BusList extends JFrame {
                 BusList.this.dispose();
             }
         });
-        panel.add(this.lblNum);
-        panel.add(this.tfNum);
         panel.add(this.lblName);
         panel.add(this.tfName);
-        panel.add(this.lblAddress);
-        panel.add(this.tfAddress);
-        panel.add(this.phone);
-        panel.add(this.tfphone);
-        //panel.add(this.btnAdd);
+        panel.add(this.btnAdd);
         panel.add(this.btnDel);
         panel.add(this.btnUpdate);
         Container c = this.getContentPane();
