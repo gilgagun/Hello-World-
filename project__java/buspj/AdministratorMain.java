@@ -56,12 +56,14 @@ class AdministratorNorthPanel extends JPanel {
 
 class AdministratorCenterPanel extends JPanel {
     public AdministratorCenterPanel() {
-        setBackground(Color.WHITE);
+//        setBackground(Color.WHITE);
 
-        setLayout(new FlowLayout(FlowLayout.CENTER, 150, 250));
+//        setLayout(new FlowLayout(FlowLayout.CENTER, 150, 250));
+        setLayout(null);
 
         JButton mainButton1 = new JButton("회원관리");
         mainButton1.setPreferredSize(new Dimension(180, 180));
+        mainButton1.setBounds(50,50,180,100);
         mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton1);
         mainButton1.addMouseListener(new MouseAdapter() {
@@ -72,6 +74,7 @@ class AdministratorCenterPanel extends JPanel {
 
         JButton mainButton2 = new JButton("운행정보 관리");
         mainButton2.setPreferredSize(new Dimension(180, 180));
+        mainButton2.setBounds(250,50,180,100);
         mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
         add(mainButton2);
         mainButton2.addMouseListener(new MouseAdapter() {
@@ -79,6 +82,11 @@ class AdministratorCenterPanel extends JPanel {
                 new BusList("root");
             }
         });
+
+        ImageIcon background = new ImageIcon("project__java/buspj/image/bg.png");
+        JLabel image = new JLabel(background);
+        image.setBounds(-1570,-150,4000,1200);
+        add(image);
     }
 }
 
