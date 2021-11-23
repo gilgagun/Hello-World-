@@ -290,7 +290,7 @@ public class DB_connect {
     }
 
     // 관리자 : 운행정보 저장
-    public Vector save_bus(String start, String end) {
+    public void save_bus(String start, String end) {
         Connection conn;
         Statement stmt = null;
         PreparedStatement pstmt = null;

@@ -72,3 +72,4 @@ insert into bus_table (start,end,starttime,endtime,time,seat,price) values
 21.11.24
 찬영: 메인페이지 디자인 변경, 나머지 버튼 디자인 변경필요 
       main클래스 setlayout(null)로 변경함 버튼 위치 다시 설정해야함
+성민: 관리자 운행정보 관리 화면 구현했는데 버튼만 눌려지고 안 넘어가는 아이러니 발생.
