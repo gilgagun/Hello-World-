@@ -137,15 +137,15 @@ class MyCenterPanel extends JPanel {
         image3.setHorizontalAlignment(JLabel.CENTER);
         add(image3);
 
-        // 결재내역
-        JButton paymentHistory = new JButton("결재내역");
-        paymentHistory.setBounds(540, 80, 400, 100);
-        paymentHistory.setFont(new Font("고딕", Font.BOLD, 30));
-        add(paymentHistory);
+//        // 결재내역
+//        JButton paymentHistory = new JButton("결재내역");
+//        paymentHistory.setBounds(540, 80, 400, 100);
+//        paymentHistory.setFont(new Font("고딕", Font.BOLD, 30));
+//        add(paymentHistory);
 
         // 카드관리
         JButton card = new JButton("카드관리");
-        card.setBounds(540, 270, 400, 100);
+        card.setBounds(540, 160, 400, 100);
         card.setFont(new Font("고딕", Font.BOLD, 30));
         add(card);
 
@@ -157,7 +157,7 @@ class MyCenterPanel extends JPanel {
 
         // 회원탈퇴
         JButton membershipBye = new JButton("회원탈퇴");
-        membershipBye.setBounds(540, 460, 400, 100);
+        membershipBye.setBounds(540, 390, 400, 100);
         membershipBye.setFont(new Font("고딕", Font.BOLD, 30));
         add(membershipBye);
         dialog = new MyDialog(this.frame, id);
