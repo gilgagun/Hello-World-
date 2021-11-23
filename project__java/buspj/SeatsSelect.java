@@ -62,10 +62,10 @@ class SeatsNorth extends JPanel {
 }
 
 // 화면 가운데 부분
-class SeatsCenter extends JPanel {
+class SeatsCenter extends JPanel implements MouseListener {
     int number = 1;   // 인원
-    int price = 10000;    // 가격
-    int seatNum;          // 선택한 좌석 번호
+    int price = 0;    // 가격
+    int seatNum;      // 선택한 좌석 번호
     static JLabel[][] img = new JLabel[7][5];  // 좌석 배열
 
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
@@ -125,7 +125,7 @@ class SeatsCenter extends JPanel {
         text.add(personnel);
 
         // 가격 디폴트 세팅
-        JLabel priceInt = new JLabel("  " + this.price);
+        JLabel priceInt = new JLabel("   " + this.price);
         priceInt.setFont(new Font("맑은 고딕", Font.BOLD, 16));
         text.add(priceInt);
 
@@ -138,8 +138,12 @@ class SeatsCenter extends JPanel {
         // 결제진행 버튼 클릭 이벤트
         payment.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                new Payment(frame, id, start, end, date, info, number, price, seatNum);
-                frame.setVisible(false);
+                if (number == 0) {
+                    JOptionPane.showMessageDialog(null, "좌석을 선택하세요.");
+                } else {
+                    new Payment(frame, id, start, end, date, info, number, price, seatNum);
+                    frame.setVisible(false);
+                }
             }
         });
     }
@@ -189,10 +193,11 @@ class SeatsCenter extends JPanel {
         Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
         ImageIcon updateWhiteIcon = new ImageIcon(updateWhiteImg);
 
+        // 이미지 저장 과정
         JLabel seat;
-        for (int i = 0; i < img.length; i++ ) {
-            for (int j = 0; j < img[i].length; j++) {
-                if (j == 2 && i != img.length - 1) {
+        for (int i = 0; i < this.img.length; i++ ) {
+            for (int j = 0; j < this.img[i].length; j++) {
+                if (j == 2 && i != this.img.length - 1) {
                     continue;
                 } else {
                     // JLabel에 이미지 삽입
@@ -200,12 +205,43 @@ class SeatsCenter extends JPanel {
                     seat.setBounds(73 + j*60,30 + i*70,60,70);
                     seat.setHorizontalAlignment(JLabel.CENTER);
 
-                    img[i][j] = seat;
-                    p.add(img[i][j]);
+                    // 2차원 배열에 좌석 이미지 저장 후 화면에 출력
+                    this.img[i][j] = seat;
+                    p.add(this.img[i][j]);
+
+                    // 이벤트 처리
+                    img[i][j].addMouseListener(this);
                 }
             }
         }
     }
+
+    // 좌석 클릭 이벤트 처리
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        // 좌석 선택 시
+        e.getSource();
+        if () {
+            ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
+            Image whiteImage = white.getImage();
+            Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+            ImageIcon updateWhiteIcon = new ImageIcon(updateWhiteImg);
+        } else {
+
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }
 
 // 좌석 선택 클래스 전체적인 구조
