@@ -62,7 +62,7 @@ class SeatsNorth extends JPanel {
 }
 
 // 화면 가운데 부분
-class SeatsCenter extends JPanel implements MouseListener {
+class SeatsCenter extends JPanel {
     int number = 1;   // 인원
     int price = 0;    // 가격
     int seatNum;      // 선택한 좌석 번호
@@ -210,38 +210,38 @@ class SeatsCenter extends JPanel implements MouseListener {
                     p.add(this.img[i][j]);
 
                     // 이벤트 처리
-                    img[i][j].addMouseListener(this);
+//                    img[i][j].addMouseListener(this);
                 }
             }
         }
     }
 
     // 좌석 클릭 이벤트 처리
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // 좌석 선택 시
-        JLabel j = (JLabel) e.getSource();
-        if () {
-            ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
-            Image whiteImage = white.getImage();
-            Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-            ImageIcon updateWhiteIcon = new ImageIcon(updateWhiteImg);
-        } else {
-
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//        // 좌석 선택 시
+//        JLabel j = (JLabel) e.getSource();
+//        if (j.) {
+//            ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
+//            Image whiteImage = white.getImage();
+//            Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+//            ImageIcon updateWhiteIcon = new ImageIcon(updateWhiteImg);
+//        } else {
+//
+//        }
+//    }
+//
+//    @Override
+//    public void mousePressed(MouseEvent e) {}
+//
+//    @Override
+//    public void mouseReleased(MouseEvent e) {}
+//
+//    @Override
+//    public void mouseEntered(MouseEvent e) {}
+//
+//    @Override
+//    public void mouseExited(MouseEvent e) {}
 }
 
 // 좌석 선택 클래스 전체적인 구조

@@ -149,6 +149,12 @@ class MyCenterPanel extends JPanel {
         card.setFont(new Font("고딕", Font.BOLD, 30));
         add(card);
 
+        card.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new MyCard(id);
+            }
+        });
+
         // 회원탈퇴
         JButton membershipBye = new JButton("회원탈퇴");
         membershipBye.setBounds(540, 460, 400, 100);
