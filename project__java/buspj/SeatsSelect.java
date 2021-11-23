@@ -65,7 +65,8 @@ class SeatsNorth extends JPanel {
 class SeatsCenter extends JPanel {
     int number = 1;   // 인원
     int price = 10000;    // 가격
-    int seatNum;
+    int seatNum;          // 선택한 좌석 번호
+    static JLabel[][] img = new JLabel[7][5];  // 좌석 배열
 
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
         setLayout(null);
@@ -83,8 +84,10 @@ class SeatsCenter extends JPanel {
         seatsTable.setBounds(275, 85, 450,550);
         add(seatsTable);
 
-        // 좌석 생성
-        create_seats(seatsTable);
+        // 선택좌석, 불가능좌석 표시
+        this.create_seats(seatsTable);
+        // 좌석 초기화
+        this.init_seats(seatsTable);
 
         // 가격 테이블 생성
         JPanel priceTable = new JPanel();
@@ -143,8 +146,6 @@ class SeatsCenter extends JPanel {
 
     // 좌석 이미지 생성
     public void create_seats(JPanel p) {
-        int num = 7;   // 생성할 좌석의 세로 줄 수
-
         // 선택 가능 이미지
         ImageIcon possible = new ImageIcon("project__java/buspj/image/white_seats.png");
         Image possibleImage = possible.getImage();
@@ -178,44 +179,30 @@ class SeatsCenter extends JPanel {
         impossibleText.setFont(new Font("맑은 고딕", Font.BOLD, 10));
         impossibleText.setBounds(12, 340, 60, 15);
         p.add(impossibleText);
+    }
 
+    // 좌석 초기화 메소드
+    public void init_seats(JPanel p) {
         // 아무것도 선택하지 않은 초기 좌석 이미지 생성
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < num; j++) {
-                ImageIcon white_seats = new ImageIcon("project__java/buspj/image/white_seats.png");
-                Image image = white_seats.getImage();
-                Image updateImg = image.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-                ImageIcon updateIcon = new ImageIcon(updateImg);
+        ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
+        Image whiteImage = white.getImage();
+        Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+        ImageIcon updateWhiteIcon = new ImageIcon(updateWhiteImg);
 
-                JLabel seats = new JLabel(updateIcon);
-                seats.setBounds(82 + 52*i,25 + 70*j,70,70);
-                seats.setHorizontalAlignment(JLabel.CENTER);
-                p.add(seats);
-            }
-        }
+        JLabel seat;
+        for (int i = 0; i < img.length; i++ ) {
+            for (int j = 0; j < img[i].length; j++) {
+                if (j == 2 && i != img.length - 1) {
+                    continue;
+                } else {
+                    // JLabel에 이미지 삽입
+                    seat = new JLabel(updateWhiteIcon);
+                    seat.setBounds(73 + j*60,30 + i*70,60,70);
+                    seat.setHorizontalAlignment(JLabel.CENTER);
 
-        // 맨 뒷 좌석 가운데 한 자리
-        ImageIcon white_seats = new ImageIcon("project__java/buspj/image/white_seats.png");
-        Image image = white_seats.getImage();
-        Image updateImg = image.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-        ImageIcon updateIcon = new ImageIcon(updateImg);
-
-        JLabel seats = new JLabel(updateIcon);
-        seats.setBounds(186,445,70,70);
-        seats.setHorizontalAlignment(JLabel.CENTER);
-        p.add(seats);
-
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < num; j++) {
-                ImageIcon white_seats2 = new ImageIcon("project__java/buspj/image/white_seats.png");
-                Image image2 = white_seats2.getImage();
-                Image updateImg2 = image2.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-                ImageIcon updateIcon2 = new ImageIcon(updateImg2);
-
-                JLabel seats2 = new JLabel(updateIcon2);
-                seats2.setBounds(238 + 52*i,25 + 70*j,70,70);
-                seats2.setHorizontalAlignment(JLabel.CENTER);
-                p.add(seats2);
+                    img[i][j] = seat;
+                    p.add(img[i][j]);
+                }
             }
         }
     }
