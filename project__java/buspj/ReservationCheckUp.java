@@ -49,7 +49,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
         setTitle("예매내역 조회하기");
         setSize(700,400);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Container mainContainer = getContentPane();
 
         // x 버튼 눌렀을 시
