@@ -95,7 +95,7 @@ class CenterPanel extends JPanel {
         ImageIcon reUpdateIcon = new ImageIcon(reUpdate);
 
         JButton reservation = new JButton(reUpdateIcon);
-        reservation.setBounds(60,60,190,190);
+        reservation.setBounds(75,60,190,190);
         reservation.setBorderPainted(false); // 버튼 테두리 설정해제
         Color mycor=new Color(189,215,238);
         reservation.setBackground(mycor);
@@ -117,7 +117,7 @@ class CenterPanel extends JPanel {
         ImageIcon chUpdateIcon = new ImageIcon(chUpdate);
 
         JButton checkUp = new JButton(chUpdateIcon);
-        checkUp.setBounds(330,60,190,190);
+        checkUp.setBounds(345,60,190,190);
         checkUp.setBorderPainted(false); // 버튼 테두리 설정해제
         checkUp.setBackground(mycor);
         checkUp.setFocusPainted(false);
@@ -126,32 +126,31 @@ class CenterPanel extends JPanel {
         add(checkUp);
 
         // 챗봇 버튼 이미지
-        ImageIcon chIcon = new ImageIcon("project__java/buspj/image/icon2.png");
-        Image chImg = chIcon.getImage();
-        Image chUpdate = chImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
-        ImageIcon chUpdateIcon = new ImageIcon(chUpdate);
+        ImageIcon chatIcon = new ImageIcon("project__java/buspj/image/icon3.png");
+        Image chatImg = chatIcon.getImage();
+        Image chatUpdate = chatImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon chatUpdateIcon = new ImageIcon(chatUpdate);
 
-        JButton checkUp = new JButton(chUpdateIcon);
-        checkUp.setBounds(330,60,190,190);
-        checkUp.setBorderPainted(false); // 버튼 테두리 설정해제
-        checkUp.setBackground(mycor);
-        checkUp.setFocusPainted(false);
-        checkUp.setContentAreaFilled(false);
-        checkUp.setOpaque(false);
-        add(checkUp);
+        JButton chatBot = new JButton(chatUpdateIcon);
+        chatBot.setBounds(615,60,190,190);
+        chatBot.setBorderPainted(false); // 버튼 테두리 설정해제
+        chatBot.setBackground(mycor);
+        chatBot.setFocusPainted(false);
+        chatBot.setContentAreaFilled(false);
+        chatBot.setOpaque(false);
+        add(chatBot);
 
-        JButton mainButton3 = new JButton("챗봇");
-        mainButton3.setPreferredSize(new Dimension(180, 180));
-        mainButton3.setFont(new Font("굴림", Font.BOLD, 20));
-        mainButton3.setBounds(550,50,180,180);
-        add(mainButton3);
+//        JButton mainButton3 = new JButton("챗봇");
+//        mainButton3.setPreferredSize(new Dimension(180, 180));
+//        mainButton3.setFont(new Font("굴림", Font.BOLD, 20));
+//        mainButton3.setBounds(550,50,180,180);
+//        add(mainButton3);
 
         // 메인 이미지
         ImageIcon background = new ImageIcon("project__java/buspj/image/bg.png");
         JLabel image2 = new JLabel(background);
         image2.setBounds(-1570,-150,4000,1200);
         add(image2);
-
 
         // 예매하기 클릭 시 이벤트
         reservation.addMouseListener(new MouseAdapter() {
@@ -165,7 +164,7 @@ class CenterPanel extends JPanel {
                 new ReservationCheckUp(id);
             }
         });
-        mainButton3.addMouseListener(new MouseAdapter() {
+        chatBot.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new ChatBot(id);
                 //frame.dispose();
