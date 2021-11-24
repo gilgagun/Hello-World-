@@ -116,6 +116,12 @@ class CenterPanel extends JPanel {
                 frame.dispose();
             }
         });
+        mainButton2.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                new ReservationCheckUp(id);
+                frame.dispose();
+            }
+        });
         mainButton3.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new ChatBot(id);

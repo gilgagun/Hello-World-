@@ -93,9 +93,9 @@ public class BusList extends JFrame {
     private PreparedStatement pstmtDel = null;
     private PreparedStatement pstmtUpdate = null;
 
-    public BusList(final String user) {
+    public BusList(final String user2) {
         super("운행정보 관리");
-        this.user = user;
+        this.user = user2;
         this.setDefaultCloseOperation(0);
         this.preDbTreatment();
         this.data = new Vector();
