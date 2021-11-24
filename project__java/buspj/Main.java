@@ -89,7 +89,7 @@ class CenterPanel extends JPanel {
 //        add(mainButton1);
 
         // 예매하기 버튼 이미지
-        ImageIcon reIcon = new ImageIcon("project__java/buspj/image/icon1.png");
+        ImageIcon reIcon = new ImageIcon("project__java/buspj/image/icon4.png");
         Image reImg = reIcon.getImage();
         Image reUpdate = reImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
         ImageIcon reUpdateIcon = new ImageIcon(reUpdate);
