@@ -119,7 +119,6 @@ class CenterPanel extends JPanel {
         mainButton2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new ReservationCheckUp(id);
-                frame.dispose();
             }
         });
         mainButton3.addMouseListener(new MouseAdapter() {

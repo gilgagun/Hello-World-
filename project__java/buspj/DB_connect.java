@@ -2,6 +2,7 @@ package buspj;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.sql.Statement;
 
 public class DB_connect {
     Connection conn;
@@ -286,6 +287,50 @@ public class DB_connect {
             System.out.println("JDBC 드라이버 로드 에러");
         } catch (SQLException e) {
             System.out.println("DB 연결 에러");
+        }
+    }
+
+    // 회원 예매 정보 불러오기
+    public CheckUp loadUserReservation(String id) {
+        Connection conn;
+        ResultSet rs = null;
+        CheckUp c = new CheckUp();
+        String SQL = "SELECT date,start,end,starttime,company,class,seat,price FROM reservation_user where id = '" + id + "'";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery(SQL);
+
+            while (rs.next()) {
+                String date = rs.getString(1);
+                String start = rs.getString(2);
+                String end = rs.getString(3);
+                String starttime = rs.getString(4);
+                String company = rs.getString(5);
+                String class_ = rs.getString(6);
+                String seat = rs.getString(7);
+                String price = rs.getString(8);
+
+                c.insertData(date,start,end,starttime, company, class_, seat, price);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c;
+    }
+
+    // 예매취소 버튼 클릭 시
+    public void delete_userReservation(String id) {
+        PreparedStatement pstmtDel = null;
+        try {
+            pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "'");
+            pstmtDel.executeUpdate();
+        } catch (Exception var3) {
+            var3.printStackTrace();
         }
     }
 
