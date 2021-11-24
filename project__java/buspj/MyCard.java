@@ -127,7 +127,6 @@ public class MyCard extends JFrame {
                     MyCard.this.conn.close();
                     MyCard.this.setVisible(false);
                     MyCard.this.dispose();
-                    System.exit(0);
                 } catch (Exception var3) {
                 }
 

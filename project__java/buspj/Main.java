@@ -79,23 +79,66 @@ class CenterPanel extends JPanel {
         //setBackground(Color.WHITE);
         this.frame = frame;
 
-
         //setLayout(new FlowLayout(FlowLayout.CENTER, 100, 250));
         setLayout(null);
 
+//        JButton mainButton1 = new JButton("예매하기");
+//        mainButton1.setPreferredSize(new Dimension(180, 100));
+//        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
+//        mainButton1.setBounds(50,50,180,100);
+//        add(mainButton1);
 
+        // 예매하기 버튼 이미지
+        ImageIcon reIcon = new ImageIcon("project__java/buspj/image/icon1.png");
+        Image reImg = reIcon.getImage();
+        Image reUpdate = reImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon = new ImageIcon(reUpdate);
 
-        JButton mainButton1 = new JButton("이미지로바꿔야함");
-        mainButton1.setPreferredSize(new Dimension(180, 100));
-        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
-        mainButton1.setBounds(50,50,180,100);
-        add(mainButton1);
+        JButton reservation = new JButton(reUpdateIcon);
+        reservation.setBounds(60,60,190,190);
+        reservation.setBorderPainted(false); // 버튼 테두리 설정해제
+        Color mycor=new Color(189,215,238);
+        reservation.setBackground(mycor);
+        reservation.setFocusPainted(false);
+        reservation.setContentAreaFilled(false);
+        reservation.setOpaque(false);
+        add(reservation);
 
-        JButton mainButton2 = new JButton("<HTML>예매내역<br>조회하기</HTML>");
-        mainButton2.setPreferredSize(new Dimension(180, 180));
-        mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
-        mainButton2.setBounds(300,50,180,180);
-        add(mainButton2);
+//        JButton mainButton2 = new JButton("<HTML>예매내역<br>조회하기</HTML>");
+//        mainButton2.setPreferredSize(new Dimension(180, 180));
+//        mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
+//        mainButton2.setBounds(300,50,180,180);
+//        add(mainButton2);
+
+        // 예매내역 조회 버튼 이미지
+        ImageIcon chIcon = new ImageIcon("project__java/buspj/image/icon2.png");
+        Image chImg = chIcon.getImage();
+        Image chUpdate = chImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon chUpdateIcon = new ImageIcon(chUpdate);
+
+        JButton checkUp = new JButton(chUpdateIcon);
+        checkUp.setBounds(330,60,190,190);
+        checkUp.setBorderPainted(false); // 버튼 테두리 설정해제
+        checkUp.setBackground(mycor);
+        checkUp.setFocusPainted(false);
+        checkUp.setContentAreaFilled(false);
+        checkUp.setOpaque(false);
+        add(checkUp);
+
+        // 챗봇 버튼 이미지
+        ImageIcon chIcon = new ImageIcon("project__java/buspj/image/icon2.png");
+        Image chImg = chIcon.getImage();
+        Image chUpdate = chImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon chUpdateIcon = new ImageIcon(chUpdate);
+
+        JButton checkUp = new JButton(chUpdateIcon);
+        checkUp.setBounds(330,60,190,190);
+        checkUp.setBorderPainted(false); // 버튼 테두리 설정해제
+        checkUp.setBackground(mycor);
+        checkUp.setFocusPainted(false);
+        checkUp.setContentAreaFilled(false);
+        checkUp.setOpaque(false);
+        add(checkUp);
 
         JButton mainButton3 = new JButton("챗봇");
         mainButton3.setPreferredSize(new Dimension(180, 180));
@@ -103,6 +146,7 @@ class CenterPanel extends JPanel {
         mainButton3.setBounds(550,50,180,180);
         add(mainButton3);
 
+        // 메인 이미지
         ImageIcon background = new ImageIcon("project__java/buspj/image/bg.png");
         JLabel image2 = new JLabel(background);
         image2.setBounds(-1570,-150,4000,1200);
@@ -110,13 +154,13 @@ class CenterPanel extends JPanel {
 
 
         // 예매하기 클릭 시 이벤트
-        mainButton1.addMouseListener(new MouseAdapter() {
+        reservation.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new ReservationMain(id);
                 frame.dispose();
             }
         });
-        mainButton2.addMouseListener(new MouseAdapter() {
+        checkUp.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new ReservationCheckUp(id);
             }
