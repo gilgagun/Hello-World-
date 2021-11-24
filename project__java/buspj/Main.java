@@ -27,14 +27,44 @@ class LoginAndSignup extends JPanel {
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
-        JButton myButton = new JButton("마이페이지");
-        myButton.setPreferredSize(new Dimension(150, 50));
-        myButton.setFont(new Font("굴림", Font.BOLD, 20));
+        ImageIcon my = new ImageIcon("project__java/buspj/image/remy.png");
+        Image my1 = my.getImage();
+        Image remy = my1.getScaledInstance(60,50, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon1 = new ImageIcon(remy);
+
+        ImageIcon my2 = new ImageIcon("project__java/buspj/image/remy1.png");
+        Image my22 = my2.getImage();
+        Image remy1 = my22.getScaledInstance(60,50, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon11 = new ImageIcon(remy1);
+
+        ImageIcon logout = new ImageIcon("project__java/buspj/image/reout.png");
+        Image relogout = logout.getImage();
+        Image reUpdate1 = relogout.getScaledInstance(60,50, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon2 = new ImageIcon(reUpdate1);
+
+        ImageIcon logout2 = new ImageIcon("project__java/buspj/image/reout.png");
+        Image relogout2 = logout2.getImage();
+        Image reUpdate12 = relogout2.getScaledInstance(60,50, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon22 = new ImageIcon(reUpdate12);
+
+        JButton myButton = new JButton(reUpdateIcon1);
+        //myButton.setPreferredSize(new Dimension(150, 50));
+        //myButton.setFont(new Font("굴림", Font.BOLD, 20));
+        myButton.setRolloverIcon(reUpdateIcon11);
+        myButton.setBorderPainted(false);
+        myButton.setFocusPainted(false);
+        myButton.setContentAreaFilled(false);
+        myButton.setOpaque(false);
         add(myButton);
 
-        JButton logoutButton = new JButton("로그아웃");
-        logoutButton.setPreferredSize(new Dimension(120, 50));
-        logoutButton.setFont(new Font("굴림", Font.BOLD, 20));
+        JButton logoutButton = new JButton(reUpdateIcon2);
+        //logoutButton.setPreferredSize(new Dimension(120, 50));
+        //.setFont(new Font("굴림", Font.BOLD, 20));
+        logoutButton.setRolloverIcon(reUpdateIcon22);
+        logoutButton.setBorderPainted(false);
+        logoutButton.setFocusPainted(false);
+        logoutButton.setContentAreaFilled(false);
+        logoutButton.setOpaque(false);
         add(logoutButton);
 
         // 마이페이지 버튼 클릭 시 이벤트
@@ -225,4 +255,7 @@ public class Main extends JFrame{
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        new Main("123");
+    }
 }
