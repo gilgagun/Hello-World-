@@ -93,6 +93,9 @@ class CenterPanel extends JPanel {
         p1.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
         p2.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
         p3.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
+        p1.setForeground(Color.WHITE);
+        p2.setForeground(Color.WHITE);
+        p3.setForeground(Color.WHITE);
         p1.setBounds(105,180,200,200);
         p2.setBounds(375,180,200,200);
         p3.setBounds(645,180,200,200);
