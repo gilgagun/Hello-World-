@@ -104,6 +104,10 @@ class CenterPanel extends JPanel {
         reservation.setOpaque(false);
         add(reservation);
 
+        // 예매하기 글자
+        JLabel text1 = new JLabel("예매하기");
+
+
 //        JButton mainButton2 = new JButton("<HTML>예매내역<br>조회하기</HTML>");
 //        mainButton2.setPreferredSize(new Dimension(180, 180));
 //        mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
