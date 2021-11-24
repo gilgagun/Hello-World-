@@ -79,7 +79,10 @@ class SeatsCenter extends JPanel implements MouseListener {
         setLayout(null);
         this.id = id;   // 회원 아이디 정보 저장
         this.onePrice = Integer.valueOf(info[4]);
-
+        Color bgmycor=new Color(166,222,249);
+        setBackground(bgmycor);
+        Color mycor=new Color(189,215,238);
+        //setBackground(Color.WHITE);
         // '예매하기' 글자
         JLabel title = new JLabel("예매하기");
         title.setBounds(60, 3, 150, 100);
@@ -156,6 +159,10 @@ class SeatsCenter extends JPanel implements MouseListener {
                 }
             }
         });
+        ImageIcon background = new ImageIcon("project__java/buspj/image/test.jpg");
+        JLabel image2 = new JLabel(background);
+        image2.setBounds(-1800,-200,4500,1200);
+        add(image2);
     }
 
     // 좌석 이미지 생성

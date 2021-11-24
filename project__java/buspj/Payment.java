@@ -11,7 +11,8 @@ import java.awt.event.*;
 // 결재 페이지 뒤로가기 버튼
 class PaymentBack extends JPanel {
     public PaymentBack(Payment frame, SeatsSelect frame2) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
@@ -32,7 +33,8 @@ class PaymentBack extends JPanel {
 // 결제 페이지 상단
 class PaymentNorth extends JPanel {
     public PaymentNorth(Payment frame, SeatsSelect frame2) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
 
         setLayout(new BorderLayout());
         add(new Title(), BorderLayout.WEST);
@@ -56,7 +58,10 @@ class PaymentCenter extends JPanel {
 
     public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int number, int price, int seatNum) {
         setLayout(null);
-
+        Color bgmycor=new Color(166,222,249);
+        setBackground(bgmycor);
+        Color mycor=new Color(189,215,238);
+        //setBackground(Color.WHITE);
         // '예매하기' 글자
         JLabel title = new JLabel("예매하기");
         title.setBounds(60, 3, 150, 100);
@@ -70,6 +75,7 @@ class PaymentCenter extends JPanel {
         this.number = number;  // 인원 정보 저장
         this.totalPrice = price;    // 가격 정보 저장
         this.seatNum = seatNum;
+
 
         // 날짜 정보 표시
         JLabel dateInfo = new JLabel(date);
@@ -138,6 +144,12 @@ class PaymentCenter extends JPanel {
         total.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         total.setForeground(Color.RED);
         add(total);
+
+        JPanel square1 = new JPanel();
+        square1.setBackground(mycor);
+        square1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
+        square1.setBounds(90,380,350,70);
+        add(square1);
 
         // 카드 선택 글자
         JLabel cardSelectText = new JLabel("카드선택");
@@ -231,6 +243,11 @@ class PaymentCenter extends JPanel {
         clear.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         add(clear);
 
+        JPanel square = new JPanel();
+        square.setBackground(mycor);
+        square.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
+        square.setBounds(570,100,380,450);
+        add(square);
         // 결재완료 버튼 클릭 시
         clear.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -241,6 +258,12 @@ class PaymentCenter extends JPanel {
                 frame2.dispose();
             }
         });
+
+        ImageIcon background = new ImageIcon("project__java/buspj/image/test.jpg");
+        JLabel image2 = new JLabel(background);
+        image2.setBounds(-1800,-200,4500,1200);
+        add(image2);
+
     }
 }
 

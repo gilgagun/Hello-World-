@@ -44,7 +44,8 @@ class MyDialog extends JDialog{
 class Back extends JPanel {
     MyPage frame;
     public Back(MyPage frame, String id) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
@@ -67,7 +68,8 @@ class MyNorthPanel extends JPanel {
     MyPage frame;
 
     public MyNorthPanel(MyPage frame, String id) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new BorderLayout());
@@ -87,6 +89,8 @@ class MyCenterPanel extends JPanel {
     public MyCenterPanel(MyPage frame, String id) {
         setLayout(null);
         this.frame = frame;
+        Color bgmycor=new Color(166,222,249);
+        setBackground(bgmycor);
         hi = new JLabel(id + "님 환영합니다!");
         // 프로필 이미지 삽입
         ImageIcon profile = new ImageIcon("project__java/buspj/image/profile.png");

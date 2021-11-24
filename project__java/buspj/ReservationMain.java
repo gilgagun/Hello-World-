@@ -78,7 +78,8 @@ class ReservationBack extends JPanel {
     ReservationMain frame;
 
     public ReservationBack(ReservationMain frame, String id) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
@@ -102,7 +103,8 @@ class ReservationNorth extends JPanel {
     ReservationMain frame;
 
     public ReservationNorth(ReservationMain frame, String id) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new BorderLayout());
@@ -235,7 +237,11 @@ class ReservationCenter extends JPanel {
     DB_connect DB = new DB_connect();
     public ReservationCenter(ReservationMain frame, String id) {
         setLayout(null);
+        Color bgmycor=new Color(166,222,249);
+        setBackground(bgmycor);
+        Color mycor=new Color(189,215,238);
 
+        //setBackground(mycor);
         // '예매하기' 글자
         JLabel title = new JLabel("예매하기");
         title.setBounds(60, 3, 150, 100);
@@ -244,19 +250,19 @@ class ReservationCenter extends JPanel {
 
         // 3개의 콤보박스를 감싸는 각각의 네모 박스 생성
         JPanel square = new JPanel();
-        square.setBackground(Color.LIGHT_GRAY);
+        square.setBackground(mycor);
         square.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
         square.setBounds(60,130,380,60);
         add(square);
 
         JPanel nextSquare1 = new JPanel();
-        nextSquare1.setBackground(Color.LIGHT_GRAY);
+        nextSquare1.setBackground(mycor);
         nextSquare1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
         nextSquare1.setBounds(60,330,380,60);
         add(nextSquare1);
 
         JPanel nextSquare2 = new JPanel();
-        nextSquare2.setBackground(Color.LIGHT_GRAY);
+        nextSquare2.setBackground(mycor);
         nextSquare2.setLayout(new FlowLayout(FlowLayout.LEFT, 20, 16));
         nextSquare2.setBounds(60,530,380,60);
         add(nextSquare2);
@@ -377,7 +383,10 @@ class ReservationCenter extends JPanel {
                 }
             }
         });
-
+        ImageIcon background = new ImageIcon("project__java/buspj/image/test.jpg");
+        JLabel image2 = new JLabel(background);
+        image2.setBounds(-1800,-200,4500,1200);
+        add(image2);
         setVisible(true);
     }
 }
@@ -400,5 +409,9 @@ public class ReservationMain extends JFrame {
         addWindowListener(new JFrameWindowClosingEventHandler());
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ReservationMain("123");
     }
 }
