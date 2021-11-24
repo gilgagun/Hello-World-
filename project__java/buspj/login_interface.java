@@ -18,17 +18,17 @@ class BoxPanel extends JPanel implements ActionListener {
         setLayout(null);
         this.frame = frame;
 
-//        JLabel idText = new JLabel("아이디");
-//        idText.setBounds(80,50,50,30);
-//        add(idText);
+//       JLabel idText = new JLabel("아이디");
+//       idText.setBounds(80,50,50,30);
+//       add(idText);
 
         // '아이디' 글자 설정
         id.setBounds(93,70,150,30);
         add(id);
 
-//        JLabel pwText = new JLabel("비밀번호");
-//        pwText.setBounds(80,100,50,30);
-//        add(pwText);
+//       JLabel pwText = new JLabel("비밀번호");
+//       pwText.setBounds(80,100,50,30);
+//       add(pwText);
 
         // '비밀번호' 글자 설정
         pw.setBounds(93,125,150,30);

@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 
 
 public class ChatBot extends JFrame implements ActionListener{
-    JTextArea txtA = new JTextArea();
-    JTextField txtF = new JTextField(15);
+    JTextArea txtA = new JTextArea(7,5);
+    JTextField txtF = new JTextField(30);
     JButton btnTransfer = new JButton("전송");
     JButton btnExit = new JButton("닫기");
     boolean isFirst=true;
@@ -29,11 +29,12 @@ public class ChatBot extends JFrame implements ActionListener{
         add("Center", txtA);
         p1.add(txtF);
         String idt = txtA.getText();
-        System.out.println(idt);
         p1.add(btnTransfer);
         p1.add(btnExit);
         add("South", p1);
-
+        String hello = "안녕하세요 버스안내 챗봇입니다!\n" +
+                "궁금한게 있으신가요??";
+        txtA.append("[챗봇]"+ hello+"\n");
         btnTransfer.addActionListener(this);
         btnExit.addActionListener(this);
 
@@ -42,8 +43,8 @@ public class ChatBot extends JFrame implements ActionListener{
                 ChatBot.this.dispose();
             }
         });
-
-        setBounds(300, 300, 350, 300);
+        setSize(500,500);
+        //setBounds(300, 300, 800, 600);
         setVisible(true);
 
     }
@@ -51,7 +52,6 @@ public class ChatBot extends JFrame implements ActionListener{
 
 
     public void actionPerformed(ActionEvent e){
-
         String id = "user";
         String input = txtF.getText();
         if(e.getSource()==btnTransfer){//전송버튼 눌렀을 경우
@@ -108,8 +108,6 @@ public class ChatBot extends JFrame implements ActionListener{
                 rs = pstmt.executeQuery();
                 String answer="";
                 while (rs.next()) {//답변
-                    //System.out.print("답변 >>");
-                    //System.out.println(new String(rs.getString("answer")));
                     answer+=rs.getString("answer");
                 }
                 //txtA.append("[챗봇] "+ new String(rs.getString("answer"))+"\n");
@@ -127,9 +125,5 @@ public class ChatBot extends JFrame implements ActionListener{
         }
 
     }
-/*
-    public static void main(String[] args) {
-        String a = "asd";
-        new ChatBot(a);
-    }*/
+
 }
