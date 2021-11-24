@@ -87,6 +87,18 @@ class CenterPanel extends JPanel {
 //        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
 //        mainButton1.setBounds(50,50,180,100);
 //        add(mainButton1);
+        JLabel p1 = new JLabel("예매하기");
+        JLabel p2 = new JLabel("예약조회");
+        JLabel p3 = new JLabel("챗봇문의");
+        p1.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
+        p2.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
+        p3.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
+        p1.setBounds(105,180,200,200);
+        p2.setBounds(375,180,200,200);
+        p3.setBounds(645,180,200,200);
+        add(p1);
+        add(p2);
+        add(p3);
 
         // 예매하기 버튼 이미지
         ImageIcon reIcon = new ImageIcon("project__java/buspj/image/icon4.png");
