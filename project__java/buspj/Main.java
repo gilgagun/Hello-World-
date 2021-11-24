@@ -106,19 +106,21 @@ class CenterPanel extends JPanel {
         Image reUpdate = reImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
         ImageIcon reUpdateIcon = new ImageIcon(reUpdate);
 
+        ImageIcon reIcon2 = new ImageIcon("project__java/buspj/image/blurIcon2.png");
+        Image reImg2 = reIcon2.getImage();
+        Image reUpdate2 = reImg2.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon2 = new ImageIcon(reUpdate2);
+
         JButton reservation = new JButton(reUpdateIcon);
         reservation.setBounds(75,60,190,190);
         reservation.setBorderPainted(false); // 버튼 테두리 설정해제
         Color mycor=new Color(189,215,238);
+        reservation.setRolloverIcon(reUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
         reservation.setBackground(mycor);
         reservation.setFocusPainted(false);
         reservation.setContentAreaFilled(false);
         reservation.setOpaque(false);
         add(reservation);
-
-        // 예매하기 글자
-        JLabel text1 = new JLabel("예매하기");
-
 
 //        JButton mainButton2 = new JButton("<HTML>예매내역<br>조회하기</HTML>");
 //        mainButton2.setPreferredSize(new Dimension(180, 180));
@@ -132,9 +134,15 @@ class CenterPanel extends JPanel {
         Image chUpdate = chImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
         ImageIcon chUpdateIcon = new ImageIcon(chUpdate);
 
+        ImageIcon chIcon2 = new ImageIcon("project__java/buspj/image/blurIcon3.png");
+        Image chImg2 = chIcon2.getImage();
+        Image chUpdate2 = chImg2.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon chUpdateIcon2 = new ImageIcon(chUpdate2);
+
         JButton checkUp = new JButton(chUpdateIcon);
         checkUp.setBounds(345,60,190,190);
         checkUp.setBorderPainted(false); // 버튼 테두리 설정해제
+        checkUp.setRolloverIcon(chUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
         checkUp.setBackground(mycor);
         checkUp.setFocusPainted(false);
         checkUp.setContentAreaFilled(false);
@@ -147,8 +155,14 @@ class CenterPanel extends JPanel {
         Image chatUpdate = chatImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
         ImageIcon chatUpdateIcon = new ImageIcon(chatUpdate);
 
+        ImageIcon chatIcon2 = new ImageIcon("project__java/buspj/image/blurIcon1.png");
+        Image chatImg2 = chatIcon2.getImage();
+        Image chatUpdate2 = chatImg2.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon chatUpdateIcon2 = new ImageIcon(chatUpdate2);
+
         JButton chatBot = new JButton(chatUpdateIcon);
         chatBot.setBounds(615,60,190,190);
+        chatBot.setRolloverIcon(chatUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
         chatBot.setBorderPainted(false); // 버튼 테두리 설정해제
         chatBot.setBackground(mycor);
         chatBot.setFocusPainted(false);
