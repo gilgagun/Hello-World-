@@ -42,7 +42,7 @@ class LoginAndSignup extends JPanel {
         Image reUpdate1 = relogout.getScaledInstance(60,50, Image.SCALE_SMOOTH);
         ImageIcon reUpdateIcon2 = new ImageIcon(reUpdate1);
 
-        ImageIcon logout2 = new ImageIcon("project__java/buspj/image/reout.png");
+        ImageIcon logout2 = new ImageIcon("project__java/buspj/image/reout1.png");
         Image relogout2 = logout2.getImage();
         Image reUpdate12 = relogout2.getScaledInstance(60,50, Image.SCALE_SMOOTH);
         ImageIcon reUpdateIcon22 = new ImageIcon(reUpdate12);
@@ -253,9 +253,5 @@ public class Main extends JFrame{
         addWindowListener(new JFrameWindowClosingEventHandler());
 
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new Main("123");
     }
 }
