@@ -27,6 +27,7 @@ public class ChatBot extends JFrame implements ActionListener{
         String Id = id;
 
         add("Center", txtA);
+        setLocation(520,160);  // 프레임을 위치 설정
         p1.add(txtF);
         String idt = txtA.getText();
         p1.add(btnTransfer);
