@@ -19,7 +19,8 @@ class AdministratorLoginAndSignup extends JPanel {
     AdministratorMain frame;
 
     public AdministratorLoginAndSignup(AdministratorMain frame) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
@@ -45,7 +46,8 @@ class AdministratorNorthPanel extends JPanel {
     AdministratorMain frame;
 
     public AdministratorNorthPanel(AdministratorMain frame) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new BorderLayout());
@@ -93,7 +95,7 @@ class AdministratorCenterPanel extends JPanel {
 public class AdministratorMain extends JFrame {
     public AdministratorMain() {
         setTitle("버스타슈~");
-        setSize(1000,800);
+        setSize(900,800);
         setResizable(false);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
