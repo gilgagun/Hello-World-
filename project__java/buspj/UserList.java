@@ -52,6 +52,7 @@ public class UserList extends JFrame {
     public UserList(final String user) {
         super("회원 관리");
         this.user = user;
+        this.setLocation(370,190);  // 프레임을 위치 설정
         this.setDefaultCloseOperation(0);
         this.preDbTreatment();
         this.data = new Vector();

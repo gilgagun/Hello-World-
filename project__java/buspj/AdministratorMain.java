@@ -69,6 +69,18 @@ class AdministratorCenterPanel extends JPanel {
 //        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
 //        add(mainButton1);
 
+        // 회원관리 글자, 운행정보 관리 글자
+        JLabel p1 = new JLabel("회원관리");
+        JLabel p2 = new JLabel("운행정보 관리");
+        p1.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
+        p2.setFont(new Font("휴먼엑스포", Font.PLAIN, 35));
+        p1.setForeground(Color.WHITE);
+        p2.setForeground(Color.WHITE);
+        p1.setBounds(205,180,200,200);
+        p2.setBounds(485,180,300,200);
+        add(p1);
+        add(p2);
+
         // 회원관리 버튼 이미지
         ImageIcon mainIcon = new ImageIcon("project__java/buspj/image/icon1.png");
         Image mainImg = mainIcon.getImage();
@@ -114,7 +126,7 @@ class AdministratorCenterPanel extends JPanel {
         ImageIcon main2UpdateIcon2 = new ImageIcon(main2Update2);
 
         JButton bus = new JButton(main2UpdateIcon);
-        bus.setBounds(400,60,190,190);
+        bus.setBounds(500,60,190,190);
         bus.setBorderPainted(false); // 버튼 테두리 설정해제
         bus.setRolloverIcon(main2UpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
         bus.setBackground(mycor);
