@@ -153,8 +153,9 @@ public class BusList extends JFrame {
             }
         });
         panel.add(this.lblName);
-        panel.add(this.lblName2);
         panel.add(this.tfName);
+        panel.add(this.lblName2);
+        panel.add(this.tfName2);
         panel.add(this.btnAdd);
         panel.add(this.btnDel);
         panel.add(this.btnUpdate);
@@ -182,7 +183,7 @@ public class BusList extends JFrame {
         this.data.clear();
 
         try {
-            String sql = "select start,end from bus_info";
+            String sql = "select distinct start,end from bus_table";
             System.out.println(sql);
             ResultSet rs = this.stmt.executeQuery(sql);
 
@@ -202,8 +203,7 @@ public class BusList extends JFrame {
 
     private void delete(String start, String end) {
         try {
-            this.pstmtDel = this.conn.prepareStatement("delete from bus_info where start = '" + start + "' and end = '" + end + "'");
-            this.pstmtDel.setString(1, start);
+            this.pstmtDel = this.conn.prepareStatement("delete from bus_table where start = '" + start + "' and end = '" + end + "'");
             this.pstmtDel.executeUpdate();
         } catch (Exception var3) {
             var3.printStackTrace();
