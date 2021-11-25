@@ -128,8 +128,17 @@ class MyCenterPanel extends JPanel {
                 ImageIcon eggimg = new ImageIcon(egg);
                 Frame newf = new Frame();
                 JLabel ac = new JLabel(eggimg);
+                ac.setSize(50,50);
                 newf.add(ac);
-                //frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                /*
+                JButton quit = new JButton("닫기");
+                quit.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        newf.setVisible(false);
+                    }
+                });
+                newf.add(quit);*/
                 newf.setSize(500,500);
                 newf.setVisible(true);
             }
@@ -257,10 +266,6 @@ public class MyPage extends JFrame {
         addWindowListener(new JFrameWindowClosingEventHandler());
 
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new MyPage("123");
     }
 
 }
