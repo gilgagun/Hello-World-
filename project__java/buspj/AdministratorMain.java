@@ -63,23 +63,66 @@ class AdministratorCenterPanel extends JPanel {
 //        setLayout(new FlowLayout(FlowLayout.CENTER, 150, 250));
         setLayout(null);
 
-        JButton mainButton1 = new JButton("회원관리");
-        mainButton1.setPreferredSize(new Dimension(180, 180));
-        mainButton1.setBounds(50,50,180,100);
-        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
-        add(mainButton1);
-        mainButton1.addMouseListener(new MouseAdapter() {
+//        JButton mainButton1 = new JButton("회원관리");
+//        mainButton1.setPreferredSize(new Dimension(180, 180));
+//        mainButton1.setBounds(50,50,180,100);
+//        mainButton1.setFont(new Font("굴림", Font.BOLD, 20));
+//        add(mainButton1);
+
+        // 회원관리 버튼 이미지
+        ImageIcon mainIcon = new ImageIcon("project__java/buspj/image/icon1.png");
+        Image mainImg = mainIcon.getImage();
+        Image mainUpdate = mainImg.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon mainUpdateIcon = new ImageIcon(mainUpdate);
+
+        ImageIcon mainIcon2 = new ImageIcon("project__java/buspj/image/blurIcon4.png");
+        Image mainImg2 = mainIcon2.getImage();
+        Image mainUpdate2 = mainImg2.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon mainUpdateIcon2 = new ImageIcon(mainUpdate2);
+
+        JButton user = new JButton(mainUpdateIcon);
+        user.setBounds(180,60,190,190);
+        user.setBorderPainted(false); // 버튼 테두리 설정해제
+        Color mycor=new Color(189,215,238);
+        user.setRolloverIcon(mainUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        user.setBackground(mycor);
+        user.setFocusPainted(false);
+        user.setContentAreaFilled(false);
+        user.setOpaque(false);
+        add(user);
+        user.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 new UserList("root");
             }
         });
 
-        JButton mainButton2 = new JButton("운행정보 관리");
-        mainButton2.setPreferredSize(new Dimension(180, 180));
-        mainButton2.setBounds(250,50,180,100);
-        mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
-        add(mainButton2);
-        mainButton2.addMouseListener(new MouseAdapter() {
+//        JButton mainButton2 = new JButton("운행정보 관리");
+//        mainButton2.setPreferredSize(new Dimension(180, 180));
+//        mainButton2.setBounds(250,50,180,100);
+//        mainButton2.setFont(new Font("굴림", Font.BOLD, 20));
+//        add(mainButton2);
+
+        // 운행정보 관리 버튼 이미지
+        ImageIcon main2Icon = new ImageIcon("project__java/buspj/image/icon2.png");
+        Image main2Img = main2Icon.getImage();
+        Image main2Update = main2Img.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon main2UpdateIcon = new ImageIcon(main2Update);
+
+        ImageIcon main2Icon2 = new ImageIcon("project__java/buspj/image/blurIcon3.png");
+        Image main2Img2 = main2Icon2.getImage();
+        Image main2Update2 = main2Img2.getScaledInstance(180,180, Image.SCALE_SMOOTH);
+        ImageIcon main2UpdateIcon2 = new ImageIcon(main2Update2);
+
+        JButton bus = new JButton(main2UpdateIcon);
+        bus.setBounds(400,60,190,190);
+        bus.setBorderPainted(false); // 버튼 테두리 설정해제
+        bus.setRolloverIcon(main2UpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        bus.setBackground(mycor);
+        bus.setFocusPainted(false);
+        bus.setContentAreaFilled(false);
+        bus.setOpaque(false);
+        add(bus);
+        bus.addMouseListener(new MouseAdapter() {
             public void mouseCliked(MouseEvent e) {
                 new BusList("root");  // 안 뜬다!
             }
