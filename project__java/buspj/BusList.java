@@ -15,25 +15,26 @@ class AddBus extends JFrame {
         setTitle("추가");
         setLayout(null);
         setSize(300,200);
+        setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         setDefaultCloseOperation(0);
         Container c = getContentPane();
 
         JLabel ment = new JLabel("출발 터미널");
         ment.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        ment.setBounds(100,90,100,20);
+        ment.setBounds(30,35,100,20);
         c.add(ment);
 
         JTextField start = new JTextField();
-        start.setBounds(100,110,100,20);
+        start.setBounds(30,60,100,20);
         c.add(start);
 
         JLabel ment2 = new JLabel("도착 터미널");
         ment2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        ment2.setBounds(100,130,100,20);
+        ment2.setBounds(155,35,100,20);
         c.add(ment2);
 
         JTextField end = new JTextField();
-        end.setBounds(100,150,100,20);
+        end.setBounds(155,60,100,20);
         c.add(end);
 
         JButton add = new JButton("추가");
