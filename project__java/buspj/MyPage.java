@@ -94,10 +94,8 @@ class MyNorthPanel extends JPanel {
 }
 
 class MyCenterPanel extends JPanel {
-    DB_connect DB = new DB_connect(); // 이건 그냥 해놓은 것.. DB 공부해올게요..
-    //JTextField hi = new JTextField(); // 환영합니다 네모 칸
+    DB_connect DB = new DB_connect();
     JLabel hi = new JLabel();
-    //login_interface idck = new login_interface();
     JTextField score = new JTextField(); // 마일리지 네모 칸
     MyDialog dialog;
     MyPage frame;
@@ -113,9 +111,29 @@ class MyCenterPanel extends JPanel {
         Image updateImg = img.getScaledInstance(50,50,Image.SCALE_DEFAULT);
         ImageIcon updateIcon = new ImageIcon(updateImg);
 
-        JLabel image = new JLabel(updateIcon);
+        JButton image = new JButton(updateIcon);
         image.setBounds(80,100,100,100);
         image.setHorizontalAlignment(JLabel.CENTER);
+        image.setBorderPainted(false); // 버튼 테두리 설정해제
+        //image.setRolloverIcon(reUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        image.setFocusPainted(false);
+        image.setContentAreaFilled(false);
+        image.setOpaque(false);
+        image.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ImageIcon easteregg = new ImageIcon("project__java/buspj/image/winter.jpg");
+                Image easteregg_img = easteregg.getImage();
+                Image egg = easteregg_img.getScaledInstance(500,500,Image.SCALE_DEFAULT);
+                ImageIcon eggimg = new ImageIcon(egg);
+                Frame newf = new Frame();
+                JLabel ac = new JLabel(eggimg);
+                newf.add(ac);
+                //frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                newf.setSize(500,500);
+                newf.setVisible(true);
+            }
+        });
         add(image);
 
         // 구분 선 삽입
@@ -130,15 +148,17 @@ class MyCenterPanel extends JPanel {
         add(image2);
 
         // 마일리지 내역 삽입
-        JLabel mileage = new JLabel("마일리지 내역");
+        String usermileage=DB.mileage(id); // 마일리지 받아오기
+        JLabel mileage = new JLabel(" 마일리지 :");
         mileage.setBounds(80,210,200,100);
         mileage.setHorizontalAlignment(JLabel.CENTER);
         mileage.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         add(mileage);
-
-        // 마일리지 네모 칸
-        score.setBounds(290,240,100,50);
-        add(score);
+        // 마일리지 칸
+        JLabel mileages = new JLabel(usermileage);
+        mileages.setBounds(280,235,100,50);
+        mileages.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+        add(mileages);
 
         // 환영 메시지 삽입
         hi.setBounds(190,130,200,50);
@@ -163,9 +183,22 @@ class MyCenterPanel extends JPanel {
 //        add(paymentHistory);
 
         // 카드관리
-        JButton card = new JButton("카드관리");
+        ImageIcon my = new ImageIcon("project__java/buspj/image/cardmanagement1.png");
+        Image my1 = my.getImage();
+        Image remy = my1.getScaledInstance(400,120, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon1 = new ImageIcon(remy);
+        ImageIcon my2 = new ImageIcon("project__java/buspj/image/cardmanagement2.png");
+        Image my11 = my2.getImage();
+        Image remy1 = my11.getScaledInstance(400,120, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon2 = new ImageIcon(remy1);
+        JButton card = new JButton(reUpdateIcon1);
+        card.setBorderPainted(false); // 버튼 테두리 설정해제
+        card.setRolloverIcon(reUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        card.setFocusPainted(false);
+        card.setContentAreaFilled(false);
+        card.setOpaque(false);
         card.setBounds(540, 160, 400, 100);
-        card.setFont(new Font("고딕", Font.BOLD, 30));
+        //card.setFont(new Font("고딕", Font.BOLD, 30));
         add(card);
 
         card.addMouseListener(new MouseAdapter() {
@@ -175,9 +208,23 @@ class MyCenterPanel extends JPanel {
         });
 
         // 회원탈퇴
-        JButton membershipBye = new JButton("회원탈퇴");
+        ImageIcon my3 = new ImageIcon("project__java/buspj/image/toleave1.png");
+        Image my4 = my3.getImage();
+        Image remy4 = my4.getScaledInstance(400,120, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon4 = new ImageIcon(remy4);
+        ImageIcon my5 = new ImageIcon("project__java/buspj/image/toleave2.png");
+        Image my55 = my5.getImage();
+        Image remy5 = my55.getScaledInstance(400,120, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon5 = new ImageIcon(remy5);
+
+        JButton membershipBye = new JButton(reUpdateIcon4);
+        membershipBye.setRolloverIcon(reUpdateIcon5); // 버튼에 마우스가 올라갈떄 이미지 변환
         membershipBye.setBounds(540, 390, 400, 100);
-        membershipBye.setFont(new Font("고딕", Font.BOLD, 30));
+        membershipBye.setBorderPainted(false); // 버튼 테두리 설정해제
+        membershipBye.setFocusPainted(false);
+        membershipBye.setContentAreaFilled(false);
+        membershipBye.setOpaque(false);
+        //membershipBye.setFont(new Font("고딕", Font.BOLD, 30));
         add(membershipBye);
         dialog = new MyDialog(this.frame, id);
         membershipBye.addMouseListener(new MouseAdapter() {
@@ -212,5 +259,8 @@ public class MyPage extends JFrame {
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        new MyPage("123");
+    }
 
 }

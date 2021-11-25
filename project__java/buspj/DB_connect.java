@@ -363,4 +363,36 @@ public class DB_connect {
             System.out.println("DB 연결 에러");
         }
     }
+
+    // 마일리지
+    public String mileage(String id) {
+        Connection conn;
+        Statement stmt = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        String usermileage = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql="select point from new_table where id=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, id);
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                usermileage=rs.getString(1);
+            }
+            pstmt.executeUpdate();
+            pstmt.close();
+            return usermileage;
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+        return usermileage;
+    }
+
 }
