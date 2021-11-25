@@ -84,9 +84,29 @@ class ReservationBack extends JPanel {
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
-        JButton back = new JButton("뒤로가기");
-        back.setPreferredSize(new Dimension(120, 50));
-        back.setFont(new Font("고딕", Font.BOLD, 20));
+//        JButton back = new JButton("뒤로가기");
+//        back.setPreferredSize(new Dimension(120, 50));
+//        back.setFont(new Font("고딕", Font.BOLD, 20));
+//        add(back);
+
+        // 뒤로가기 버튼 이미지
+        ImageIcon backIcon = new ImageIcon("project__java/buspj/image/back.png");
+        Image backImg = backIcon.getImage();
+        Image backUpdate = backImg.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon backUpdateIcon = new ImageIcon(backUpdate);
+
+        ImageIcon backIcon2 = new ImageIcon("project__java/buspj/image/back2.png");
+        Image backImg2 = backIcon2.getImage();
+        Image backUpdate2 = backImg2.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon backUpdateIcon2 = new ImageIcon(backUpdate2);
+
+        JButton back = new JButton(backUpdateIcon);
+        back.setPreferredSize(new Dimension(100,50));
+        back.setRolloverIcon(backUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        back.setBorderPainted(false); // 버튼 테두리 설정해제
+        back.setFocusPainted(false);
+        back.setContentAreaFilled(false);
+        back.setOpaque(false);
         add(back);
 
         back.addMouseListener(new MouseAdapter() {

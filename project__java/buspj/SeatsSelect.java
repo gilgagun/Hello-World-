@@ -28,14 +28,30 @@ class SeatsBack extends JPanel {
     SeatsSelect frame;
 
     public SeatsBack(SeatsSelect frame, ReservationMain frame2) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
-        JButton back = new JButton("뒤로가기");
-        back.setPreferredSize(new Dimension(120, 50));
-        back.setFont(new Font("고딕", Font.BOLD, 20));
+        // 뒤로가기 버튼 이미지
+        ImageIcon backIcon = new ImageIcon("project__java/buspj/image/back.png");
+        Image backImg = backIcon.getImage();
+        Image backUpdate = backImg.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon backUpdateIcon = new ImageIcon(backUpdate);
+
+        ImageIcon backIcon2 = new ImageIcon("project__java/buspj/image/back2.png");
+        Image backImg2 = backIcon2.getImage();
+        Image backUpdate2 = backImg2.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon backUpdateIcon2 = new ImageIcon(backUpdate2);
+
+        JButton back = new JButton(backUpdateIcon);
+        back.setPreferredSize(new Dimension(100,50));
+        back.setRolloverIcon(backUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        back.setBorderPainted(false); // 버튼 테두리 설정해제
+        back.setFocusPainted(false);
+        back.setContentAreaFilled(false);
+        back.setOpaque(false);
         add(back);
 
         back.addMouseListener(new MouseAdapter() {
@@ -52,7 +68,8 @@ class SeatsNorth extends JPanel {
     SeatsSelect frame;
 
     public SeatsNorth(SeatsSelect frame, ReservationMain frame2) {
-        setBackground(Color.LIGHT_GRAY);
+        Color mycor=new Color(189,215,238);
+        setBackground(mycor);
         this.frame = frame;
 
         setLayout(new BorderLayout());
@@ -142,10 +159,30 @@ class SeatsCenter extends JPanel implements MouseListener {
         priceInt.setVisible(false);   // 초기에는 숨기고 있음.
         text.add(priceInt);
 
-        // 결제진행 버튼 생성
-        JButton payment = new JButton("결제진행");
-        payment.setBounds(820, 550, 100,40);
-        payment.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+//        // 결제진행 버튼 생성
+//        JButton payment = new JButton("결제진행");
+//        payment.setBounds(820, 550, 100,40);
+//        payment.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+//        add(payment);
+
+        // 결제진행 버튼 이미지
+        ImageIcon paymentIcon = new ImageIcon("project__java/buspj/image/payment.png");
+        Image paymentImg = paymentIcon.getImage();
+        Image paymentUpdate = paymentImg.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon paymentUpdateIcon = new ImageIcon(paymentUpdate);
+
+        ImageIcon paymentIcon2 = new ImageIcon("project__java/buspj/image/payment2.png");
+        Image paymentImg2 = paymentIcon2.getImage();
+        Image paymentUpdate2 = paymentImg2.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon paymentUpdateIcon2 = new ImageIcon(paymentUpdate2);
+
+        JButton payment = new JButton(paymentUpdateIcon);
+        payment.setBounds(820,550,100,50);
+        payment.setRolloverIcon(paymentUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        payment.setBorderPainted(false); // 버튼 테두리 설정해제
+        payment.setFocusPainted(false);
+        payment.setContentAreaFilled(false);
+        payment.setOpaque(false);
         add(payment);
 
         // 결제진행 버튼 클릭 이벤트
