@@ -335,20 +335,60 @@ class ReservationCenter extends JPanel {
         ticketTable.add(tow);
         add(ticketTable);
 
-        // 조회 버튼
-        JButton lookUp = new JButton("조회");
-        lookUp.setBounds(510, 540, 100, 40);
-        lookUp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(lookUp);
+//        // 조회 버튼
+//        JButton lookUp = new JButton("조회");
+//        lookUp.setBounds(510, 540, 100, 40);
+//        lookUp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+//        add(lookUp);
 
-        // 좌석선택 버튼
-        JButton seats = new JButton("좌석선택");
-        seats.setBounds(810, 540, 100,40);
-        seats.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        add(seats);
+        // 조회 버튼 이미지
+        ImageIcon checkupIcon = new ImageIcon("project__java/buspj/image/checkup.png");
+        Image checkupImg = checkupIcon.getImage();
+        Image checkupUpdate = checkupImg.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon checkupUpdateIcon = new ImageIcon(checkupUpdate);
+
+        ImageIcon checkupIcon2 = new ImageIcon("project__java/buspj/image/checkup2.png");
+        Image checkupImg2 = checkupIcon2.getImage();
+        Image checkupUpdate2 = checkupImg2.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon checkupUpdateIcon2 = new ImageIcon(checkupUpdate2);
+
+        JButton checkup = new JButton(checkupUpdateIcon);
+        checkup.setBounds(510,540,100,50);
+        checkup.setRolloverIcon(checkupUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        checkup.setBorderPainted(false); // 버튼 테두리 설정해제
+        checkup.setFocusPainted(false);
+        checkup.setContentAreaFilled(false);
+        checkup.setOpaque(false);
+        add(checkup);
+
+//        // 좌석선택 버튼
+//        JButton seats = new JButton("좌석선택");
+//        seats.setBounds(810, 540, 100,40);
+//        seats.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+//        add(seats);
+
+        // 좌석선택 버튼 이미지
+        ImageIcon seatSelectIcon = new ImageIcon("project__java/buspj/image/seatSelect.png");
+        Image seatSelectImg = seatSelectIcon.getImage();
+        Image seatSelectUpdate = seatSelectImg.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon seatSelectUpdateIcon = new ImageIcon(seatSelectUpdate);
+
+        ImageIcon seatSelectIcon2 = new ImageIcon("project__java/buspj/image/seatSelect2.png");
+        Image seatSelectImg2 = seatSelectIcon2.getImage();
+        Image seatSelectUpdate2 = seatSelectImg2.getScaledInstance(100,50, Image.SCALE_SMOOTH);
+        ImageIcon seatSelectUpdateIcon2 = new ImageIcon(seatSelectUpdate2);
+
+        JButton seatSelect = new JButton(seatSelectUpdateIcon);
+        seatSelect.setBounds(810,540,100,50);
+        seatSelect.setRolloverIcon(seatSelectUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        seatSelect.setBorderPainted(false); // 버튼 테두리 설정해제
+        seatSelect.setFocusPainted(false);
+        seatSelect.setContentAreaFilled(false);
+        seatSelect.setOpaque(false);
+        add(seatSelect);
 
         // 조회 버튼 클릭시
-        lookUp.addMouseListener(new MouseAdapter() {
+        checkup.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 tow.setArr();
                 String st = start.getSelectedItem().toString();
@@ -362,7 +402,7 @@ class ReservationCenter extends JPanel {
         });
 
         // 좌석선택 버튼 클릭시
-        seats.addMouseListener(new MouseAdapter() {
+        seatSelect.addMouseListener(new MouseAdapter() {
             String st = null;
             String ed = null;
             String dt = null;
