@@ -77,12 +77,15 @@ public class BusList extends JFrame {
     private JButton btnClear = null;
     private JTextField tfNum = null;
     private JTextField tfName = null;
+    private JTextField tfName2 = null;
     private JTextField tfAddress = null;
     private JTextField tfphone = null;
     private JLabel lblNum = null;
     private JLabel lblName = null;
+    private JLabel lblName2 = null;
     private JLabel lblAddress = null;
     private JLabel phone = null;
+    private String start = null;
     private String end = null;
     private String Url = "jdbc:mysql://localhost:3306/bus";
     private String user = "hr";
@@ -95,6 +98,7 @@ public class BusList extends JFrame {
 
     public BusList(final String user2) {
         super("운행정보 관리");
+        this.setLocation(470,200);  // 프레임을 위치 설정
         this.user = user2;
         this.setDefaultCloseOperation(0);
         this.preDbTreatment();
@@ -111,14 +115,17 @@ public class BusList extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 int index = BusList.this.table.getSelectedRow();
                 Vector in = (Vector)BusList.this.data.get(index);
-                String start = (String)in.get(0);
+                start = (String)in.get(0);
                 end = (String)in.get(1);
                 BusList.this.tfName.setText(start);
+                BusList.this.tfName2.setText(end);
             }
         });
         JPanel panel = new JPanel();
         this.tfName = new JTextField(10);
+        this.tfName2 = new JTextField(10);
         this.lblName = new JLabel("출발 터미널");
+        this.lblName2 = new JLabel("도착 터미널");
         this.btnAdd = new JButton("추가");
         this.btnDel = new JButton("삭제");
         this.btnUpdate = new JButton("닫기");
@@ -131,8 +138,10 @@ public class BusList extends JFrame {
         });
         this.btnDel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String start = BusList.this.tfName.getText();
+                start = BusList.this.tfName.getText();
+                end = BusList.this.tfName2.getText();
                 System.out.println(start);
+                System.out.println(end);
                 BusList.this.delete(start, end);
                 Vector result = BusList.this.selectAll();
                 BusList.this.model.setDataVector(result, BusList.this.title);
@@ -144,6 +153,7 @@ public class BusList extends JFrame {
             }
         });
         panel.add(this.lblName);
+        panel.add(this.lblName2);
         panel.add(this.tfName);
         panel.add(this.btnAdd);
         panel.add(this.btnDel);

@@ -135,8 +135,8 @@ class AdministratorCenterPanel extends JPanel {
         bus.setOpaque(false);
         add(bus);
         bus.addMouseListener(new MouseAdapter() {
-            public void mouseCliked(MouseEvent e) {
-                new BusList("root");  // 안 뜬다!
+            public void mouseClicked(MouseEvent e) {
+                new BusList("root");
             }
         });
 
