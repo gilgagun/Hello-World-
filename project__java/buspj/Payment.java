@@ -71,7 +71,7 @@ class PaymentCenter extends JPanel {
     int seatNum;
     DB_connect DB = new DB_connect();  // DB 연결
 
-    public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int number, int price, int seatNum) {
+    public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price) {
         setLayout(null);
         Color bgmycor=new Color(166,222,249);
         setBackground(bgmycor);
@@ -304,7 +304,7 @@ class PaymentCenter extends JPanel {
 
 // 결재 페이지 메인
 public class Payment extends JFrame {
-    public Payment(SeatsSelect frame, String id, String start, String end, String date, String[] info, int number, int price, int seatNum) {
+    public Payment(SeatsSelect frame, String id, String start, String end, String date, String[] info, int price) {
         setTitle("버스타슈~");
         setSize(1000,800);
         setResizable(false);
@@ -315,7 +315,7 @@ public class Payment extends JFrame {
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new PaymentNorth(this, frame), BorderLayout.NORTH);
-        mainContainer.add(new PaymentCenter(frame, this, id, start, end, date, info, number, price, seatNum), BorderLayout.CENTER);
+        mainContainer.add(new PaymentCenter(frame, this, id, start, end, date, info, price), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 

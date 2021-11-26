@@ -79,15 +79,17 @@ class SeatsNorth extends JPanel {
 }
 
 // 화면 가운데 부분
-class SeatsCenter extends JPanel implements MouseListener {
+class SeatsCenter extends JPanel {
     String id;
-    int number = 0;   // 인원
-    int price = 0;    // 가격
-    int onePrice;     // 표 하나의 가격
+//    int number = 0;   // 인원
+//    int price = 0;    // 가격
+//    int onePrice;     // 표 하나의 가격
+    static int price;  // static 가격
+    static int onePrice;  // static 표 하나의 가격
+    static JLabel priceInt;  // static 가격을 담을 JLabel
 //    int[][] seatArr = new int[7][5];  // 좌석 번호 배열
-    int seatNum;      // 선택한 좌석 번호
-    JLabel personnel; // 인원을 담을 JLabel
-    JLabel priceInt;   // 가격을 담을 JLabel
+//    int seatNum;      // 선택한 좌석 번호
+//    JLabel personnel; // 인원을 담을 JLabel
     static ImageIcon updateWhiteIcon;
     static ImageIcon updateBlackIcon;
     static JLabel[][] img = new JLabel[7][5];  // 좌석 배열
@@ -96,7 +98,8 @@ class SeatsCenter extends JPanel implements MouseListener {
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
         setLayout(null);
         this.id = id;   // 회원 아이디 정보 저장
-        this.onePrice = Integer.valueOf(info[4]);
+        price = 0;
+        onePrice = Integer.valueOf(info[4]);
         Color bgmycor=new Color(166,222,249);
         setBackground(bgmycor);
         Color mycor=new Color(189,215,238);
@@ -150,9 +153,9 @@ class SeatsCenter extends JPanel implements MouseListener {
         priceTable.add(text, BorderLayout.CENTER);
 
         // 인원 디폴트 세팅
-        personnel = new JLabel("" + number);
-        personnel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
-        text.add(personnel);
+//        personnel = new JLabel("" + number);
+//        personnel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+//        text.add(personnel);
 
         // 가격 디폴트 세팅
         priceInt = new JLabel("   " + this.price);
@@ -189,10 +192,10 @@ class SeatsCenter extends JPanel implements MouseListener {
         // 결제진행 버튼 클릭 이벤트
         payment.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (number == 0) {
+                if (price == 0) {
                     JOptionPane.showMessageDialog(null, "좌석을 선택하세요.");
                 } else {
-                    new Payment(frame, id, start, end, date, info, number, price, seatNum);
+                    new Payment(frame, id, start, end, date, info, price);
                     frame.setVisible(false);
                 }
             }
@@ -241,7 +244,7 @@ class SeatsCenter extends JPanel implements MouseListener {
     }
 
     // 좌석 초기화 메소드
-    public void init_seats(JPanel p) {
+    public static void init_seats(JPanel p) {
         // 아무것도 선택하지 않은 초기 좌석 이미지 생성
         ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
         Image whiteImage = white.getImage();
@@ -250,9 +253,9 @@ class SeatsCenter extends JPanel implements MouseListener {
 
         // 이미지 저장 과정
         JLabel seat;
-        for (int i = 0; i < this.img.length; i++ ) {
-            for (int j = 0; j < this.img[i].length; j++) {
-                if (j == 2 && i != this.img.length - 1) {
+        for (int i = 0; i < img.length; i++ ) {
+            for (int j = 0; j < img[i].length; j++) {
+                if (j == 2 && i != img.length - 1) {
                     continue;
                 } else {
                     // JLabel에 이미지 삽입
@@ -261,8 +264,8 @@ class SeatsCenter extends JPanel implements MouseListener {
                     seat.setHorizontalAlignment(JLabel.CENTER);
 
                     // 2차원 배열에 좌석 이미지 저장 후 화면에 출력
-                    this.img[i][j] = seat;
-                    p.add(this.img[i][j]);
+                    img[i][j] = seat;
+                    p.add(img[i][j]);
 
                     // 좌석번호 부여
 //                    if (j != 3) {
@@ -271,64 +274,102 @@ class SeatsCenter extends JPanel implements MouseListener {
 //                        seatArr[i][j] = 1 + (j - 1);
 //                    }
 
-                    // 이벤트 처리
-                    this.img[i][j].addMouseListener(this);
+                    // 좌석 클릭 이벤트
+                    img[i][j].addMouseListener(new MouseAdapter() {
+                        public void mouseClicked(MouseEvent e) {
+                            JLabel s = (JLabel) e.getSource();
+
+                            if (s.getIcon().equals(updateWhiteIcon)) {
+                                // 검은색 좌석 이미지로 교체
+                                ImageIcon black = new ImageIcon("project__java/buspj/image/black_seats.png");
+                                Image blackImage = black.getImage();
+                                Image updateBlackImg = blackImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+                                updateBlackIcon = new ImageIcon(updateBlackImg);
+
+//                                this.number += 1;  // 인원 수 증가
+//                                this.personnel.setText("" + this.number);
+                                this.price += this.onePrice;  // 가격 증가
+                                priceInt.setText("   " + this.price);
+                                priceInt.setVisible(true);  // 가격 화면에 표현
+
+                                // 새 이미지로 교체
+                                s.setIcon(updateBlackIcon);
+                            } else {
+                                ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
+                                Image whiteImage = white.getImage();
+                                Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+                                updateWhiteIcon = new ImageIcon(updateWhiteImg);
+
+//                                this.number -= 1;   // 인원 수 감소
+//                                this.personnel.setText("" + this.number);
+                                this.price -= this.onePrice;  // 가격 감소
+                                priceInt.setText("   " + this.price);
+
+                                // 가격이 0이라면?
+                                if (this.price == 0) {
+                                    priceInt.setVisible(false);
+                                }
+
+                                s.setIcon(updateWhiteIcon);
+                            }
+                        }
+                    });
                 }
             }
         }
     }
 
     // 좌석 클릭 이벤트 처리
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        JLabel s = (JLabel) e.getSource();
-        
-        if (s.getIcon().equals(updateWhiteIcon)) {
-            // 검은색 좌석 이미지로 교체
-            ImageIcon black = new ImageIcon("project__java/buspj/image/black_seats.png");
-            Image blackImage = black.getImage();
-            Image updateBlackImg = blackImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-            updateBlackIcon = new ImageIcon(updateBlackImg);
-
-            this.number += 1;  // 인원 수 증가
-            this.personnel.setText("" + this.number);
-            this.price += this.onePrice;  // 가격 증가
-            this.priceInt.setText("   " + this.price);
-            this.priceInt.setVisible(true);  // 가격 화면에 표현
-
-            // 새 이미지로 교체
-            s.setIcon(updateBlackIcon);
-        } else {
-            ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
-            Image whiteImage = white.getImage();
-            Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
-            updateWhiteIcon = new ImageIcon(updateWhiteImg);
-
-            this.number -= 1;   // 인원 수 감소
-            this.personnel.setText("" + this.number);
-            this.price -= this.onePrice;  // 가격 감소
-            this.priceInt.setText("   " + this.price);
-
-            // 가격이 0이라면?
-            if (this.price == 0) {
-                this.priceInt.setVisible(false);
-            }
-
-            s.setIcon(updateWhiteIcon);
-        }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
+//    @Override
+//    public void mouseClicked(MouseEvent e) {
+//        JLabel s = (JLabel) e.getSource();
+//
+//        if (s.getIcon().equals(updateWhiteIcon)) {
+//            // 검은색 좌석 이미지로 교체
+//            ImageIcon black = new ImageIcon("project__java/buspj/image/black_seats.png");
+//            Image blackImage = black.getImage();
+//            Image updateBlackImg = blackImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+//            updateBlackIcon = new ImageIcon(updateBlackImg);
+//
+//            this.number += 1;  // 인원 수 증가
+//            this.personnel.setText("" + this.number);
+//            this.price += this.onePrice;  // 가격 증가
+//            this.priceInt.setText("   " + this.price);
+//            this.priceInt.setVisible(true);  // 가격 화면에 표현
+//
+//            // 새 이미지로 교체
+//            s.setIcon(updateBlackIcon);
+//        } else {
+//            ImageIcon white = new ImageIcon("project__java/buspj/image/white_seats.png");
+//            Image whiteImage = white.getImage();
+//            Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+//            updateWhiteIcon = new ImageIcon(updateWhiteImg);
+//
+//            this.number -= 1;   // 인원 수 감소
+//            this.personnel.setText("" + this.number);
+//            this.price -= this.onePrice;  // 가격 감소
+//            this.priceInt.setText("   " + this.price);
+//
+//            // 가격이 0이라면?
+//            if (this.price == 0) {
+//                this.priceInt.setVisible(false);
+//            }
+//
+//            s.setIcon(updateWhiteIcon);
+//        }
+//    }
+//
+//    @Override
+//    public void mousePressed(MouseEvent e) {}
+//
+//    @Override
+//    public void mouseReleased(MouseEvent e) {}
+//
+//    @Override
+//    public void mouseEntered(MouseEvent e) {}
+//
+//    @Override
+//    public void mouseExited(MouseEvent e) {}
 }
 
 // 좌석 선택 클래스 전체적인 구조
