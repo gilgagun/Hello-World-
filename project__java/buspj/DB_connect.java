@@ -247,7 +247,7 @@ public class DB_connect {
     }
 
     // 회원 예매 정보 DB에 저장
-    public void saveUserReservation(String id, String start, String end, String date, String starttime, String company, String class_, int seat, String price) {
+    public void saveUserReservation(String id, String start, String end, String date, String starttime, String company, String class_, String price) {
         Connection conn;
         Statement stmt = null;
         PreparedStatement pstmt = null;
@@ -257,7 +257,7 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql="insert into reservation_user(id,start,end,date,starttime,company,class,seat,price)";
+            String sql="insert into reservation_user(id,start,end,date,starttime,company,class,price)";
             sql += "values (?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
@@ -268,7 +268,6 @@ public class DB_connect {
             String saveStarttime = starttime;
             String saveCompany = company;
             String saveClass = class_;
-            String saveSeat = String.valueOf(seat);
             String savePrice = String.valueOf(price);
 
             pstmt.setString(1, saveId);
@@ -278,8 +277,7 @@ public class DB_connect {
             pstmt.setString(5, saveStarttime);
             pstmt.setString(6, saveCompany);
             pstmt.setString(7, saveClass);
-            pstmt.setString(8, saveSeat);
-            pstmt.setString(9, savePrice);
+            pstmt.setString(8, savePrice);
 
             pstmt.executeUpdate();
             pstmt.close();

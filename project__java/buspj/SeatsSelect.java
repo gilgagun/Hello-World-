@@ -5,23 +5,23 @@ import java.awt.event.*;       // 이벤트 처리에 필요한 기본 클래스
 import javax.swing.*;          // 스윙 컴포넌트 클래스들 경로명
 
 // 선택한 좌석에 관한 클래스
-class SelectSeats {
-    int number;
-    int check;
-
-    public SelectSeats (int number, int check) {
-        this.number = number;
-        this.check = check;
-    }
-
-    public int get_number() {
-        return this.number;
-    }
-
-    public int get_phone() {
-        return this.check;
-    }
-}
+//class SelectSeats {
+//    int number;
+//    int check;
+//
+//    public SelectSeats (int number, int check) {
+//        this.number = number;
+//        this.check = check;
+//    }
+//
+//    public int get_number() {
+//        return this.number;
+//    }
+//
+//    public int get_phone() {
+//        return this.check;
+//    }
+//}
 
 // 뒤로가기 버튼
 class SeatsBack extends JPanel {
@@ -158,7 +158,7 @@ class SeatsCenter extends JPanel {
 //        text.add(personnel);
 
         // 가격 디폴트 세팅
-        priceInt = new JLabel("   " + this.price);
+        priceInt = new JLabel("   " + price);
         priceInt.setFont(new Font("맑은 고딕", Font.BOLD, 16));
         priceInt.setVisible(false);   // 초기에는 숨기고 있음.
         text.add(priceInt);
@@ -288,8 +288,8 @@ class SeatsCenter extends JPanel {
 
 //                                this.number += 1;  // 인원 수 증가
 //                                this.personnel.setText("" + this.number);
-                                this.price += this.onePrice;  // 가격 증가
-                                priceInt.setText("   " + this.price);
+                                price += onePrice;  // 가격 증가
+                                priceInt.setText("   " + price);
                                 priceInt.setVisible(true);  // 가격 화면에 표현
 
                                 // 새 이미지로 교체
@@ -302,11 +302,11 @@ class SeatsCenter extends JPanel {
 
 //                                this.number -= 1;   // 인원 수 감소
 //                                this.personnel.setText("" + this.number);
-                                this.price -= this.onePrice;  // 가격 감소
-                                priceInt.setText("   " + this.price);
+                                price -= onePrice;  // 가격 감소
+                                priceInt.setText("   " + price);
 
                                 // 가격이 0이라면?
-                                if (this.price == 0) {
+                                if (price == 0) {
                                     priceInt.setVisible(false);
                                 }
 

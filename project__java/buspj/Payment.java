@@ -68,7 +68,7 @@ class PaymentCenter extends JPanel {
     String[] info;
     int number;
     int totalPrice;
-    int seatNum;
+//    int seatNum;
     DB_connect DB = new DB_connect();  // DB 연결
 
     public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price) {
@@ -89,7 +89,7 @@ class PaymentCenter extends JPanel {
         this.info = info;   // 표 정보 저장
         this.number = number;  // 인원 정보 저장
         this.totalPrice = price;    // 가격 정보 저장
-        this.seatNum = seatNum;
+//        this.seatNum = seatNum;
 
 
         // 날짜 정보 표시
@@ -126,7 +126,7 @@ class PaymentCenter extends JPanel {
         tT.setBounds(40,290,500,100);
 
         // 테이블 기본 값 생성
-        String[] colName = {"출발시간","회사","등급","선택좌석","요금"}; // 컬럼 네임 설정
+        String[] colName = {"출발시간","회사","등급","요금"}; // 컬럼 네임 설정
         String[][] row = new String[0][5];
         model = new DefaultTableModel(row, colName);
 
@@ -143,7 +143,7 @@ class PaymentCenter extends JPanel {
 
         // 테이블에 넣을 값 생성
         for (int i = 0; i < number; i++) {
-            String[] data = {this.info[0], this.info[1], this.info[2], String.valueOf(this.seatNum), this.info[4]};
+            String[] data = {this.info[0], this.info[1], this.info[2], this.info[4]};
             model.addRow(data);
         }
 
@@ -287,7 +287,7 @@ class PaymentCenter extends JPanel {
         clear.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 // 예매 DB에 저장 후 dispose
-                DB.saveUserReservation(id, start, end, date, info[0], info[1], info[2], seatNum, info[4]);
+                DB.saveUserReservation(id, start, end, date, info[0], info[1], info[2], info[4]);
                 JOptionPane.showMessageDialog(null, "예매에 성공하였습니다.");
                 new Main(id);
                 frame2.dispose();
