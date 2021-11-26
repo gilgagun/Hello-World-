@@ -14,7 +14,7 @@ class AddBus extends JFrame {
     public AddBus() {
         setTitle("추가");
         setLayout(null);
-        setSize(300,200);
+        setSize(600,400);
         setLocationRelativeTo(null);  // 프레임을 화면 정중앙에 뜨도록 설정
         setDefaultCloseOperation(0);
         Container c = getContentPane();
@@ -79,15 +79,29 @@ public class BusList extends JFrame {
     private JTextField tfNum = null;
     private JTextField tfName = null;
     private JTextField tfName2 = null;
-    private JTextField tfAddress = null;
-    private JTextField tfphone = null;
+    private JTextField stt = null;
+    private JTextField cmp = null;
+    private JTextField bcs = null;
+    private JTextField bseat = null;
+    private JTextField bprice = null;
+    private JTextField bdate = null;
     private JLabel lblNum = null;
     private JLabel lblName = null;
     private JLabel lblName2 = null;
-    private JLabel lblAddress = null;
-    private JLabel phone = null;
+    private JLabel jstt = null;
+    private JLabel jcmp = null;
+    private JLabel jbcs = null;
+    private JLabel jbseat = null;
+    private JLabel jbprice = null;
+    private JLabel jbdate = null;
     private String start = null;
     private String end = null;
+    private String starttime = null;
+    private String company = null;
+    private String db_class = null;
+    private String seats = null;
+    private String price = null;
+    private String date = null;
     private String Url = "jdbc:mysql://localhost:3306/bus";
     private String user = "hr";
     private String password = "hr";
@@ -107,6 +121,12 @@ public class BusList extends JFrame {
         this.title = new Vector();
         this.title.add("출발 터미널");
         this.title.add("도착 터미널");
+        this.title.add("출발 시간");
+        this.title.add("회사");
+        this.title.add("등급");
+        this.title.add("좌석 수");
+        this.title.add("가격");
+        this.title.add("날짜");
         this.model = new DefaultTableModel();
         result = this.selectAll();
         this.model.setDataVector(result, this.title);
@@ -118,31 +138,74 @@ public class BusList extends JFrame {
                 Vector in = (Vector)BusList.this.data.get(index);
                 start = (String)in.get(0);
                 end = (String)in.get(1);
+                starttime = (String)in.get(2);
+                company = (String)in.get(3);
+                db_class = (String)in.get(4);
+                seats = (String)in.get(5);
+                price = (String)in.get(6);
+                date = (String)in.get(7);
                 BusList.this.tfName.setText(start);
                 BusList.this.tfName2.setText(end);
+                BusList.this.stt.setText(starttime);
+                BusList.this.cmp.setText(company);
+                BusList.this.bcs.setText(db_class);
+                BusList.this.bseat.setText(seats);
+                BusList.this.bprice.setText(price);
+                BusList.this.bdate.setText(date);
             }
         });
         JPanel panel = new JPanel();
-        this.tfName = new JTextField(10);
-        this.tfName2 = new JTextField(10);
+        this.tfName = new JTextField(5);
+        this.tfName2 = new JTextField(5);
+        this.stt = new JTextField(5);
+        this.cmp = new JTextField(5);
+        this.bcs = new JTextField(5);
+        this.bseat = new JTextField(5);
+        this.bprice = new JTextField(5);
+        this.bdate = new JTextField(10);
+
+
         this.lblName = new JLabel("출발 터미널");
         this.lblName2 = new JLabel("도착 터미널");
+        this.jstt = new JLabel("출발 시간");
+        this.jcmp = new JLabel("회사");
+        this.jbcs = new JLabel("등급");
+        this.jbseat = new JLabel("좌석 수");
+        this.jbprice = new JLabel("가격");
+        this.jbdate = new JLabel("날짜");
+
         this.btnAdd = new JButton("추가");
         this.btnDel = new JButton("삭제");
         this.btnUpdate = new JButton("닫기");
+        /*
         this.btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new AddBus();
                 result = BusList.this.selectAll();
                 BusList.this.model.setDataVector(result, BusList.this.title);
             }
+        });*/
+        this.btnAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String start = BusList.this.tfName.getText();
+                String end = BusList.this.tfName2.getText();
+                String starttime = BusList.this.stt.getText();
+                String company = BusList.this.cmp.getText();
+                String db_class = BusList.this.bcs.getText();
+                String seats = BusList.this.bseat.getText();
+                String price = BusList.this.bprice.getText();
+                String date = BusList.this.bdate.getText();
+                BusList.this.insert(start, end, starttime, company, db_class, seats, price, date);
+                Vector result = BusList.this.selectAll();
+                BusList.this.model.setDataVector(result, BusList.this.title);
+
+
+            }
         });
         this.btnDel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 start = BusList.this.tfName.getText();
                 end = BusList.this.tfName2.getText();
-                System.out.println(start);
-                System.out.println(end);
                 BusList.this.delete(start, end);
                 Vector result = BusList.this.selectAll();
                 BusList.this.model.setDataVector(result, BusList.this.title);
@@ -157,6 +220,18 @@ public class BusList extends JFrame {
         panel.add(this.tfName);
         panel.add(this.lblName2);
         panel.add(this.tfName2);
+        panel.add(this.jstt);
+        panel.add(this.stt);
+        panel.add(this.jcmp);
+        panel.add(this.cmp);
+        panel.add(this.jbcs);
+        panel.add(this.bcs);
+        panel.add(this.jbseat);
+        panel.add(this.bseat);
+        panel.add(this.jbprice);
+        panel.add(this.bprice);
+        panel.add(this.jbdate);
+        panel.add(this.bdate);
         panel.add(this.btnAdd);
         panel.add(this.btnDel);
         panel.add(this.btnUpdate);
@@ -176,7 +251,7 @@ public class BusList extends JFrame {
 
             }
         });
-        this.setSize(600, 400);
+        this.setSize(1200, 600);
         this.setVisible(true);
     }
 
@@ -184,16 +259,29 @@ public class BusList extends JFrame {
         this.data.clear();
 
         try {
-            String sql = "select distinct start,end from bus_table";
-            System.out.println(sql);
+            String sql = "select * from bus_table";
             ResultSet rs = this.stmt.executeQuery(sql);
 
             while(rs.next()) {
                 Vector in = new Vector();
                 String start = rs.getString(1);
                 String end = rs.getString(2);
+                String starttime = rs.getString(3);
+                String company = rs.getString(4);
+                String db_class = rs.getString(5);
+                String seats = rs.getString(6);
+                String price = rs.getString(7);
+                String date = rs.getString(8);
+
                 in.add(start);
                 in.add(end);
+                in.add(starttime);
+                in.add(company);
+                in.add(db_class);
+                in.add(seats);
+                in.add(price);
+                in.add(date);
+
                 this.data.add(in);
             }
         } catch (Exception var6) {
@@ -210,7 +298,24 @@ public class BusList extends JFrame {
             var3.printStackTrace();
         }
     }
+    private void insert(String start, String end, String starttime, String company, String db_class, String seats, String price,  String date) {
+        try {
 
+            this.pstmtAdd = this.conn.prepareStatement("insert into bus_table values(?,?,?,?,?,?,?,?)");
+            this.pstmtAdd.setString(1, start);
+            this.pstmtAdd.setString(2, end);
+            this.pstmtAdd.setString(3, starttime);
+            this.pstmtAdd.setString(4, company);
+            this.pstmtAdd.setString(5, db_class);
+            this.pstmtAdd.setString(6, seats);
+            this.pstmtAdd.setString(7, price);
+            this.pstmtAdd.setString(8, date);
+            this.pstmtAdd.executeUpdate();
+        } catch (Exception var6) {
+            var6.printStackTrace();
+        }
+
+    }
     private void preDbTreatment() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
