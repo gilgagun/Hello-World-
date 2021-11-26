@@ -127,18 +127,19 @@ class MyCenterPanel extends JPanel {
                 Image egg = easteregg_img.getScaledInstance(500,500,Image.SCALE_DEFAULT);
                 ImageIcon eggimg = new ImageIcon(egg);
                 Frame newf = new Frame();
+                newf.setLayout(null);
                 JLabel ac = new JLabel(eggimg);
-                ac.setSize(50,50);
-                newf.add(ac);
-                /*
+                ac.setSize(500,500);
                 JButton quit = new JButton("닫기");
+                quit.setSize(80,80);
+                newf.add(quit);
+                newf.add(ac);
                 quit.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        newf.setVisible(false);
+                        newf.dispose();
                     }
                 });
-                newf.add(quit);*/
                 newf.setSize(500,500);
                 newf.setVisible(true);
             }
@@ -268,4 +269,7 @@ public class MyPage extends JFrame {
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        new MyPage("123");
+    }
 }
