@@ -25,9 +25,24 @@ class AdministratorLoginAndSignup extends JPanel {
 
         setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 5));
 
-        JButton logoutButton = new JButton("로그아웃");
-        logoutButton.setPreferredSize(new Dimension(120, 50));
-        logoutButton.setFont(new Font("굴림", Font.BOLD, 20));
+
+        ImageIcon logout = new ImageIcon("project__java/buspj/image/reout.png");
+        Image relogout = logout.getImage();
+        Image reUpdate1 = relogout.getScaledInstance(60,50, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon2 = new ImageIcon(reUpdate1);
+
+        ImageIcon logout2 = new ImageIcon("project__java/buspj/image/reout1.png");
+        Image relogout2 = logout2.getImage();
+        Image reUpdate12 = relogout2.getScaledInstance(60,50, Image.SCALE_SMOOTH);
+        ImageIcon reUpdateIcon22 = new ImageIcon(reUpdate12);
+        JButton logoutButton = new JButton(reUpdateIcon2);
+        //logoutButton.setPreferredSize(new Dimension(120, 50));
+        //.setFont(new Font("굴림", Font.BOLD, 20));
+        logoutButton.setRolloverIcon(reUpdateIcon22);
+        logoutButton.setBorderPainted(false);
+        logoutButton.setFocusPainted(false);
+        logoutButton.setContentAreaFilled(false);
+        logoutButton.setOpaque(false);
         add(logoutButton);
 
         // 로그아웃 버튼 클릭 시 이벤트
