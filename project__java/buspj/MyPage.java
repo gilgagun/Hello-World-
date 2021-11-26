@@ -268,8 +268,4 @@ public class MyPage extends JFrame {
 
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        new MyPage("123");
-    }
 }
