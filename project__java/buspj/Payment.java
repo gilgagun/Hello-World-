@@ -127,7 +127,7 @@ class PaymentCenter extends JPanel {
 
         // 테이블 기본 값 생성
         String[] colName = {"출발시간","회사","등급","요금"}; // 컬럼 네임 설정
-        String[][] row = new String[0][5];
+        String[][] row = new String[0][4];
         model = new DefaultTableModel(row, colName);
 
         // 테이블 생성
@@ -142,10 +142,8 @@ class PaymentCenter extends JPanel {
         add(tT);
 
         // 테이블에 넣을 값 생성
-        for (int i = 0; i < number; i++) {
-            String[] data = {this.info[0], this.info[1], this.info[2], this.info[4]};
-            model.addRow(data);
-        }
+        String[] data = {this.info[0], this.info[1], this.info[2], this.info[4]};
+        model.addRow(data);
 
         // 총 결재금액 글자
         JLabel totalText = new JLabel("총 결제금액");
