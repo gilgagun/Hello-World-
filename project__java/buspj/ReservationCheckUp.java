@@ -91,6 +91,9 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
             public void mouseClicked(MouseEvent e) {
                 int answer = JOptionPane.showConfirmDialog(null, "취소 하시겠습니까?","예매취소",JOptionPane.YES_NO_OPTION);
                 if (answer == JOptionPane.YES_OPTION) {
+                    int point = DB.mileage(id);
+                    point -= 10;
+                    DB.set_mileage(id, point);
                     DB.delete_userReservation(id);
                     for (int i = 0; i < model.getRowCount(); i++) {
                         model.removeRow(i);

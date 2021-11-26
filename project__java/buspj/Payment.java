@@ -349,7 +349,10 @@ class PaymentCenter extends JPanel {
         clear.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 // 예매 DB에 저장 후 dispose
-                DB.saveUserReservation(id, start, end, date, info[0], info[1], info[2], info[4]);
+                DB.saveUserReservation(id, start, end, date, info);
+                int point = DB.mileage(id);
+                point += 10;
+                DB.set_mileage(id, point);
                 JOptionPane.showMessageDialog(null, "예매에 성공하였습니다.");
                 new Main(id);
                 frame2.dispose();

@@ -13,12 +13,15 @@ class Member{ //회원 가입 db연결 클래스
     String email;
     String name;
     String phone;
-    public Member(String id, String pw, String email, String name, String phone){
+    int point;
+    public Member() {}
+    public Member(String id, String pw, String email, String name, String phone, int point){
         this.id=id;
         this.pw=pw;
         this.email=email;
         this.name=name;
         this.phone=phone;
+        this.point = point;
     }
     public String get_id(){ return id; }
     public String get_pw(){
@@ -33,6 +36,8 @@ class Member{ //회원 가입 db연결 클래스
     public String get_phone(){
         return phone;
     }
+    public int get_point() { return point; }
+    public void set_point(int point) { this.point = point; }
 }
 // 회원 가입 인터페이스
 public class join_interface extends JFrame implements ActionListener {
@@ -124,7 +129,8 @@ public class join_interface extends JFrame implements ActionListener {
         String email = emailt.getText();
         String phone = phonet.getText();
         String name = namet.getText();
-        Member new_member = new Member(id,pw,email,name,phone);
+        int point = 0;
+        Member new_member = new Member(id,pw,email,name,phone,point);
         DB_connect DB = new DB_connect(); // DB 클래스 불러오기
         //등록 이벤트 처리
         if (b.getText().equals("등록"))

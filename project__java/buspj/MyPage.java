@@ -158,14 +158,14 @@ class MyCenterPanel extends JPanel {
         add(image2);
 
         // 마일리지 내역 삽입
-        String usermileage=DB.mileage(id); // 마일리지 받아오기
+        int usermileage=DB.mileage(id); // 마일리지 받아오기
         JLabel mileage = new JLabel(" 마일리지 :");
         mileage.setBounds(80,210,200,100);
         mileage.setHorizontalAlignment(JLabel.CENTER);
         mileage.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         add(mileage);
         // 마일리지 칸
-        JLabel mileages = new JLabel(usermileage);
+        JLabel mileages = new JLabel("" + usermileage);
         mileages.setBounds(280,235,100,50);
         mileages.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         add(mileages);
