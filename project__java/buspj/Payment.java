@@ -7,6 +7,20 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
+import java.util.ArrayList;
+
+// 카드 정보 클래스
+class Card {
+    ArrayList<String> bank = new ArrayList<String>();
+    ArrayList<String> cardNum = new ArrayList<String>();
+    ArrayList<String> pw = new ArrayList<String>();
+
+    public void insertCard(String bank, String cardNum, String pw) {
+        this.bank.add(bank);
+        this.cardNum.add(cardNum);
+        this.pw.add(pw);
+    }
+}
 
 // 결재 페이지 뒤로가기 버튼
 class PaymentBack extends JPanel {
@@ -69,6 +83,8 @@ class PaymentCenter extends JPanel {
     int number;
     int totalPrice;
 //    int seatNum;
+    JComboBox<String> myCard = new JComboBox<String>();  // 카드 선택 콤보박스
+    Card ca;
     DB_connect DB = new DB_connect();  // DB 연결
 
     public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price) {
@@ -166,89 +182,137 @@ class PaymentCenter extends JPanel {
 
         // 카드 선택 글자
         JLabel cardSelectText = new JLabel("카드선택");
-        cardSelectText.setBounds(580,60,100,100);
+        cardSelectText.setBounds(580,150,100,100);
         cardSelectText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(cardSelectText);
 
         // 카드 선택 콤보박스
-        JComboBox<String> myCard = new JComboBox<String>();
         myCard.setPreferredSize(new Dimension(320,30));
-        myCard.setBounds(580, 135,320,30);
+        myCard.setBounds(580, 225,320,30);
+        // 카드 선택 콤보박스에 카드 은행명 삽입
+        ca = DB.load_card(id);
+        myCard.addItem("없음");  // 디폴트
+        for (int i=0; i<ca.bank.size(); i++){
+            myCard.addItem(ca.bank.get(i));
+        }
         add(myCard);
 
         // 카드 번호 글자
         JLabel cardNumberText = new JLabel("카드번호");
-        cardNumberText.setBounds(580,150,100,100);
+        cardNumberText.setBounds(580,240,100,100);
         cardNumberText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(cardNumberText);
 
         // 카드 번호 텍스트 필드
         JTextField cardNumber1 = new JTextField();
-        cardNumber1.setBounds(580,225,50,30);
+        cardNumber1.setBounds(580,315,50,30);
         add(cardNumber1);
 
         JLabel slash1 = new JLabel("ㅡ");
-        slash1.setBounds(625,230,45,15);
+        slash1.setBounds(625,320,45,15);
         slash1.setHorizontalAlignment(JLabel.CENTER);
         slash1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(slash1);
 
         JTextField cardNumber2 = new JTextField();
-        cardNumber2.setBounds(670,225,50,30);
+        cardNumber2.setBounds(670,315,50,30);
         add(cardNumber2);
 
         JLabel slash2 = new JLabel("ㅡ");
-        slash2.setBounds(715,230,45,15);
+        slash2.setBounds(715,320,45,15);
         slash2.setHorizontalAlignment(JLabel.CENTER);
         slash2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(slash2);
 
         JTextField cardNumber3 = new JTextField();
-        cardNumber3.setBounds(760,225,50,30);
+        cardNumber3.setBounds(760,315,50,30);
         add(cardNumber3);
 
         JLabel slash3 = new JLabel("ㅡ");
-        slash3.setBounds(805,230,45,15);
+        slash3.setBounds(805,320,45,15);
         slash3.setHorizontalAlignment(JLabel.CENTER);
         slash3.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(slash3);
 
         JTextField cardNumber4 = new JTextField();
-        cardNumber4.setBounds(850,225,50,30);
+        cardNumber4.setBounds(850,315,50,30);
         add(cardNumber4);
 
         // 유효기간 월 글자
-        JLabel monthText = new JLabel("유효기간 월(MONTH)");
-        monthText.setBounds(580,240,200,100);
-        monthText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-        add(monthText);
-
-        // 유효기간 월 텍스트 필드
-        JTextField month = new JTextField();
-        month.setBounds(580,315,200,30);
-        add(month);
-
-        // 유효기간 년 글자
-        JLabel yearText = new JLabel("유효기간 년(YEAR)");
-        yearText.setBounds(580,330,200,100);
-        yearText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-        add(yearText);
-
-        // 유효기간 년 텍스트 필드
-        JTextField year = new JTextField();
-        year.setBounds(580,405,200,30);
-        add(year);
+//        JLabel monthText = new JLabel("유효기간 월(MONTH)");
+//        monthText.setBounds(580,240,200,100);
+//        monthText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+//        add(monthText);
+//
+//        // 유효기간 월 텍스트 필드
+//        JTextField month = new JTextField();
+//        month.setBounds(580,315,200,30);
+//        add(month);
+//
+//        // 유효기간 년 글자
+//        JLabel yearText = new JLabel("유효기간 년(YEAR)");
+//        yearText.setBounds(580,330,200,100);
+//        yearText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+//        add(yearText);
+//
+//        // 유효기간 년 텍스트 필드
+//        JTextField year = new JTextField();
+//        year.setBounds(580,405,200,30);
+//        add(year);
 
         // 비밀번호 글자
         JLabel passwordText = new JLabel("비밀번호 앞 2자리");
-        passwordText.setBounds(580,420,200,100);
+        passwordText.setBounds(580,330,200,100);
         passwordText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(passwordText);
 
         // 비밀번호 입력창
         JPasswordField password = new JPasswordField();
-        password.setBounds(580,495,200,30);
+        password.setBounds(580,405,200,30);
         add(password);
+
+        // 나의 카드 선택하면 자동으로 나타나는 카드 번호 설정
+        String[] numList = null;
+        if (myCard.getSelectedItem().toString() != "없음") {
+            String bank1 = myCard.getSelectedItem().toString();   // 해당 카드 은행
+            int index = ca.bank.indexOf(bank1);             // 해당 카드 은행의 인덱스 추출
+            String num = ca.cardNum.get(index).toString();             // 해당 카드 은행의 카드 번호 추출
+            numList = num.split("-");                  // 카드 번호 나눠 배열에 저장
+
+            cardNumber1.setText(numList[0]);
+            cardNumber2.setText(numList[1]);
+            cardNumber3.setText(numList[2]);
+            cardNumber4.setText(numList[3]);
+        }
+
+//        // 첫 번째 카드 번호 자동 삽입(내 카드 누른 경우)
+//        if (myCard.getSelectedItem().toString() != "없음") {
+//
+//        }
+
+        // 두 번째 카드 번호 자동 삽입(내 카드 누른 경우)
+//        if (myCard.getSelectedItem().toString() != "없음") {
+//            cardNumber2.setText(numList[1]);
+//        }
+
+        // 세 번째 카드 번호 자동 삽입(내 카드 누른 경우)
+//        if (myCard.getSelectedItem().toString() != "없음") {
+//            cardNumber1.setText(numList[2]);
+//        }
+
+        // 네 번째 카드 번호 자동 삽입(내 카드 누른 경우)
+//        if (myCard.getSelectedItem().toString() != "없음") {
+//            cardNumber1.setText(numList[3]);
+//        }
+
+        // "없음" 선택 시 리셋
+        if (myCard.getSelectedItem().toString().equals("없음")) {
+            cardNumber1.setText("");
+            cardNumber2.setText("");
+            cardNumber3.setText("");
+            cardNumber4.setText("");
+            password.setText("");
+        }
 
 //        // 결제완료 버튼
 //        JButton clear = new JButton("결제완료");

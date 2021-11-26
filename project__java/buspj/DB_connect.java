@@ -396,4 +396,32 @@ public class DB_connect {
 //    public int seat_check() {
 //
 //    }
+
+    // 나의 카드 불러오기
+    public Card load_card(String id) {
+        Connection conn;
+        ResultSet rs = null;
+        Card c = new Card();
+        String SQL = "SELECT bank,cardnum,pw FROM member where id = '" + id + "'";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery(SQL);
+
+            while (rs.next()) {
+                String bank = rs.getString(1);
+                String cardNum = rs.getString(2);
+                String pw = rs.getString(3);
+
+                c.insertCard(bank, cardNum, pw);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return c;
+    }
 }
