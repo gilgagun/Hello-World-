@@ -15,17 +15,15 @@ class CheckUp {
     ArrayList<String> starttime = new ArrayList<String>();
     ArrayList<String> company = new ArrayList<String>();
     ArrayList<String> class_ = new ArrayList<String>();
-    ArrayList<String> seat = new ArrayList<String>();
     ArrayList<String> price = new ArrayList<String>();
 
-    public void insertData(String date, String start, String end, String starttime, String company, String class_, String seat, String price) {
+    public void insertData(String date, String start, String end, String starttime, String company, String class_, String price) {
         this.date.add(date);
         this.start.add(start);
         this.end.add(end);
         this.starttime.add(starttime);
         this.company.add(company);
         this.class_.add(class_);
-        this.seat.add(seat);
         this.price.add(price);
     }
 }
@@ -40,7 +38,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
     JTable table;   // 표 내용을 담을 테이블
     JScrollPane scroll;
     DefaultTableModel model;   // 열 이름과 데이터 행을 연결할 model
-    String[] colName = {"출발날짜", "출발 터미널", "도착 터미널", "출발 시간", "회사", "등급", "선택좌석", "가격"};   // 테이블 열 이름
+    String[] colName = {"출발날짜", "출발 터미널", "도착 터미널", "출발 시간", "회사", "등급", "가격"};   // 테이블 열 이름
     CheckUp c;
     DB_connect DB = new DB_connect();
 
@@ -71,7 +69,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
 
         c = DB.loadUserReservation(id);   // 데이터 저장
         for (int i = 0; i < c.date.size(); i++) {
-            String[] data = {c.date.get(i), c.start.get(i), c.end.get(i), c.starttime.get(i), c.company.get(i), c.class_.get(i), c.seat.get(i), c.price.get(i)};
+            String[] data = {c.date.get(i), c.start.get(i), c.end.get(i), c.starttime.get(i), c.company.get(i), c.class_.get(i), c.price.get(i)};
             model.addRow(data);
         }
 
@@ -99,7 +97,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
                     }
                     c = DB.loadUserReservation(id);
                     for (int i = 0; i < c.date.size(); i++) {
-                        String[] data = {c.date.get(i), c.start.get(i), c.end.get(i), c.starttime.get(i), c.company.get(i), c.class_.get(i), c.seat.get(i), c.price.get(i)};
+                        String[] data = {c.date.get(i), c.start.get(i), c.end.get(i), c.starttime.get(i), c.company.get(i), c.class_.get(i),c.price.get(i)};
                         model.addRow(data);
                     }
                 }
@@ -112,7 +110,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
     // 테이블에서 행 선택 시 이벤트 처리
     @Override
     public void mouseClicked(MouseEvent e) {
-        String[] info = new String[8];     // 추출한 정보를 담을 배열
+        String[] info = new String[7];     // 추출한 정보를 담을 배열
         int row = table.getSelectedRow();  // 테이블에서 선택한 행 인덱스 가져오기
 
         // 선택한 행에 대한 전체 데이터 추출

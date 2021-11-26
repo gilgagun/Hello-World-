@@ -293,7 +293,7 @@ public class DB_connect {
         Connection conn;
         ResultSet rs = null;
         CheckUp c = new CheckUp();
-        String SQL = "SELECT date,start,end,starttime,company,class,seat,price FROM reservation_user where id = '" + id + "'";
+        String SQL = "SELECT date,start,end,starttime,company,class,price FROM reservation_user where id = '" + id + "'";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn =
@@ -310,10 +310,9 @@ public class DB_connect {
                 String starttime = rs.getString(4);
                 String company = rs.getString(5);
                 String class_ = rs.getString(6);
-                String seat = rs.getString(7);
-                String price = rs.getString(8);
+                String price = rs.getString(7);
 
-                c.insertData(date,start,end,starttime, company, class_, seat, price);
+                c.insertData(date,start,end,starttime, company, class_, price);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -393,4 +392,8 @@ public class DB_connect {
         return usermileage;
     }
 
+    // 좌석 클릭 시 불러올 DB
+//    public int seat_check() {
+//
+//    }
 }
