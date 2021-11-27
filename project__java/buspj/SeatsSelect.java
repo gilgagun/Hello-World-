@@ -85,12 +85,15 @@ class SeatsCenter extends JPanel implements MouseListener {
     int price = 0;    // 가격
     int onePrice;     // 표 하나의 가격
 //    int[][] seatArr = new int[7][5];  // 좌석 번호 배열
-    int seatNum;      // 선택한 좌석 번호
 //    JLabel personnel; // 인원을 담을 JLabel
-    JLabel priceInt;   // 가격을 담을 JLabel
+    JLabel seatInt;   // 좌석번호를 담을 JLabel
     ImageIcon updateWhiteIcon;
     static JLabel[][] img = new JLabel[7][5];  // 좌석 배열
-    static JLabel[] img2 = new JLabel[29];    // 좌석 정보를 담을 1차원 배열
+    static int seatNum[][] = new int[7][5];      // 선택한 좌석 번호
+//    static JLabel[] img2 = new JLabel[29];    // 좌석 정보를 담을 1차원 배열
+    int row = 0;
+    int col = 0;
+    DB_connect DB = new DB_connect();  // DB
 
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
         setLayout(null);
@@ -119,34 +122,30 @@ class SeatsCenter extends JPanel implements MouseListener {
         this.init_seats(seatsTable);
 
         // 가격 테이블 생성
-        JPanel priceTable = new JPanel();
-        priceTable.setBackground(Color.WHITE);
-        priceTable.setLayout(new BorderLayout());
-        priceTable.setBounds(775, 430,150,70);
-        add(priceTable);
+        JPanel seatTable = new JPanel();
+        seatTable.setBackground(Color.WHITE);
+        seatTable.setLayout(new BorderLayout());
+        seatTable.setBounds(775, 430,100,70);
+        add(seatTable);
 
         // 가격 테이블 열 이름 공간
         JPanel column = new JPanel();
         column.setBackground(Color.LIGHT_GRAY);
         column.setLayout(new FlowLayout(FlowLayout.LEFT, 20,6));
-        column.setSize(150,35);
-        priceTable.add(column, BorderLayout.NORTH);
+        column.setSize(100,35);
+        seatTable.add(column, BorderLayout.NORTH);
 
-        // 가격 테이블 열 이름 글자
-        JLabel colName = new JLabel("인원");
+        // 좌석 열 이름 글자
+        JLabel colName = new JLabel("좌석");
         colName.setFont(new Font("맑은 고딕", Font.BOLD, 15));
         column.add(colName);
-
-        JLabel colName2 = new JLabel("    요금");
-        colName2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-        column.add(colName2);
 
         // 인원, 가격 패널
         JPanel text = new JPanel();
         text.setBackground(Color.WHITE);
-        text.setLayout(new FlowLayout(FlowLayout.LEFT, 30,6));
-        text.setSize(150,35);
-        priceTable.add(text, BorderLayout.CENTER);
+        text.setLayout(new FlowLayout(FlowLayout.LEFT, 26,6));
+        text.setSize(100,35);
+        seatTable.add(text, BorderLayout.CENTER);
 
         // 인원 디폴트 세팅
 //        personnel = new JLabel("" + number);
@@ -154,10 +153,10 @@ class SeatsCenter extends JPanel implements MouseListener {
 //        text.add(personnel);
 
         // 가격 디폴트 세팅
-        priceInt = new JLabel("   " + this.price);
-        priceInt.setFont(new Font("맑은 고딕", Font.BOLD, 16));
-        priceInt.setVisible(false);   // 초기에는 숨기고 있음.
-        text.add(priceInt);
+        seatInt = new JLabel("");
+        seatInt.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        seatInt.setVisible(false);   // 초기에는 숨기고 있음.
+        text.add(seatInt);
 
 //        // 결제진행 버튼 생성
 //        JButton payment = new JButton("결제진행");
@@ -247,6 +246,24 @@ class SeatsCenter extends JPanel implements MouseListener {
         Image updateWhiteImg = whiteImage.getScaledInstance(60,60,Image.SCALE_SMOOTH);
         updateWhiteIcon = new ImageIcon(updateWhiteImg);
 
+        // 좌석 번호 설정
+        for (int i = 0; i < seatNum.length; i++) {
+            for (int j = 0; j < seatNum[i].length; j++) {
+                if (j == 2 && i != 6) {
+                    continue;
+                }
+                else if (j >= 3) {
+                    if (i == 6) {
+                        seatNum[i][j] = i*10 + j+1;
+                    } else {
+                        seatNum[i][j] = i*10 + j;
+                    }
+                } else {
+                    seatNum[i][j] = i*10 + j+1;
+                }
+            }
+        }
+
         // 이미지 저장 과정
         JLabel seat;
         for (int i = 0; i < img.length; i++ ) {
@@ -270,6 +287,8 @@ class SeatsCenter extends JPanel implements MouseListener {
 //                        seatArr[i][j] = 1 + (j - 1);
 //                    }
 
+                    row = i;
+                    col = j;
                     img[i][j].addMouseListener(this);
                 }
             }
@@ -291,8 +310,11 @@ class SeatsCenter extends JPanel implements MouseListener {
 //            this.number += 1;  // 인원 수 증가
 //            this.personnel.setText("" + this.number);
             this.price += this.onePrice;  // 가격 증가
-            this.priceInt.setText("   " + this.price);
-            this.priceInt.setVisible(true);  // 가격 화면에 표현
+            this.seatInt.setText("" + this.seatNum[row][col]);
+            this.seatInt.setVisible(true);  // 가격 화면에 표현
+
+            int check = 1;   // 선택되었다는 표시
+            DB.seat_check(seatNum[row][col], check);
 
             // 새 이미지로 교체
             s.setIcon(updateBlackIcon);
@@ -305,12 +327,11 @@ class SeatsCenter extends JPanel implements MouseListener {
 //            this.number -= 1;   // 인원 수 감소
 //            this.personnel.setText("" + this.number);
             this.price -= this.onePrice;  // 가격 감소
-            this.priceInt.setText("   " + this.price);
+//            this.seatInt.setText("" + this.seatNum[row][col]);
+            this.seatInt.setVisible(false);
 
-            // 가격이 0이라면?
-            if (this.price == 0) {
-                this.priceInt.setVisible(false);
-            }
+            int check = 0;   // 선택해제되었다는 표시
+            DB.seat_check(seatNum[row][col], check);
 
             s.setIcon(updateWhiteIcon);
         }

@@ -456,4 +456,27 @@ public class DB_connect {
         }
         return c;
     }
+
+    // 좌석 DB의 check 세팅
+    public void seat_check(int number, int check) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql="update seats set check=" + check + " where number=" + number;
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+    }
 }
