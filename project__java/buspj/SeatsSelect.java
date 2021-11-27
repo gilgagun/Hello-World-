@@ -128,7 +128,7 @@ class SeatsCenter extends JPanel implements MouseListener {
         JPanel seatTable = new JPanel();
         seatTable.setBackground(Color.WHITE);
         seatTable.setLayout(new BorderLayout());
-        seatTable.setBounds(775, 430,100,70);
+        seatTable.setBounds(775, 430,80,70);
         add(seatTable);
 
         // 가격 테이블 열 이름 공간
@@ -146,7 +146,7 @@ class SeatsCenter extends JPanel implements MouseListener {
         // 인원, 가격 패널
         JPanel text = new JPanel();
         text.setBackground(Color.WHITE);
-        text.setLayout(new FlowLayout(FlowLayout.LEFT, 26,6));
+        text.setLayout(new FlowLayout(FlowLayout.LEFT, 28,6));
         text.setSize(100,35);
         seatTable.add(text, BorderLayout.CENTER);
 
