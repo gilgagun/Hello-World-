@@ -260,7 +260,7 @@ public class DB_connect {
             System.out.println("DB 연결 완료");
 
             String sql="insert into reservation_user(id,start,end,date,starttime,company,class,price)";
-            sql += "values (?,?,?,?,?,?,?,?,?)";
+            sql += "values (?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
             String saveId = id;
