@@ -375,6 +375,8 @@ class PaymentCenter extends JPanel implements ItemListener {
         // 결재완료 버튼 클릭 시
         clear.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                String card = myCard.getSelectedItem().toString();
+                String pass = password.getText();
                 if (password.getText().equals(pw)) {
                     // 예매 DB에 저장 후 dispose
                     DB.saveUserReservation(id, start, end, date, info);
@@ -382,6 +384,7 @@ class PaymentCenter extends JPanel implements ItemListener {
                     point += 10;
                     DB.set_mileage(id, point);
                     JOptionPane.showMessageDialog(null, "예매에 성공하였습니다.");
+
                     new Main(id);
                     frame2.dispose();
                 } else {

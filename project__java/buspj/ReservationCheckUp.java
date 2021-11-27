@@ -131,8 +131,8 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
                     int point = DB.mileage(id);
                     point -= 10;
                     DB.set_mileage(id, point);
-                    DB.delete_userReservation(id, arr);
-                    for (int i = 0; i <= model.getRowCount(); i++) {
+                    DB.delete_userReservation(id);
+                    for (int i = 0; i < model.getRowCount(); i++) {
                         model.removeRow(i);
                     }
                     c = DB.loadUserReservation(id);

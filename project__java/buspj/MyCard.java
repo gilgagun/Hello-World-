@@ -202,7 +202,7 @@ public class MyCard extends JFrame {
         this.data.clear();
 
         try {
-            String sql = "select bank, cardnum from member  where id=" + this.user;
+            String sql = "select bank, cardnum from mycard  where id=" + this.user;
             System.out.println(sql);
             ResultSet rs = this.stmt.executeQuery(sql);
 
@@ -224,7 +224,7 @@ public class MyCard extends JFrame {
     private void insert(String user, String bank, String cardnum, String pw) {
         try {
             System.out.println(user + bank + cardnum + pw);
-            this.pstmtAdd = this.conn.prepareStatement("insert into member values(?,?,?,?)");
+            this.pstmtAdd = this.conn.prepareStatement("insert into mycard values(?,?,?,?)");
             this.pstmtAdd.setString(1, user);
             this.pstmtAdd.setString(2, bank);
             this.pstmtAdd.setString(3, cardnum);
@@ -238,7 +238,7 @@ public class MyCard extends JFrame {
 
     private void delete(String card) {
         try {
-            this.pstmtDel = this.conn.prepareStatement("delete from member where cardnum = ?");
+            this.pstmtDel = this.conn.prepareStatement("delete from mycard where cardnum = ?");
             this.pstmtDel.setString(1, card);
             this.pstmtDel.executeUpdate();
         } catch (Exception var3) {

@@ -323,17 +323,10 @@ public class DB_connect {
     }
 
     // 예매취소 버튼 클릭 시
-    public void delete_userReservation(String id, String[] arr) {
+    public void delete_userReservation(String id) {
         PreparedStatement pstmtDel = null;
         try {
-            String date = arr[0];
-            String start = arr[1];
-            String end = arr[2];
-            String starttime = arr[3];
-            String company = arr[4];
-            String class_ = arr[5];
-            int price = Integer.valueOf(arr[6]);
-            pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "' and date = '" + date + "' and start = '" + start + "' and end = '" + end + "' and starttime = '" + starttime + "' and company = '" + company + "' and class = '" + class_ + "' and price = " + price);
+            pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "'");
             pstmtDel.executeUpdate();
         } catch (Exception var3) {
             var3.printStackTrace();
@@ -383,7 +376,7 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql="select point from new_table where id=?";
+            String sql="select mileage from new_table where id=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
@@ -402,7 +395,7 @@ public class DB_connect {
     }
 
     // 마일리지 업데이트
-    public void set_mileage(String id, int point) {
+    public void set_mileage(String id, int mileage) {
         Connection conn;
         Statement stmt = null;
         PreparedStatement pstmt = null;
@@ -412,7 +405,7 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql="update new_table set point='"+ point + "' where id='" + id + "'";
+            String sql="update new_table set mileage="+ mileage + " where id='" + id + "'";
             pstmt = conn.prepareStatement(sql);
 
             pstmt.executeUpdate();
@@ -434,7 +427,7 @@ public class DB_connect {
         Connection conn;
         ResultSet rs = null;
         Card c = new Card();
-        String SQL = "SELECT bank,cardnum,pw FROM member where id = '" + id + "'";
+        String SQL = "SELECT bank,cardnum,pw FROM mycard where id = '" + id + "'";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn =
@@ -458,7 +451,7 @@ public class DB_connect {
     }
 
     // 좌석 DB의 check 세팅
-    public void seat_check(int number, int check) {
+    public void seat_check(int number, int checknum, String id) {
         Connection conn;
         Statement stmt = null;
         PreparedStatement pstmt = null;
@@ -468,7 +461,7 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql="update seats set check=" + check + " where number=" + number;
+            String sql="update seats set checknum=" + checknum + ", userid='" + id + "' where number=" + number;
             pstmt = conn.prepareStatement(sql);
 
             pstmt.executeUpdate();
@@ -479,4 +472,73 @@ public class DB_connect {
             System.out.println("DB 연결 에러");
         }
     }
+
+    // 좌석 DB 불러오기
+    public int[][] come_seats() {
+        Connection conn;
+        ResultSet rs = null;
+        String SQL = "SELECT checknum FROM seats";
+        int checknum[][] = new int[7][5];
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery(SQL);
+            rs.next();
+
+            for (int i = 0; i < checknum.length; i++) {
+                for (int j = 0; j < checknum[i].length; j++) {
+                    if (j == 2 && i != checknum.length - 1) {
+                        continue;
+                    } else {
+                        checknum[i][j] = rs.getInt(1);
+                        rs.next();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return checknum;
+    }
+
+    // 좌석을 선택한 userid 불러오기
+    public String[][] come_userid() {
+        Connection conn;
+        ResultSet rs = null;
+        String SQL = "SELECT userid FROM seats";
+        String userid[][] = new String[7][5];
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery(SQL);
+            rs.next();
+
+            for (int i = 0; i < userid.length; i++) {
+                for (int j = 0; j < userid[i].length; j++) {
+                    if (j == 2 && i != userid.length - 1) {
+                        continue;
+                    } else {
+                        userid[i][j] = String.valueOf(rs.getInt(1));
+                        rs.next();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userid;
+    }
+
+    // 좌석 수 변경
+//    public void seat_num_update(String) {
+//
+//    }
 }
