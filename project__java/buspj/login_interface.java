@@ -73,12 +73,12 @@ class BoxPanel extends JPanel implements ActionListener {
         image2.add(check);
 
 
-        ImageIcon right1 = new ImageIcon("project__java/buspj/image/right1.png");
+        ImageIcon right1 = new ImageIcon("project__java/buspj/image/light1.png");
         Image right11 = right1.getImage();
         Image right111 = right11.getScaledInstance(70,40, Image.SCALE_SMOOTH);
         ImageIcon right1111 = new ImageIcon(right111);
 
-        ImageIcon right2 = new ImageIcon("project__java/buspj/image/right2.png");
+        ImageIcon right2 = new ImageIcon("project__java/buspj/image/light2.png");
         Image right22 = right2.getImage();
         Image right222= right22.getScaledInstance(70,40, Image.SCALE_SMOOTH);
         ImageIcon right2222 = new ImageIcon(right222);
