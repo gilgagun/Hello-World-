@@ -329,7 +329,7 @@ public class DB_connect {
         try {
             pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "'");
             pstmtDel.executeUpdate();
-            pstmtDel = this.conn.prepareStatement("UPDATE seats SET userid = '0', payment = '0' WHERE userid = '" + id + "'");
+            pstmtDel = this.conn.prepareStatement("UPDATE seats SET userid = '0', payment = '0' ,checknum='0' WHERE userid = '" + id + "'");
             pstmtDel.executeUpdate();
         } catch (Exception var3) {
             var3.printStackTrace();
