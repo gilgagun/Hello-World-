@@ -97,7 +97,7 @@ class PaymentCenter extends JPanel implements ItemListener {
     JPasswordField password;
     String pw;
 
-    public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price) {
+    public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price, int seatNum) {
         setLayout(null);
         Color bgmycor=new Color(166,222,249);
         setBackground(bgmycor);
@@ -380,6 +380,7 @@ class PaymentCenter extends JPanel implements ItemListener {
                 if (password.getText().equals(pw)) {
                     // 예매 DB에 저장 후 dispose
                     DB.saveUserReservation(id, start, end, date, info);
+                    DB.set_payment(seatNum, 1);  // 해당 좌석이 결제되었다는 뜻
                     int point = DB.mileage(id);
                     point += 10;
                     DB.set_mileage(id, point);
@@ -434,7 +435,7 @@ class PaymentCenter extends JPanel implements ItemListener {
 
 // 결재 페이지 메인
 public class Payment extends JFrame {
-    public Payment(SeatsSelect frame, String id, String start, String end, String date, String[] info, int price) {
+    public Payment(SeatsSelect frame, String id, String start, String end, String date, String[] info, int price, int seatNum) {
         setTitle("버스타슈~");
         setSize(1000,800);
         setResizable(false);
@@ -445,7 +446,7 @@ public class Payment extends JFrame {
         mainContainer.setLayout(new BorderLayout());
 
         mainContainer.add(new PaymentNorth(this, frame), BorderLayout.NORTH);
-        mainContainer.add(new PaymentCenter(frame, this, id, start, end, date, info, price), BorderLayout.CENTER);
+        mainContainer.add(new PaymentCenter(frame, this, id, start, end, date, info, price, seatNum), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
 

@@ -537,6 +537,60 @@ public class DB_connect {
         return userid;
     }
 
+    // 결제된 좌석 payment 값 설정
+    public void set_payment(int number, int payment) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String sql="update seats set payment=" + payment + " where number=" + number;
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+    }
+
+    // 좌석을 결재했는지 불러오기
+    public int[][] come_pay() {
+        Connection conn;
+        ResultSet rs = null;
+        String SQL = "SELECT payment FROM seats";
+        int pay[][] = new int[7][5];
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn =
+                    DriverManager.getConnection("jdbc:mysql:" +
+                            "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+            pstmt = conn.prepareStatement(SQL);
+            rs = pstmt.executeQuery(SQL);
+            rs.next();
+
+            for (int i = 0; i < pay.length; i++) {
+                for (int j = 0; j < pay[i].length; j++) {
+                    if (j == 2 && i != pay.length - 1) {
+                        continue;
+                    } else {
+                        pay[i][j] = rs.getInt(1);
+                        rs.next();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pay;
+    }
     // 좌석 수 변경
 //    public void seat_num_update(String) {
 //
