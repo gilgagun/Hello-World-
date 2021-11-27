@@ -146,7 +146,7 @@ public class DB_connect {
                 String w=it.next();
                 System.out.println(w);
             }*/
-//            pstmt.close();
+            pstmt.close();
             return add;
 
         } catch (ClassNotFoundException e) {
