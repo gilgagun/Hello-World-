@@ -295,7 +295,8 @@ public class DB_connect {
         Connection conn;
         ResultSet rs = null;
         CheckUp c = new CheckUp();
-        String SQL = "SELECT date,start,end,starttime,company,class,price FROM reservation_user where id = '" + id + "'";
+        String SQL = "SELECT date, start, end, starttime,company, class, price, number FROM  reservation_user, seats where userid='" + id + "'";
+        //SELECT date, start, end, starttime,company, class, price, number FROM  reservation_user, seats where userid=123;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn =
@@ -313,8 +314,8 @@ public class DB_connect {
                 String company = rs.getString(5);
                 String class_ = rs.getString(6);
                 String price = rs.getString(7);
-
-                c.insertData(date,start,end,starttime, company, class_, price);
+                String seat = rs.getString(8);
+                c.insertData(date,start,end,starttime, company, class_, price, seat);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -328,11 +329,12 @@ public class DB_connect {
         try {
             pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "'");
             pstmtDel.executeUpdate();
+            pstmtDel = this.conn.prepareStatement("UPDATE seats SET userid = '0', payment = '0' WHERE userid = '" + id + "'");
+            pstmtDel.executeUpdate();
         } catch (Exception var3) {
             var3.printStackTrace();
         }
     }
-
     // 관리자 : 운행정보 저장
     public void save_bus(String start, String end) {
         Connection conn;

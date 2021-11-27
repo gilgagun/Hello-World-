@@ -72,7 +72,6 @@ class BoxPanel extends JPanel implements ActionListener {
         check.setBorderPainted(false); // 버튼 테두리 설정해제
         image2.add(check);
 
-
         ImageIcon right1 = new ImageIcon("project__java/buspj/image/light1.png");
         Image right11 = right1.getImage();
         Image right111 = right11.getScaledInstance(70,40, Image.SCALE_SMOOTH);
