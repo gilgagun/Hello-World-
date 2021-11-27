@@ -81,4 +81,4 @@ insert into bus_table (start,end,starttime,endtime,time,seat,price) values
      지금보니 자잘한 에러가 많은데(reservation_user 테이블에 데이터 저장이 되지 않는 등),
      자고 일어나서 좀 멀쩡한 정신일 때 다시 보고 생각해볼게요.
 성민: reservation_user 에러 잡음!
-     운행정보 추가 에러 잡음!
+     운행정보 추가 에러 잡음! 라고 할 뻔~~~~~~~~~~
