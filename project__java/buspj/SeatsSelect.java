@@ -87,13 +87,14 @@ class SeatsCenter extends JPanel implements MouseListener {
 //    JLabel personnel; // 인원을 담을 JLabel
     JLabel seatInt;   // 좌석번호를 담을 JLabel
     ImageIcon updateWhiteIcon;
-    static JLabel[][] img = new JLabel[7][5];  // 좌석 배열
-    static int seatNum[][] = new int[7][5];      // 선택한 좌석 번호
-    static int[][] checkNum;    // 해당 좌석이 선택된 좌석인지 알려주는 배열
-    static String[][] userid;  // 해당 좌석을 선택한 유저들 모음
+    JLabel[][] img = new JLabel[7][5];  // 좌석 배열
+    int seatNum[][] = new int[7][5];      // 선택한 좌석 번호
+    int[][] checkNum;    // 해당 좌석이 선택된 좌석인지 알려주는 배열
+    String[][] userid;  // 해당 좌석을 선택한 유저들 모음
 //    static JLabel[] img2 = new JLabel[29];    // 좌석 정보를 담을 1차원 배열
     int row = 0;
     int col = 0;
+    int check;
     DB_connect DB = new DB_connect();  // DB
 
     public SeatsCenter(SeatsSelect frame, String id, String start, String end, String date, String[] info) {
@@ -191,7 +192,7 @@ class SeatsCenter extends JPanel implements MouseListener {
                 if (row == 0) {
                     JOptionPane.showMessageDialog(null, "좌석을 선택하세요.");
                 } else {
-                    DB.seat_check(seatNum[row][col], 1, id);
+                    DB.seat_check(seatNum[row][col], check, id);
                     new Payment(frame, id, start, end, date, info, price);
                     frame.setVisible(false);
                 }
@@ -351,6 +352,7 @@ class SeatsCenter extends JPanel implements MouseListener {
             }
             this.seatInt.setText("" + this.seatNum[row][col]);
             this.seatInt.setVisible(true);  // 가격 화면에 표현
+            check = 1;
 //            int check = 1;   // 선택되었다는 표시
 //            DB.seat_check(seatNum[row][col], check);
 
@@ -369,10 +371,11 @@ class SeatsCenter extends JPanel implements MouseListener {
             for (int i = 0; i < img.length; i++) {
                 for (int j = 0; j < img[i].length; j++) {
                     if (s.equals(img[i][j])) {
-                        if (userid[i][j].equals(this.id)) {
+                        if (userid[i][j].equals(this.id) || userid[i][j].equals("0")) {
                             row = 0;
                             col = 0;
                             this.seatInt.setVisible(false);
+                            check = 0;
                             s.setIcon(updateWhiteIcon);
                         } else {
                             JOptionPane.showMessageDialog(null, "선택할 수 없는 좌석입니다.");

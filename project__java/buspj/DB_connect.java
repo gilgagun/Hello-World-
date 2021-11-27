@@ -526,7 +526,7 @@ public class DB_connect {
                     if (j == 2 && i != userid.length - 1) {
                         continue;
                     } else {
-                        userid[i][j] = String.valueOf(rs.getInt(1));
+                        userid[i][j] = rs.getString(1);
                         rs.next();
                     }
                 }
