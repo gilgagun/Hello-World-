@@ -335,7 +335,6 @@ public class DB_connect {
             var3.printStackTrace();
         }
     }
-
     // 관리자 : 운행정보 저장
     public void save_bus(String start, String end) {
         Connection conn;

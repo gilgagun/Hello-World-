@@ -168,7 +168,6 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
         // 인스턴스 변수에 정보 전달
         this.arr = info;
     }
-
     @Override
     public void mousePressed(MouseEvent e) {}
 
