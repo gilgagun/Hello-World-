@@ -6,6 +6,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.PlainDocument;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -274,6 +278,7 @@ class PaymentCenter extends JPanel implements ItemListener {
 
         // 비밀번호 입력창
         password = new JPasswordField();
+        password.setDocument(new BoundDocument(4, password));
         password.setBounds(580,405,200,30);
         add(password);
 
