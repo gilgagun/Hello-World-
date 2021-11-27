@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 
 public class ChatBot extends JFrame implements ActionListener{
-    JTextArea txtA = new JTextArea(7,5);
+    JTextArea txtA = new JTextArea(7,0);
     JTextField txtF = new JTextField(30);
     JButton btnTransfer = new JButton("전송");
     JButton btnExit = new JButton("닫기");
@@ -25,7 +25,7 @@ public class ChatBot extends JFrame implements ActionListener{
     public ChatBot(String id) {
         super("챗봇 문의상담");
         String Id = id;
-
+        txtA.setLineWrap(true); // 자동 줄바꿈
         add("Center", txtA);
         setLocation(520,160);  // 프레임을 위치 설정
         p1.add(txtF);
@@ -33,7 +33,7 @@ public class ChatBot extends JFrame implements ActionListener{
         p1.add(btnTransfer);
         p1.add(btnExit);
         add("South", p1);
-        String hello = "안녕하세요 버스안내 챗봇입니다!\n" +
+        String hello = "안녕하세요 "+ id+"님 버스안내 챗봇입니다!\n" +
                 "궁금한게 있으신가요??";
         txtA.append("[챗봇]"+ hello+"\n");
         btnTransfer.addActionListener(this);
@@ -49,11 +49,8 @@ public class ChatBot extends JFrame implements ActionListener{
         setVisible(true);
 
     }
-
-
-
     public void actionPerformed(ActionEvent e){
-        String id = "user";
+        String id = "나";
         String input = txtF.getText();
         if(e.getSource()==btnTransfer){//전송버튼 눌렀을 경우
             //메세지 입력없이 전송버튼만 눌렀을 경우
@@ -86,7 +83,6 @@ public class ChatBot extends JFrame implements ActionListener{
                     arrs.add(rs.getString(1));
                     i++;
                 }
-                System.out.print("메세지 >>");
                 StringTokenizer tk = new StringTokenizer(input," ");
                 int n = tk.countTokens(); // input 토큰 갯수
                 int ck = 0; // 체크포인트
@@ -111,9 +107,16 @@ public class ChatBot extends JFrame implements ActionListener{
                 while (rs.next()) {//답변
                     answer+=rs.getString("answer");
                 }
+                System.out.println("<"+answer+">");
                 //txtA.append("[챗봇] "+ new String(rs.getString("answer"))+"\n");
-                txtA.append("[챗봇] "+ answer +"\n");
-                txtF.setText("");
+                if (answer.equals("")){
+                    txtA.append("[챗봇] "+ "이해하지못했습니다. 죄송합니다 ㅠㅠ " +"\n");
+                    txtF.setText("");
+                }
+                else {
+                    txtA.append("[챗봇] "+ answer +"\n");
+                    txtF.setText("");
+                }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             } catch (ClassNotFoundException classNotFoundException) {

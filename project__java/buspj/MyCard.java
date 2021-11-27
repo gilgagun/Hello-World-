@@ -22,6 +22,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.PlainDocument;
+
+//text 입력제한
+class BoundDocument extends PlainDocument {
+    protected int charLimit;
+    protected JTextComponent textComp;
+    public BoundDocument(int charLimit) { this.charLimit = charLimit; }
+    public BoundDocument(int charLimit, JTextComponent textComp) { this.charLimit = charLimit; this.textComp = textComp; }
+
+    public void insertString (int offs, String str, AttributeSet a) throws BadLocationException
+    {
+        if (textComp.getText().getBytes().length + str.getBytes().length <= charLimit) { super.insertString(offs, str, a); }
+    }
+}
 
 public class MyCard extends JFrame {
     private static final long serialVersionUID = 1L;
@@ -76,7 +93,9 @@ public class MyCard extends JFrame {
         JPanel panel = new JPanel();
         this.tfNum = new JTextField(8);
         this.tfName = new JTextField(20);
+        tfName.setDocument(new BoundDocument(16, tfName));
         this.tfAddress = new JTextField(5);
+        tfAddress.setDocument(new BoundDocument(4, tfAddress));
         this.lblNum = new JLabel("카드사");
         this.lblName = new JLabel("카드번호");
         this.lblAddress = new JLabel("비밀번호");
