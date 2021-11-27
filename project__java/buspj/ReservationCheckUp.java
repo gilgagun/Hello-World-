@@ -78,7 +78,23 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
         northP.add(title);
         add("North", northP);
 
-        bt_del = new JButton("예매취소");
+
+        ImageIcon close1 = new ImageIcon("project__java/buspj/image/reservecancel1.png");
+        Image close11 = close1.getImage();
+        Image close111 = close11.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon1 = new ImageIcon(close111);
+        ImageIcon close2 = new ImageIcon("project__java/buspj/image/reservecancel2.png");
+        Image close22 = close2.getImage();
+        Image close222 = close22.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon2 = new ImageIcon(close222);
+        bt_del = new JButton(closeIcon1);
+        //btnExit = new JButton(closeIcon1);
+        bt_del.setBorderPainted(false); // 버튼 테두리 설정해제
+        bt_del.setRolloverIcon(closeIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        bt_del.setFocusPainted(false);
+        bt_del.setContentAreaFilled(false);
+        bt_del.setOpaque(false);
+        // = new JButton("예매취소");
         southP = new JPanel();
         southP.add(bt_del);
         add("South", southP);

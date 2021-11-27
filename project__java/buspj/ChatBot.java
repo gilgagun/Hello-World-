@@ -1,5 +1,6 @@
 package buspj;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -7,23 +8,54 @@ import java.awt.event.WindowEvent;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 public class ChatBot extends JFrame implements ActionListener{
     JTextArea txtA = new JTextArea(7,0);
     JTextField txtF = new JTextField(30);
-    JButton btnTransfer = new JButton("전송");
-    JButton btnExit = new JButton("닫기");
+
+
+    JButton btnTransfer;
+    JButton btnExit;
     boolean isFirst=true;
     JPanel p1 = new JPanel();
 
     public ChatBot(String id) {
         super("챗봇 문의상담");
+
+
+        ImageIcon del1 = new ImageIcon("project__java/buspj/image/send1.png");
+        Image del11 = del1.getImage();
+        Image del111 = del11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon delIcon1 = new ImageIcon(del111);
+        ImageIcon del2 = new ImageIcon("project__java/buspj/image/send2.png");
+        Image del22 = del2.getImage();
+        Image del222 = del22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon delIcon2 = new ImageIcon(del222);
+        btnTransfer = new JButton(delIcon1);
+        btnTransfer.setBorderPainted(false); // 버튼 테두리 설정해제
+        btnTransfer.setRolloverIcon(delIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        btnTransfer.setFocusPainted(false);
+        btnTransfer.setContentAreaFilled(false);
+        btnTransfer.setOpaque(false);
+
+        ImageIcon close1 = new ImageIcon("project__java/buspj/image/close1.png");
+        Image close11 = close1.getImage();
+        Image close111 = close11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon1 = new ImageIcon(close111);
+        ImageIcon close2 = new ImageIcon("project__java/buspj/image/close2.png");
+        Image close22 = close2.getImage();
+        Image close222 = close22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon2 = new ImageIcon(close222);
+        btnExit = new JButton(closeIcon1);
+        btnExit.setBorderPainted(false); // 버튼 테두리 설정해제
+        btnExit.setRolloverIcon(closeIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        btnExit.setFocusPainted(false);
+        btnExit.setContentAreaFilled(false);
+        btnExit.setOpaque(false);
+
+
         String Id = id;
         txtA.setLineWrap(true); // 자동 줄바꿈
         add("Center", txtA);
@@ -44,7 +76,7 @@ public class ChatBot extends JFrame implements ActionListener{
                 ChatBot.this.dispose();
             }
         });
-        setSize(500,500);
+        setSize(580,500);
         //setBounds(300, 300, 800, 600);
         setVisible(true);
 
@@ -129,5 +161,4 @@ public class ChatBot extends JFrame implements ActionListener{
         }
 
     }
-
 }
