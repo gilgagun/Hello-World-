@@ -123,7 +123,7 @@ public class DB_connect {
         Connection conn;
         ResultSet rs = null;
         Statement stmt = null;
-//        PreparedStatement pstmt = null;
+        PreparedStatement pstmt = null;
         try {
             //ArrayList<String> bus = new ArrayList<String>();
             String []add = new String[100];
@@ -146,7 +146,7 @@ public class DB_connect {
                 String w=it.next();
                 System.out.println(w);
             }*/
-            pstmt.close();
+//            pstmt.close();
             return add;
 
         } catch (ClassNotFoundException e) {
