@@ -72,7 +72,7 @@ class PaymentNorth extends JPanel {
 }
 
 // 결제 페이지 중심
-class PaymentCenter extends JPanel {
+class PaymentCenter extends JPanel implements ItemListener {
     JTable ticketTable;
     DefaultTableModel model;
     JScrollPane scroll;
@@ -86,6 +86,11 @@ class PaymentCenter extends JPanel {
     JComboBox<String> myCard = new JComboBox<String>();  // 카드 선택 콤보박스
     Card ca;
     DB_connect DB = new DB_connect();  // DB 연결
+    JTextField cardNumber1;
+    JTextField cardNumber2;
+    JTextField cardNumber3;
+    JTextField cardNumber4;
+    JPasswordField password;
 
     public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price) {
         setLayout(null);
@@ -204,7 +209,7 @@ class PaymentCenter extends JPanel {
         add(cardNumberText);
 
         // 카드 번호 텍스트 필드
-        JTextField cardNumber1 = new JTextField();
+        cardNumber1 = new JTextField();
         cardNumber1.setBounds(580,315,50,30);
         add(cardNumber1);
 
@@ -214,7 +219,7 @@ class PaymentCenter extends JPanel {
         slash1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(slash1);
 
-        JTextField cardNumber2 = new JTextField();
+        cardNumber2 = new JTextField();
         cardNumber2.setBounds(670,315,50,30);
         add(cardNumber2);
 
@@ -224,7 +229,7 @@ class PaymentCenter extends JPanel {
         slash2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(slash2);
 
-        JTextField cardNumber3 = new JTextField();
+        cardNumber3 = new JTextField();
         cardNumber3.setBounds(760,315,50,30);
         add(cardNumber3);
 
@@ -234,7 +239,7 @@ class PaymentCenter extends JPanel {
         slash3.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(slash3);
 
-        JTextField cardNumber4 = new JTextField();
+        cardNumber4 = new JTextField();
         cardNumber4.setBounds(850,315,50,30);
         add(cardNumber4);
 
@@ -267,23 +272,38 @@ class PaymentCenter extends JPanel {
         add(passwordText);
 
         // 비밀번호 입력창
-        JPasswordField password = new JPasswordField();
+        password = new JPasswordField();
         password.setBounds(580,405,200,30);
         add(password);
 
-        // 나의 카드 선택하면 자동으로 나타나는 카드 번호 설정
-        String[] numList = null;
-        if (myCard.getSelectedItem().toString() != "없음") {
-            String bank1 = myCard.getSelectedItem().toString();   // 해당 카드 은행
-            int index = ca.bank.indexOf(bank1);             // 해당 카드 은행의 인덱스 추출
-            String num = ca.cardNum.get(index).toString();             // 해당 카드 은행의 카드 번호 추출
-            numList = num.split("-");                  // 카드 번호 나눠 배열에 저장
+        myCard.addItemListener(this);
 
-            cardNumber1.setText(numList[0]);
-            cardNumber2.setText(numList[1]);
-            cardNumber3.setText(numList[2]);
-            cardNumber4.setText(numList[3]);
-        }
+        // 나의 카드 선택하면 자동으로 나타나는 카드 번호 설정
+//        String[] numList = null;
+//        myCard.addMouseListener(new MouseAdapter() {
+//            public void mouseClicked(MouseEvent e) {
+//                System.out.println("!11111111111111111111111111111111111111111111");
+//                String bank1 = myCard.getSelectedItem().toString();   // 해당 카드 은행
+//                System.out.println("@2222222222222222222222222");
+//                if (bank1.equals("없음")) {
+//                    cardNumber1.setText("");
+//                    cardNumber2.setText("");
+//                    cardNumber3.setText("");
+//                    cardNumber4.setText("");
+//                    password.setText("");
+//                } else {
+//                    int index = ca.bank.indexOf(bank1);             // 해당 카드 은행의 인덱스 추출
+//                    String num = ca.cardNum.get(index);             // 해당 카드 은행의 카드 번호 추출
+//                    String[] numList = num.split("-");                  // 카드 번호 나눠 배열에 저장
+//
+//                    cardNumber1.setText(numList[0]);
+//                    cardNumber2.setText(numList[1]);
+//                    cardNumber3.setText(numList[2]);
+//                    cardNumber4.setText(numList[3]);
+//                }
+//            }
+//        });
+
 
 //        // 첫 번째 카드 번호 자동 삽입(내 카드 누른 경우)
 //        if (myCard.getSelectedItem().toString() != "없음") {
@@ -306,13 +326,13 @@ class PaymentCenter extends JPanel {
 //        }
 
         // "없음" 선택 시 리셋
-        if (myCard.getSelectedItem().toString().equals("없음")) {
-            cardNumber1.setText("");
-            cardNumber2.setText("");
-            cardNumber3.setText("");
-            cardNumber4.setText("");
-            password.setText("");
-        }
+//        if (myCard.getSelectedItem().toString().equals("없음")) {
+//            cardNumber1.setText("");
+//            cardNumber2.setText("");
+//            cardNumber3.setText("");
+//            cardNumber4.setText("");
+//            password.setText("");
+//        }
 
 //        // 결제완료 버튼
 //        JButton clear = new JButton("결제완료");
@@ -364,6 +384,31 @@ class PaymentCenter extends JPanel {
         image2.setBounds(-1800,-200,4500,1200);
         add(image2);
 
+    }
+
+    // 내 카드 콤보박스에서 이벤트 처리
+    @Override
+    public void itemStateChanged(ItemEvent event) {
+        if (event.getStateChange() == ItemEvent.SELECTED) {
+            String item = (String) event.getItem();
+//            String bank1 = myCard.getSelectedItem().toString();   // 해당 카드 은행
+            if (item.equals("없음")) {
+                cardNumber1.setText("");
+                cardNumber2.setText("");
+                cardNumber3.setText("");
+                cardNumber4.setText("");
+                password.setText("");
+            } else {
+                int index = ca.bank.indexOf(item);             // 해당 카드 은행의 인덱스 추출
+                String num = ca.cardNum.get(index);             // 해당 카드 은행의 카드 번호 추출
+                String[] numList = num.split("-");                  // 카드 번호 나눠 배열에 저장
+
+                cardNumber1.setText(numList[0]);
+                cardNumber2.setText(numList[1]);
+                cardNumber3.setText(numList[2]);
+                cardNumber4.setText(numList[3]);
+            }
+        }
     }
 }
 
