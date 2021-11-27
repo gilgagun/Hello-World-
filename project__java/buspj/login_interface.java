@@ -72,6 +72,33 @@ class BoxPanel extends JPanel implements ActionListener {
         check.setBorderPainted(false); // 버튼 테두리 설정해제
         image2.add(check);
 
+
+        ImageIcon right1 = new ImageIcon("project__java/buspj/image/light1.png");
+        Image right11 = right1.getImage();
+        Image right111 = right11.getScaledInstance(70,40, Image.SCALE_SMOOTH);
+        ImageIcon right1111 = new ImageIcon(right111);
+
+        ImageIcon right2 = new ImageIcon("project__java/buspj/image/light2.png");
+        Image right22 = right2.getImage();
+        Image right222= right22.getScaledInstance(70,40, Image.SCALE_SMOOTH);
+        ImageIcon right2222 = new ImageIcon(right222);
+
+        JButton right1_btn = new JButton(right1111);
+        JButton right2_btn = new JButton(right1111);
+        right1_btn.setFocusPainted(false);
+        right1_btn.setContentAreaFilled(false);
+        right1_btn.setRolloverIcon(right2222); // 버튼에 마우스가 올라갈떄 이미지 변환
+        right1_btn.setBorderPainted(false); // 버튼 테두리 설정해제
+        image2.add(right1_btn);
+
+        right2_btn.setFocusPainted(false);
+        right2_btn.setContentAreaFilled(false);
+        right2_btn.setRolloverIcon(right2222); // 버튼에 마우스가 올라갈떄 이미지 변환
+        right2_btn.setBorderPainted(false); // 버튼 테두리 설정해제
+        image2.add(right2_btn);
+        right1_btn.setBounds(230,280,80,35);
+        right2_btn.setBounds(40,280,80,35);
+
         check.addActionListener(this);
 
         // 회원가입 글자 클릭 시 이벤트
@@ -163,7 +190,6 @@ public class login_interface extends JFrame {
 
         mainContainer.setLayout(new BorderLayout());
 
-       // mainContainer.add(new TitlePanel(), BorderLayout.NORTH);
         mainContainer.add(new BoxPanel(this), BorderLayout.CENTER);
 
         addWindowListener(new JFrameWindowClosingEventHandler());
