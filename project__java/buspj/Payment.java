@@ -91,6 +91,7 @@ class PaymentCenter extends JPanel implements ItemListener {
     JTextField cardNumber3;
     JTextField cardNumber4;
     JPasswordField password;
+    String pw;
 
     public PaymentCenter(SeatsSelect frame, Payment frame2, String id, String start, String end, String date, String[] info, int price) {
         setLayout(null);
@@ -266,7 +267,7 @@ class PaymentCenter extends JPanel implements ItemListener {
 //        add(year);
 
         // 비밀번호 글자
-        JLabel passwordText = new JLabel("비밀번호 앞 2자리");
+        JLabel passwordText = new JLabel("카드 비밀번호");
         passwordText.setBounds(580,330,200,100);
         passwordText.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         add(passwordText);
@@ -368,14 +369,18 @@ class PaymentCenter extends JPanel implements ItemListener {
         // 결재완료 버튼 클릭 시
         clear.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                // 예매 DB에 저장 후 dispose
-                DB.saveUserReservation(id, start, end, date, info);
-                int point = DB.mileage(id);
-                point += 10;
-                DB.set_mileage(id, point);
-                JOptionPane.showMessageDialog(null, "예매에 성공하였습니다.");
-                new Main(id);
-                frame2.dispose();
+                if (password.getText().equals(pw)) {
+                    // 예매 DB에 저장 후 dispose
+                    DB.saveUserReservation(id, start, end, date, info);
+                    int point = DB.mileage(id);
+                    point += 10;
+                    DB.set_mileage(id, point);
+                    JOptionPane.showMessageDialog(null, "예매에 성공하였습니다.");
+                    new Main(id);
+                    frame2.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null,"비밀번호가 일치하지 않습니다.");
+                }
             }
         });
 
@@ -401,12 +406,18 @@ class PaymentCenter extends JPanel implements ItemListener {
             } else {
                 int index = ca.bank.indexOf(item);             // 해당 카드 은행의 인덱스 추출
                 String num = ca.cardNum.get(index);             // 해당 카드 은행의 카드 번호 추출
-                String[] numList = num.split("-");                  // 카드 번호 나눠 배열에 저장
+                String[] numList = new String[4];
+                numList[0] = num.substring(0,4);                  // 카드 번호 나눠 배열에 저장
+                numList[1] = num.substring(4,8);
+                numList[2] = num.substring(8,12);
+                numList[3] = num.substring(12);
 
                 cardNumber1.setText(numList[0]);
                 cardNumber2.setText(numList[1]);
                 cardNumber3.setText(numList[2]);
                 cardNumber4.setText(numList[3]);
+
+                pw = ca.pw.get(index);     // 해당 카드의 비밀번호 추출
             }
         }
     }
