@@ -32,7 +32,7 @@ public class DB_connect {
                             "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql="insert into new_table(id,pw,email,name,phone,point)";
+            String sql="insert into new_table(id,pw,email,name,phone,mileage)";
             sql+= "values (?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
             String id=new_member.get_id();
