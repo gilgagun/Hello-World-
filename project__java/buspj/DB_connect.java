@@ -507,6 +507,7 @@ public class DB_connect {
         return checknum;
     }
 
+
     // 좌석을 선택한 userid 불러오기
     public String[][] come_userid() {
         Connection conn;
