@@ -1,7 +1,7 @@
 
 package buspj;
 
-import java.awt.Container;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -14,13 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -99,9 +93,58 @@ public class MyCard extends JFrame {
         this.lblNum = new JLabel("카드사");
         this.lblName = new JLabel("카드번호");
         this.lblAddress = new JLabel("비밀번호");
-        this.btnAdd = new JButton("추가");
-        this.btnDel = new JButton("삭제");
-        this.btnUpdate = new JButton("닫기");
+
+
+        ImageIcon overlap = new ImageIcon("project__java/buspj/image/add1.png");
+        Image overlap11 = overlap.getImage();
+        Image reoverlap = overlap11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon overlapIcon1 = new ImageIcon(reoverlap);
+        ImageIcon overlap2 = new ImageIcon("project__java/buspj/image/add2.png");
+        Image overlap22 = overlap2.getImage();
+        Image reoverlap2 = overlap22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon overlapIcon2 = new ImageIcon(reoverlap2);
+        this.btnAdd = new JButton(overlapIcon1);
+        this.btnAdd.setBorderPainted(false); // 버튼 테두리 설정해제
+        this.btnAdd.setRolloverIcon(overlapIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        this.btnAdd.setFocusPainted(false);
+        this.btnAdd.setContentAreaFilled(false);
+        this.btnAdd.setOpaque(false);
+
+
+        ImageIcon del1 = new ImageIcon("project__java/buspj/image/del1.png");
+        Image del11 = del1.getImage();
+        Image del111 = del11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon delIcon1 = new ImageIcon(del111);
+        ImageIcon del2 = new ImageIcon("project__java/buspj/image/del2.png");
+        Image del22 = del2.getImage();
+        Image del222 = del22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon delIcon2 = new ImageIcon(del222);
+        //this.btnAdd = new JButton(overlapIcon1);
+        this.btnDel = new JButton(delIcon1);
+        this.btnDel.setBorderPainted(false); // 버튼 테두리 설정해제
+        this.btnDel.setRolloverIcon(delIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        this.btnDel.setFocusPainted(false);
+        this.btnDel.setContentAreaFilled(false);
+        this.btnDel.setOpaque(false);
+        //this.btnDel = new JButton("삭제");
+
+
+        ImageIcon close1 = new ImageIcon("project__java/buspj/image/close1.png");
+        Image close11 = close1.getImage();
+        Image close111 = close11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon1 = new ImageIcon(close111);
+        ImageIcon close2 = new ImageIcon("project__java/buspj/image/close2.png");
+        Image close22 = close2.getImage();
+        Image close222 = close22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon2 = new ImageIcon(close222);
+
+        this.btnUpdate = new JButton(closeIcon1);
+        this.btnUpdate.setBorderPainted(false); // 버튼 테두리 설정해제
+        this.btnUpdate.setRolloverIcon(closeIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        this.btnUpdate.setFocusPainted(false);
+        this.btnUpdate.setContentAreaFilled(false);
+        this.btnUpdate.setOpaque(false);
+        //this.btnUpdate = new JButton("닫기");
         this.btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String bank = MyCard.this.tfNum.getText();
@@ -151,7 +194,7 @@ public class MyCard extends JFrame {
 
             }
         });
-        this.setSize(800, 400);
+        this.setSize(900, 400);
         this.setVisible(true);
     }
 
