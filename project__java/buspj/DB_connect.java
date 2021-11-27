@@ -323,10 +323,17 @@ public class DB_connect {
     }
 
     // 예매취소 버튼 클릭 시
-    public void delete_userReservation(String id) {
+    public void delete_userReservation(String id, String[] arr) {
         PreparedStatement pstmtDel = null;
         try {
-            pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "'");
+            String date = arr[0];
+            String start = arr[1];
+            String end = arr[2];
+            String starttime = arr[3];
+            String company = arr[4];
+            String class_ = arr[5];
+            int price = Integer.valueOf(arr[6]);
+            pstmtDel = this.conn.prepareStatement("delete from reservation_user where id = '" + id + "' and date = '" + date + "' and start = '" + start + "' and end = '" + end + "' and starttime = '" + starttime + "' and company = '" + company + "' and class = '" + class_ + "' and price = " + price);
             pstmtDel.executeUpdate();
         } catch (Exception var3) {
             var3.printStackTrace();
