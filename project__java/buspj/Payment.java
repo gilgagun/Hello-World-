@@ -178,16 +178,17 @@ class PaymentCenter extends JPanel implements ItemListener {
         add(totalText);
 
         // 총 결재금액 액수
-        JLabel total = new JLabel("" + totalPrice);
+        JLabel total = new JLabel("" + totalPrice+ " 원");
         total.setBounds(300,380,200,100);
         total.setFont(new Font("맑은 고딕", Font.BOLD, 25));
         total.setForeground(Color.RED);
         add(total);
 
+
         JPanel square1 = new JPanel();
         square1.setBackground(mycor);
         square1.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 16));
-        square1.setBounds(90,380,350,70);
+        square1.setBounds(30,100,520,450);
         add(square1);
 
         // 카드 선택 글자

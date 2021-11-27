@@ -34,6 +34,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
     JPanel northP;
     JPanel southP;
     JButton bt_del;
+    JButton bt_close;
     JLabel title;   // 테이블 타이틀
     JTable table;   // 표 내용을 담을 테이블
     JScrollPane scroll;
@@ -79,25 +80,45 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
         add("North", northP);
 
 
-        ImageIcon close1 = new ImageIcon("project__java/buspj/image/reservecancel1.png");
-        Image close11 = close1.getImage();
-        Image close111 = close11.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
-        ImageIcon closeIcon1 = new ImageIcon(close111);
-        ImageIcon close2 = new ImageIcon("project__java/buspj/image/reservecancel2.png");
-        Image close22 = close2.getImage();
-        Image close222 = close22.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
-        ImageIcon closeIcon2 = new ImageIcon(close222);
-        bt_del = new JButton(closeIcon1);
+        ImageIcon reservecancel1 = new ImageIcon("project__java/buspj/image/reservecancel1.png");
+        Image reservecancel11 = reservecancel1.getImage();
+        Image reservecancel111 = reservecancel11.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
+        ImageIcon reservecancelIcon1 = new ImageIcon(reservecancel111);
+        ImageIcon reservecancel2 = new ImageIcon("project__java/buspj/image/reservecancel2.png");
+        Image reservecancel22 = reservecancel2.getImage();
+        Image reservecancel222 = reservecancel22.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
+        ImageIcon reservecancelIcon2 = new ImageIcon(reservecancel222);
+        bt_del = new JButton(reservecancelIcon1);
         //btnExit = new JButton(closeIcon1);
         bt_del.setBorderPainted(false); // 버튼 테두리 설정해제
-        bt_del.setRolloverIcon(closeIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        bt_del.setRolloverIcon(reservecancelIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
         bt_del.setFocusPainted(false);
         bt_del.setContentAreaFilled(false);
         bt_del.setOpaque(false);
         // = new JButton("예매취소");
         southP = new JPanel();
         southP.add(bt_del);
+
+        ImageIcon close1 = new ImageIcon("project__java/buspj/image/close1.png");
+        Image close11 = close1.getImage();
+        Image close111 = close11.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon1 = new ImageIcon(close111);
+        ImageIcon close2 = new ImageIcon("project__java/buspj/image/close2.png");
+        Image close22 = close2.getImage();
+        Image close222 = close22.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon2 = new ImageIcon(close222);
+        bt_close = new JButton(closeIcon1);
+        //btnExit = new JButton(closeIcon1);
+        bt_close.setBorderPainted(false); // 버튼 테두리 설정해제
+        bt_close.setRolloverIcon(closeIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        bt_close.setFocusPainted(false);
+        bt_close.setContentAreaFilled(false);
+        bt_close.setOpaque(false);
+        // = new JButton("예매취소");
+        southP.add(bt_close);
+
         add("South", southP);
+
 
         // 테이블 마우스 이벤트
         table.addMouseListener(this);
@@ -120,6 +141,12 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
                         model.addRow(data);
                     }
                 }
+            }
+        });
+
+        bt_close.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                ReservationCheckUp.this.dispose();
             }
         });
 

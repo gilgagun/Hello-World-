@@ -85,4 +85,4 @@ insert into bus_table (start,end,starttime,endtime,time,seat,price) values
      자고 일어나서 좀 멀쩡한 정신일 때 다시 보고 생각해볼게요.
 성민: reservation_user 에러 잡음!
 
-찬영: jtext 입력제한 작업중
+찬영: jtext 입력제한 작업중, 수정안한 버튼 디자인 수정, 챗봇 성능향상
