@@ -83,7 +83,6 @@ class BoxPanel extends JPanel implements ActionListener {
         Image right222= right22.getScaledInstance(70,40, Image.SCALE_SMOOTH);
         ImageIcon right2222 = new ImageIcon(right222);
 
-
         JButton right1_btn = new JButton(right1111);
         JButton right2_btn = new JButton(right1111);
         right1_btn.setFocusPainted(false);
