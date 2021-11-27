@@ -190,7 +190,7 @@ class SeatsCenter extends JPanel implements MouseListener {
         // 결제진행 버튼 클릭 이벤트
         payment.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (row == 0) {
+                if (col == 0) {
                     JOptionPane.showMessageDialog(null, "좌석을 선택하세요.");
                 } else {
                     DB.seat_check(seatNum[row][col], check, id);
