@@ -295,8 +295,9 @@ public class DB_connect {
         Connection conn;
         ResultSet rs = null;
         CheckUp c = new CheckUp();
-        String SQL = "SELECT date, start, end, starttime,company, class, price, number FROM  reservation_user, seats where userid='" + id + "'";
-        //SELECT date, start, end, starttime,company, class, price, number FROM  reservation_user, seats where userid=123;
+        String SQL = "SELECT date, start, end, starttime,company, class, price, number FROM  reservation_user, seats where seats.userid='" + id + "' and reservation_user.id='"+ id +"'";
+        //"SELECT * FROM bus.reservation_user;SELECT date, start, end, starttime,company, class, price, number FROM  reservation_user,
+        //        seats where seats.userid='123 and  reservation_user.id='"123;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn =
