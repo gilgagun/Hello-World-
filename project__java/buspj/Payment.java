@@ -377,7 +377,12 @@ class PaymentCenter extends JPanel implements ItemListener {
             public void mouseClicked(MouseEvent e) {
                 String card = myCard.getSelectedItem().toString();
                 String pass = password.getText();
-                if (password.getText().equals(pw)) {
+                String num1 = cardNumber1.getText();
+                String num2 = cardNumber2.getText();
+                String num3 = cardNumber3.getText();
+                String num4 = cardNumber4.getText();
+                if (password.getText().equals(pw) || (card.equals("없음") && !pass.equals("")
+                    && !num1.equals("") && !num2.equals("") && !num3.equals("") && !num4.equals(""))) {
                     // 예매 DB에 저장 후 dispose
                     DB.saveUserReservation(id, start, end, date, price, info, seatNum);
                     DB.set_payment(seatNum, 1);  // 해당 좌석이 결제되었다는 뜻
@@ -389,7 +394,14 @@ class PaymentCenter extends JPanel implements ItemListener {
 
                     new Main(id);
                     frame2.dispose();
-                } else {
+                } else if (card.equals("없음")
+                        && (num1.equals("") || num2.equals("") || num3.equals("") || num4.equals(""))) {
+                    JOptionPane.showMessageDialog(null,"카드번호를 입력하세요.");
+                } else if (card.equals("없음") && (pass.equals("")
+                        && (!num1.equals("") && !num2.equals("") && !num3.equals("") && !num4.equals("")))) {
+                    JOptionPane.showMessageDialog(null,"비밀번호를 입력하세요.");
+                }
+                else {
                     JOptionPane.showMessageDialog(null,"비밀번호가 일치하지 않습니다.");
                 }
             }
