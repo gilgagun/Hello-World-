@@ -93,8 +93,8 @@ class SeatsCenter extends JPanel implements MouseListener {
     String[][] userid;  // 해당 좌석을 선택한 유저들 모음
     int[][] pay;         // 해당 좌석 결제 여부 판단
 //    static JLabel[] img2 = new JLabel[29];    // 좌석 정보를 담을 1차원 배열
-    int row = 0;
-    int col = 0;
+    int row = 10000;
+    int col = 10000;
     int check;
     DB_connect DB = new DB_connect();  // DB
 
@@ -375,8 +375,8 @@ class SeatsCenter extends JPanel implements MouseListener {
                 for (int j = 0; j < img[i].length; j++) {
                     if (s.equals(img[i][j])) {
                         if ((userid[i][j].equals(this.id) || userid[i][j].equals("0")) && pay[i][j] == 0) {
-                            row = 0;
-                            col = 0;
+                            row = 10000;
+                            col = 10000;
                             this.seatInt.setVisible(false);
                             check = 0;
                             s.setIcon(updateWhiteIcon);

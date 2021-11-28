@@ -248,6 +248,76 @@ public class DB_connect {
         return -2; // DB 오류
     }
 
+    // 선택된 좌석 제외하고 표시
+    public void minus_seats(String start, String end, String date, String[] info) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String starttime = info[0];
+            String company = info[1];
+            String class_ = info[2];
+            int price = Integer.valueOf(info[4]);
+
+            String sql="update bus_table set seats=seats-1 where start=? and end=? and starttime=? and company=? and class=? and price=? and date=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, start);
+            pstmt.setString(2, end);
+            pstmt.setString(3, starttime);
+            pstmt.setString(4, company);
+            pstmt.setString(5, class_);
+            pstmt.setInt(6, price);
+            pstmt.setString(7, date);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+    }
+
+    // 환불한 좌석 +1 표시
+    public void plus_seats(String start, String end, String date, String[] info) {
+        Connection conn;
+        Statement stmt = null;
+        PreparedStatement pstmt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql:" +
+                    "//localhost:3306/bus", "root", "1234");
+            System.out.println("DB 연결 완료");
+
+            String starttime = info[0];
+            String company = info[1];
+            String class_ = info[2];
+            int price = Integer.valueOf(info[4]);
+
+            String sql="update bus_table set seats=seats+1 where start=? and end=? and starttime=? and company=? and class=? and price=? and date=?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, start);
+            pstmt.setString(2, end);
+            pstmt.setString(3, starttime);
+            pstmt.setString(4, company);
+            pstmt.setString(5, class_);
+            pstmt.setInt(6, price);
+            pstmt.setString(7, date);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println("JDBC 드라이버 로드 에러");
+        } catch (SQLException e) {
+            System.out.println("DB 연결 에러");
+        }
+    }
+
     // 회원 예매 정보 DB에 저장
     public void saveUserReservation(String id, String start, String end, String date, String[] info) {
         Connection conn;
@@ -259,8 +329,8 @@ public class DB_connect {
                     "//localhost:3306/bus", "root", "1234");
             System.out.println("DB 연결 완료");
 
-            String sql="insert into reservation_user(id,start,end,date,starttime,company,class,price)";
-            sql += "values (?,?,?,?,?,?,?,?)";
+            String sql="insert into reservation_user(id,start,end,date,starttime,company,class,price,seatnum)";
+            sql += "values (?,?,?,?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql);
 
             String saveId = id;
@@ -270,7 +340,8 @@ public class DB_connect {
             String saveStarttime = info[0];
             String saveCompany = info[1];
             String saveClass = info[2];
-            String savePrice = String.valueOf(info[4]);
+            String savePrice = String.valueOf(info[3]);
+            int saveSeatnum = Integer.valueOf(info[4]);
 
             pstmt.setString(1, saveId);
             pstmt.setString(2, saveStart);
@@ -280,6 +351,7 @@ public class DB_connect {
             pstmt.setString(6, saveCompany);
             pstmt.setString(7, saveClass);
             pstmt.setString(8, savePrice);
+            pstmt.setInt(9,saveSeatnum);
 
             pstmt.executeUpdate();
             pstmt.close();
@@ -315,7 +387,7 @@ public class DB_connect {
                 String company = rs.getString(5);
                 String class_ = rs.getString(6);
                 String price = rs.getString(7);
-                String seat = rs.getString(8);
+                String seat = String.valueOf(rs.getInt(8));
                 c.insertData(date,start,end,starttime, company, class_, price, seat);
             }
         } catch (Exception e) {

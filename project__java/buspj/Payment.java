@@ -381,6 +381,7 @@ class PaymentCenter extends JPanel implements ItemListener {
                     // 예매 DB에 저장 후 dispose
                     DB.saveUserReservation(id, start, end, date, info);
                     DB.set_payment(seatNum, 1);  // 해당 좌석이 결제되었다는 뜻
+                    DB.minus_seats(start,end,date,info);  // 해당 표의 좌석 수 -1
                     int point = DB.mileage(id);
                     point += 10;
                     DB.set_mileage(id, point);

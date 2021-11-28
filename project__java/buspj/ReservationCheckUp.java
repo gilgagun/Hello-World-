@@ -138,7 +138,7 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
                     }
                     c = DB.loadUserReservation(id);
                     for (int i = 0; i < c.date.size(); i++) {
-                        String[] data = {c.date.get(i), c.start.get(i), c.end.get(i), c.starttime.get(i), c.company.get(i), c.class_.get(i),c.price.get(i)};
+                        String[] data = {c.date.get(i), c.start.get(i), c.end.get(i), c.starttime.get(i), c.company.get(i), c.class_.get(i),c.price.get(i),c.seat.get(i)};
                         model.addRow(data);
                     }
                 }
