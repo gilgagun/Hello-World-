@@ -202,7 +202,7 @@ public class MyCard extends JFrame {
         this.data.clear();
 
         try {
-            String sql = "select bank, cardnum from mycard  where id=" + this.user;
+            String sql = "select bank, cardnum from mycard  where id='" + this.user + "'";
             System.out.println(sql);
             ResultSet rs = this.stmt.executeQuery(sql);
 

@@ -204,9 +204,15 @@ public class BusList extends JFrame {
         });
         this.btnDel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                start = BusList.this.tfName.getText();
-                end = BusList.this.tfName2.getText();
-                BusList.this.delete(start, end);
+                String start = BusList.this.tfName.getText();
+                String end = BusList.this.tfName2.getText();
+                String starttime = BusList.this.stt.getText();
+                String company = BusList.this.cmp.getText();
+                String db_class = BusList.this.bcs.getText();
+                String seats = BusList.this.bseat.getText();
+                String price = BusList.this.bprice.getText();
+                String date = BusList.this.bdate.getText();
+                BusList.this.delete(start, end, starttime, company, db_class, seats, price, date);
                 Vector result = BusList.this.selectAll();
                 BusList.this.model.setDataVector(result, BusList.this.title);
             }
@@ -290,9 +296,11 @@ public class BusList extends JFrame {
         return this.data;
     }
 
-    private void delete(String start, String end) {
+    private void delete(String start, String end, String starttime, String company, String db_class, String seats, String price, String date) {
+        int db_seat = Integer.valueOf(seats);
+        int db_price = Integer.valueOf(price);
         try {
-            this.pstmtDel = this.conn.prepareStatement("delete from bus_table where start = '" + start + "' and end = '" + end + "'");
+            this.pstmtDel = this.conn.prepareStatement("delete from bus_table where start='" + start + "' and end='" + end + "' and starttime='" + starttime + "' and company='" + company + "' and class='" + db_class + "' and seats=" + db_seat + " and price=" + db_price + " and date='" + date + "'");
             this.pstmtDel.executeUpdate();
         } catch (Exception var3) {
             var3.printStackTrace();
@@ -300,15 +308,14 @@ public class BusList extends JFrame {
     }
     private void insert(String start, String end, String starttime, String company, String db_class, String seats, String price,  String date) {
         try {
-
             this.pstmtAdd = this.conn.prepareStatement("insert into bus_table values(?,?,?,?,?,?,?,?)");
             this.pstmtAdd.setString(1, start);
             this.pstmtAdd.setString(2, end);
             this.pstmtAdd.setString(3, starttime);
             this.pstmtAdd.setString(4, company);
             this.pstmtAdd.setString(5, db_class);
-            this.pstmtAdd.setString(6, seats);
-            this.pstmtAdd.setString(7, price);
+            this.pstmtAdd.setInt(6, Integer.valueOf(seats));
+            this.pstmtAdd.setInt(7, Integer.valueOf(price));
             this.pstmtAdd.setString(8, date);
             this.pstmtAdd.executeUpdate();
         } catch (Exception var6) {

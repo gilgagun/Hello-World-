@@ -379,7 +379,7 @@ class PaymentCenter extends JPanel implements ItemListener {
                 String pass = password.getText();
                 if (password.getText().equals(pw)) {
                     // 예매 DB에 저장 후 dispose
-                    DB.saveUserReservation(id, start, end, date, info);
+                    DB.saveUserReservation(id, start, end, date, price, info, seatNum);
                     DB.set_payment(seatNum, 1);  // 해당 좌석이 결제되었다는 뜻
                     DB.minus_seats(start,end,date,info);  // 해당 표의 좌석 수 -1
                     int point = DB.mileage(id);

@@ -131,8 +131,10 @@ public class ReservationCheckUp extends JFrame implements MouseListener {
                 if (answer == JOptionPane.YES_OPTION) {
                     int point = DB.mileage(id);
                     point -= 10;
-                    DB.set_mileage(id, point);
-                    DB.delete_userReservation(id);
+                    DB.set_mileage(id, point);       // 마이너스 된 마일리지 업데이트
+                    String[] arr = DB.load_information(id);   // 삭제할 표 정보 가져오기
+                    DB.delete_userReservation(id);   // 해당 예매표 삭제
+                    DB.plus_seats(arr);             // 삭제한 표의 좌석 정보 업데이트
                     for (int i = 0; i < model.getRowCount(); i++) {
                         model.removeRow(i);
                     }

@@ -104,7 +104,7 @@ class MyCenterPanel extends JPanel {
         this.frame = frame;
         Color bgmycor=new Color(166,222,249);
         setBackground(bgmycor);
-        hi = new JLabel(id + "님 환영합니다!");
+        hi = new JLabel(id + " 고객님");
         // 프로필 이미지 삽입
         ImageIcon profile = new ImageIcon("project__java/buspj/image/profile.png");
         Image img = profile.getImage();
