@@ -112,7 +112,7 @@ public class BusList extends JFrame {
 
     public BusList(final String user2) {
         super("운행정보 관리");
-        this.setLocation(470,200);  // 프레임을 위치 설정
+        this.setLocation(130,150);  // 프레임을 위치 설정
         this.user = user2;
         this.setDefaultCloseOperation(0);
         this.preDbTreatment();
