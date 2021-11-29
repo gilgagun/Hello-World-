@@ -195,6 +195,7 @@ public class MyCard extends JFrame {
             }
         });
         this.setSize(900, 400);
+        this.setLocation(320,190);  // 프레임을 위치 설정
         this.setVisible(true);
     }
 
