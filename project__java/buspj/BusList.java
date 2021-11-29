@@ -60,7 +60,6 @@ class AddBus extends JFrame {
                 AddBus.this.dispose();
             }
         });
-
         setVisible(true);
     }
 }
@@ -174,9 +173,53 @@ public class BusList extends JFrame {
         this.jbprice = new JLabel("가격");
         this.jbdate = new JLabel("날짜");
 
-        this.btnAdd = new JButton("추가");
-        this.btnDel = new JButton("삭제");
-        this.btnUpdate = new JButton("닫기");
+        ImageIcon add1 = new ImageIcon("project__java/buspj/image/add1.png");
+        Image add11 = add1.getImage();
+        Image add111 = add11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon addIcon1 = new ImageIcon(add111);
+        ImageIcon add2 = new ImageIcon("project__java/buspj/image/add2.png");
+        Image add22 = add2.getImage();
+        Image add222 = add22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon addIcon2 = new ImageIcon(add222);
+        this.btnAdd = new JButton(addIcon1);
+        this.btnAdd.setBorderPainted(false); // 버튼 테두리 설정해제
+        this.btnAdd.setRolloverIcon(addIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        this.btnAdd.setFocusPainted(false);
+        this.btnAdd.setContentAreaFilled(false);
+        this.btnAdd.setOpaque(false);
+        //this.btnAdd = new JButton("추가");
+
+        ImageIcon del1 = new ImageIcon("project__java/buspj/image/del1.png");
+        Image del11 = del1.getImage();
+        Image del111 = del11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon delIcon1 = new ImageIcon(del111);
+        ImageIcon del2 = new ImageIcon("project__java/buspj/image/del2.png");
+        Image del22 = del2.getImage();
+        Image del222 = del22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon delIcon2 = new ImageIcon(del222);
+        this.btnDel = new JButton(delIcon1);
+        this.btnDel.setBorderPainted(false); // 버튼 테두리 설정해제
+        this.btnDel.setRolloverIcon(delIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        this.btnDel.setFocusPainted(false);
+        this.btnDel.setContentAreaFilled(false);
+        this.btnDel.setOpaque(false);
+        //this.btnDel = new JButton("삭제");
+
+        ImageIcon close1 = new ImageIcon("project__java/buspj/image/close1.png");
+        Image close11 = close1.getImage();
+        Image close111 = close11.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon1 = new ImageIcon(close111);
+        ImageIcon close2 = new ImageIcon("project__java/buspj/image/close2.png");
+        Image close22 = close2.getImage();
+        Image close222 = close22.getScaledInstance(70, 30, Image.SCALE_SMOOTH);
+        ImageIcon closeIcon2 = new ImageIcon(close222);
+        this.btnUpdate = new JButton(closeIcon1);
+        this.btnUpdate.setBorderPainted(false); // 버튼 테두리 설정해제
+        this.btnUpdate.setRolloverIcon(closeIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
+        this.btnUpdate.setFocusPainted(false);
+        this.btnUpdate.setContentAreaFilled(false);
+        this.btnUpdate.setOpaque(false);
+        //this.btnUpdate = new JButton("닫기");
         /*
         this.btnAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -257,7 +300,7 @@ public class BusList extends JFrame {
 
             }
         });
-        this.setSize(1200, 600);
+        this.setSize(1300, 600);
         this.setVisible(true);
     }
 

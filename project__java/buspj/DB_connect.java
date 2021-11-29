@@ -75,7 +75,6 @@ public class DB_connect {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1,  id);
             rs = pstmt.executeQuery();
-
             if(rs.next()) value = 1;
 
         }catch (Exception e) {
