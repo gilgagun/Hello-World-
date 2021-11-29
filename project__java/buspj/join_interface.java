@@ -14,7 +14,14 @@ class Member{ //회원 가입 db연결 클래스
     String name;
     String phone;
     int point;
-    public Member() {}
+    public Member(String id) {
+        this.id=id;
+        this.pw="pw";
+        this.email="email";
+        this.name="name";
+        this.phone="phone";
+        this.point = 0;
+    }
     public Member(String id, String pw, String email, String name, String phone, int point){
         this.id=id;
         this.pw=pw;
@@ -115,8 +122,10 @@ public class join_interface extends JFrame {
         idck.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int check = DB.idCheck(new_member);
                 String id = idt.getText();
+                Member idckmember = new Member(id);
+                int check = DB.idCheck(idckmember);
+                id = idt.getText();
                 if (id.equals("")) {
                     JOptionPane.showMessageDialog(null, "아이디를 입력하셔야 합니다.");
                 } else if (check == 0) {
@@ -154,7 +163,6 @@ public class join_interface extends JFrame {
         Image my11 = my2.getImage();
         Image remy1 = my11.getScaledInstance(80, 40, Image.SCALE_SMOOTH);
         ImageIcon reUpdateIcon2 = new ImageIcon(remy1);
-        //JButton card = new JButton(reUpdateIcon1);
         JButton btn1 = new JButton(reUpdateIcon1);
         btn1.setBorderPainted(false); // 버튼 테두리 설정해제
         btn1.setRolloverIcon(reUpdateIcon2); // 버튼에 마우스가 올라갈떄 이미지 변환
